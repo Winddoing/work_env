@@ -1,0 +1,22 @@
+[user]
+	name = xxx
+	email = xxx@xxx.com
+[color]
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+[core]
+	Editor = vim
+
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	pl = pull
+	ps = push
+	dt = difftool
+	l = log --stat
+	cp = cherry-pick
+	ca = commit -a
+	b = branch

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+user=wqshao
+my_home=/home/fpga/user/$user
+
+IN_DIR=$1
+OUT_DIR=$my_home/$2
+
+if [ $# != 2 ]; then
+	echo "cpuser aaa bbb"
+	exit 0
+fi
+
+ssh user@192.168.4.120 "[[ -d $OUT_DIR ]] || mkdir -p $OUT_DIR"
+if [ $? -ne 0 ]; then
+	echo "ssh connect error ..."
+	exit 1;
+fi
+
+scp -r $IN_DIR user@192.168.4.120:$OUT_DIR
+echo "scp $arg $IN_DIR fpga@192.168.4.13:$OUT_DIR"
