@@ -1,0 +1,67 @@
+
+# Default Shell
+shell "/bin/bash"
+
+# show status bar
+#hardstatus alwayslastline "%{b kw}%H %{r}%1` %{w}| %{g}%c %{w}| %{y}%d.%m.%Y %{w}| %{g}%l %{w}| %{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
+
+term xterm
+
+# 回滚
+termcapinfo xterm|xterms|xs ti@:te=\E[2J]
+
+# turn welcome message off
+startup_message off
+
+# vim退出残留
+altscreen on
+
+# start at windows c screen 1
+bind c screen 1
+bind ^c screen 1
+bind 0 select 10
+screen 1
+
+
+# 配置文件：
+#     ~/.screenrc
+
+# 启动会话：
+#     screen -S name
+
+# 启动会话，同时打开指定程序：
+#     screen python
+#     screen vi foo.c
+
+
+# 会话操作：
+#     screen -r    -- 恢复会话
+#     screen -x    -- 共享会话
+#     screen -ls   -- 列出会话
+#     screen -d    -- 分离会话
+#     screen -dRR  -- 强制分离
+#     screen -S ${NAME} -X screen ${CMD}    --发送命令至会话窗口
+
+
+
+# 窗口操作：
+#     操作键（C-a）
+#     C-a c        -- 创建窗口
+#     C-a w        -- 查看窗口
+#     C-a d        -- 分离会话
+#     C-a A        -- 窗口命名
+#     C-a [0-9]    -- 切换至指定窗口
+#     C-a C-a      -- 切换至上次窗口
+#     C-a n        -- 后一个窗口
+#     C-a p        -- 前一个窗口
+#     C-a <ESC>    -- 复制/粘贴模式
+#     C-a _        -- 监视窗口（无活动时弹出提示）
+#     C-a M        -- 监视窗口（有活动时弹出提示）
+#     C-a S        -- 横向切割窗口
+#     C-a |        -- 竖向切割窗口
+#     C-a tab      -- 删除区域
+#     C-a x        -- 锁定会话
+#     C-a [        -- 复制、滚动模式
+#     C-a ]        -- 粘贴缓冲
+#     C-a ?        -- 列出操作
+#     C-a :        -- 输入命令}}
