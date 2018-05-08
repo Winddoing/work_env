@@ -6,12 +6,16 @@ home=$HOME
 
 
 # 终端输入提示
-#PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n=====>\[\e[31m\]\$\[\e[0m\]"
-PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\[\e[31m\]\$\[\e[0m\]"
+PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n=====>\[\e[31m\]\$\[\e[0m\]"
+#PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\[\e[31m\]\$\[\e[0m\]"
 
 
 #习惯的使用别名
 alias vi='vim'
+alias grep='grep --color'
+
+alias ebuild='ssh -X shaowangquan@172.16.200.101'
+alias mbuild='sudo sshfs  shaowangquan@172.16.200.101:/home/shaowangquan /home/wqshao/build-dir -o gid=1000,uid=1000,allow_other'
 
 
 echo "Winddoing "
