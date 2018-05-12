@@ -13,5 +13,6 @@ sudo apt-get install  git \
 	ctags \
 	subversion \
 	sshfs \
-	tftpd tftp xinetd 
+	tftpd tftp xinetd \
+	tree
 
