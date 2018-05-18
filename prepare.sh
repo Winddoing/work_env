@@ -6,7 +6,7 @@
 ##########################################################
 #!/bin/bash
 
-sudo apt-get install  git \
+sudo apt-get install -y  git \
 	tmux \
 	meld \
 	vim  \
@@ -14,5 +14,7 @@ sudo apt-get install  git \
 	subversion \
 	sshfs \
 	tftpd tftp xinetd \
-	tree
+	tree \
+	htop \
+	minicom
 
