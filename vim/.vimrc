@@ -748,7 +748,6 @@ if &term=="xterm"
 set t_Sb=^[[4%dm
 set t_Sf=^[[3%dm
 endif
-let g:neocomplcache_enable_at_startup = 1
 
 ":inoremap ( ()<ESC>i
 ":inoremap ) <c-r>=ClosePair(')')<CR>
@@ -977,7 +976,8 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'altercation/vim-colors-solarized'
-"Plugin 'Lokaltog/vim-powerline'
+Plugin 'tomasr/molokai'
+Plugin 'Lokaltog/vim-powerline'
 "Plugin 'octol/vim-cpp-enhanced-highlight'  "改变函数名称颜色
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'derekwyatt/vim-fswitch'
@@ -1001,6 +1001,9 @@ Plugin 'mzlogin/vim-kramdown-tab'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'Raimondi/delimitMate'
 Plugin 'rkulla/pydiction'
+Plugin 'Shougo/neocomplcache.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " 插件列表结束
 call vundle#end()
@@ -1191,3 +1194,13 @@ nmap zz :bprevious<cr>
 nmap bb :b
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>>neocomplcache.vim
+" 提示补全
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_force_overwrite_completefunc = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>>ultisnips'
+">>>>>>>>>>vim-snippets'
+
