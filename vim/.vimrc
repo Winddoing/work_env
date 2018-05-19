@@ -1002,8 +1002,7 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'Raimondi/delimitMate'
 Plugin 'rkulla/pydiction'
 Plugin 'Shougo/neocomplcache.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plugin 'msanders/snipmate.vim'
 
 " 插件列表结束
 call vundle#end()
@@ -1200,7 +1199,4 @@ nmap bb :b
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_force_overwrite_completefunc = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>>>ultisnips'
-">>>>>>>>>>vim-snippets'
 
