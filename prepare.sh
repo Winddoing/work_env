@@ -6,7 +6,7 @@
 ##########################################################
 #!/bin/bash
 
-sudo apt-get install -y  git \
+sudo apt-get install -y  git gitk\
 	tmux \
 	meld \
 	vim  \
@@ -18,3 +18,9 @@ sudo apt-get install -y  git \
 	htop \
 	minicom
 
+
+
+
+# sudo apt-get install thunderbird
+
+# sudo apt-get install goldendict
