@@ -18,4 +18,6 @@ alias ebuild='ssh -X shaowangquan@172.16.200.101'
 alias mbuild='sudo sshfs  shaowangquan@172.16.200.101:/home/shaowangquan /home/wqshao/build-dir -o gid=1000,uid=1000,allow_other'
 
 
+export TERM="screen-256color"
+
 echo "Winddoing "
