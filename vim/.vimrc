@@ -70,11 +70,6 @@ colorscheme molokai
 
 
 
-set guifont=PowerlineSymbols\ for\ Powerline
-set nocompatible
-set t_Co=256
-let g:Powerline_symbols = 'unicode'
-
 
 " Fn 快捷键
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1038,6 +1033,13 @@ set foldmethod=syntax
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 "操作：za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
+
+
+">>>>>>>>vim-powerline
+set guifont=PowerlineSymbols\ for\ Powerline
+set nocompatible
+set t_Co=256
+let g:Powerline_symbols = 'unicode'
 
 
 ">>>>>>>>vim-fswitch
