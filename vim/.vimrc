@@ -912,6 +912,7 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'Shougo/neocomplcache.vim'
 Plugin 'msanders/snipmate.vim'
 Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'vim-syntastic/syntastic'
 
 " 插件列表结束
 call vundle#end()
@@ -1138,3 +1139,51 @@ if !isdirectory(s:vim_tags)
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+">>>>>>>>>>syntastic
+"语法检测
+"syntastic
+""设置error和warning的标志
+let g:syntastic_enable_signs = 1
+"let g:syntastic_error_symbol='✗'
+"let g:syntastic_warning_symbol='►'
+let g:syntastic_error_symbol='E'
+let g:syntastic_warning_symbol='W'
+"总是打开Location List（相当于QuickFix）窗口，如果你发现syntastic因为与其他插件冲突而经常崩溃，将下面选项置0
+"let g:syntastic_always_populate_loc_list = 1
+""自动打开Locaton List，默认值为2，表示发现错误时不自动打开，当修正以后没有再发现错误时自动关闭，置1表示自动打开自动关闭，0表示关闭自动打开和自动关闭，3表示自动打开，但不自动关闭
+let g:syntastic_auto_loc_list = 1
+"修改Locaton List窗口高度
+let g:syntastic_loc_list_height = 5
+""打开文件时自动进行检查
+"let g:syntastic_check_on_open = 1
+"自动跳转到发现的第一个错误或警告处
+"let g:syntastic_auto_jump = 1
+""进行实时检查，如果觉得卡顿，将下面的选项置为1
+let g:syntastic_check_on_wq = 1
+"高亮错误
+let g:syntastic_enable_highlighting=1
+""让syntastic支持C++11
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+"设置pyflakes为默认的python语法检查工具
+"let g:syntastic_python_checkers = ['pyflakes']
+""修复syntastic使用:lnext和:lprev出现的跳转问题，同时修改键盘映射使用sn和sp进行跳转
+function! <SID>LocationPrevious()
+	try
+		lprev
+	catch /^Vim\%((\a\+)\)\=:E553/
+		llast
+	endtry
+endfunction
+function! <SID>LocationNext()
+	try
+		lnext
+	catch /^Vim\%((\a\+)\)\=:E553/
+		lfirst
+	endtry
+endfunction
+nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPrevious()'<CR>
+nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
+nmap <silent> sp    <Plug>LocationPrevious
+nmap <silent> sn    <Plug>LocationNext
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
