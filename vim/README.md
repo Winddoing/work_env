@@ -1,26 +1,12 @@
 # 安装 VIM8.x
 
-目录
-
-
-## 1. 拷贝至home目录下
-
-``` shell
-$mv vim_work_config .vim
 ```
-
-## 2. 创建软链接
-
-``` shell
-$ln -s .vim/.vimrc .vimrc
+sudo apt-get install vim
 ```
+> Version: ubuntu18.04
 
-## 3. 安装ctags
 
-``` shell
-$sudo apt-get install ctags
-```
-## 4. 完善部分插件
+# 插件安装
 
 在已有插件的基础上使用`vundle`进行新的插件管理
 
@@ -67,6 +53,7 @@ int main(int argv, char* argc[])
 
 ### F5
 
+TUML生成
 
 ### F6
 
@@ -152,6 +139,17 @@ gf
 ```
 qq
 ```
+
+## 窗口调整
+
+### 上下
+
+大：`+`, 小：`-`
+
+### 左右
+
+大：`>`, 小: `<`
+
 ## 其他
 
 ### `末行模式`重定义空格

@@ -41,7 +41,7 @@ function install_vim()
 		echo xxxxxxxxxxxxxx
 	fi
 	if [ ! -L $config_file ]; then
-		ln -s $PWD/vim/.vimrc $config_file
+		ln -s $PWD/vim/vimrc $config_file
 	fi
 }
 
