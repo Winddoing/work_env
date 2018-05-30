@@ -870,6 +870,11 @@ map df oprintf("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
 
 "将case 标记之后的语句放在标记缩进位置之后的 N 个字符处。(省缺'shiftwidth')。
 set cinoptions=:N,lN,bN
+
+"Ctrl + s保存文件
+nmap <C-S> :update<CR>
+vmap <C-S> <C-C>:update<CR>
+imap <C-S> <C-O>:update<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
