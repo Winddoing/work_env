@@ -16,7 +16,11 @@ sudo apt-get install -y  git gitk\
 	tftpd tftp xinetd \
 	tree \
 	htop \
-	minicom
+	minicom \
+	gcc \
+	g++ \
+	make \
+	net-tools
 
 
 
@@ -24,3 +28,5 @@ sudo apt-get install -y  git gitk\
 # sudo apt-get install thunderbird
 
 # sudo apt-get install goldendict
+
+# mail: Evolution
