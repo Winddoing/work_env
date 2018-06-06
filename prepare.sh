@@ -12,6 +12,7 @@ sudo apt-get install -y  git gitk\
 	vim  \
 	ctags \
 	subversion \
+	colordiff \
 	sshfs \
 	tftpd tftp xinetd \
 	tree \
@@ -20,7 +21,10 @@ sudo apt-get install -y  git gitk\
 	gcc \
 	g++ \
 	make \
-	net-tools
+	net-tools \
+	filezilla \
+	stardict \
+	virtualbox
 
 
 
