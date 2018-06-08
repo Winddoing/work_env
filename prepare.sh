@@ -11,6 +11,7 @@ sudo apt-get install -y  git gitk\
 	meld \
 	vim  \
 	ctags \
+	adb \
 	subversion \
 	colordiff \
 	sshfs \
@@ -24,7 +25,8 @@ sudo apt-get install -y  git gitk\
 	net-tools \
 	filezilla \
 	stardict \
-	virtualbox
+	virtualbox \
+	spatialite-gui
 
 
 
