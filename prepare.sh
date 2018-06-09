@@ -16,6 +16,8 @@ sudo apt-get install -y  git gitk\
 	colordiff \
 	sshfs \
 	tftpd tftp xinetd \
+	samba \
+	smbclient \
 	tree \
 	htop \
 	minicom \
@@ -23,6 +25,7 @@ sudo apt-get install -y  git gitk\
 	g++ \
 	make \
 	net-tools \
+	dia \
 	filezilla \
 	stardict \
 	virtualbox \
@@ -30,9 +33,22 @@ sudo apt-get install -y  git gitk\
 
 
 
-
+# 邮箱
 # sudo apt-get install thunderbird
 
-# sudo apt-get install goldendict
-
 # mail: Evolution
+
+# BT下载工具
+# sudo apt install ktorrent
+
+# 图形界面的FTP客户端
+# sudo apt install filezilla
+
+# HexEdit是一款十六进制编辑器
+# sudo apt install hexedit
+
+# chm阅读器
+# kchmviewer
+
+# 数据库编辑
+# spatialite-gui
