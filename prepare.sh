@@ -52,3 +52,5 @@ sudo apt-get install -y  git gitk\
 
 # 数据库编辑
 # spatialite-gui
+
+#sudo apt-get install wireshark
