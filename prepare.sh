@@ -24,6 +24,7 @@ sudo apt-get install -y  git gitk\
 	gcc \
 	g++ \
 	make \
+	cmake \
 	net-tools \
 	dia \
 	filezilla \
@@ -47,10 +48,11 @@ sudo apt-get install -y  git gitk\
 # HexEdit是一款十六进制编辑器
 # sudo apt install hexedit
 
-# chm阅读器
-# kchmviewer
-
 # 数据库编辑
 # spatialite-gui
 
-#sudo apt-get install wireshark
+# 网络包分析
+# sudo apt-get install wireshark
+
+# chm文件阅读器
+# sudo apt-get install kchmviewer
