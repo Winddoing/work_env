@@ -14,6 +14,7 @@ sudo apt-get install -y  git gitk\
 	adb \
 	subversion \
 	colordiff \
+	openssh-server \
 	sshfs \
 	tftpd tftp xinetd \
 	samba \

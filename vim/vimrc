@@ -636,7 +636,7 @@ let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Auto_Open=0
 nnoremap <F8> :TlistToggle<CR>
-set tags=tags;
+"set tags=tags;
 filetype plugin indent on
 set completeopt=longest,menu
 "let g:SuperTabRetainCompletionType=2
@@ -673,8 +673,8 @@ return a:char
 endif
 endf
 
-set tags=tags;\
-set path+=include;\
+"set tags=tags;\
+"set path+=include;\
 
 set listchars=tab:>-,trail:-
 highlight WhitespaceEOL ctermbg=red guibg=red
@@ -767,8 +767,9 @@ func SetTitle()
         call append(line(".")+4, " *############################################################*/")
         call append(line(".")+5, "")
         call append(line(".")+6, "#include <iostream>")
-        call append(line(".")+7, "using namespace std;")
-        call append(line(".")+8, "")
+        call append(line(".")+7, "")
+        call append(line(".")+8, "using namespace std;")
+        call append(line(".")+9, "")
     endif
     if &filetype == 'c'
         call setline(1, "/*#############################################################")
