@@ -2,3 +2,10 @@
 # vim
 /vim/bundle/*
 !/vim/bundle/Vundle.vim
+
+
+# tool
+/tools/x86/src/binfile/*
+!/tools/x86/src/binfile/Makefile
+!/tools/x86/src/binfile/*.sh
+!/tools/x86/src/binfile/*.c
