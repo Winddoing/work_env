@@ -11,6 +11,7 @@ sudo apt-get install -y  git gitk\
 	meld \
 	vim  \
 	ctags \
+	doxygen \
 	adb \
 	subversion \
 	colordiff \

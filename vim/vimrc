@@ -919,6 +919,7 @@ Plugin 'Shougo/neocomplcache.vim'
 Plugin 'msanders/snipmate.vim'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-utils/vim-man'
 
 " 插件列表结束
 call vundle#end()
@@ -1212,4 +1213,12 @@ nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPreviou
 nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
 nmap <silent> sp    <Plug>LocationPrevious
 nmap <silent> sn    <Plug>LocationNext
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>vim-utils/vim-man
+"vim中使用man 操作：Shift + k
+" open man page for word under cursor in a vertical split
+nmap K <Plug>(Vman)
+" open man page for word under cursor in a horizontal split
+"nmap K <Plug>(Man)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
