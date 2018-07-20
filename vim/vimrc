@@ -863,6 +863,7 @@ nmap ds :%s/\s\+$//<cr>
 "nmap ff :cs find t <C-R>=expand("<cword>")<CR><CR>:cw<CR>
 map dk oprintk("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
 map df oprintf("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
+map dff oprintf("===> func: %s, line: %d, file: %s\n", __func__, __LINE__, __FILE__);<Esc>
 " oxxxx  o -- vi edit
 
 "set pastetoggle=
