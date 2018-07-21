@@ -636,7 +636,6 @@ let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Auto_Open=0
 nnoremap <F8> :TlistToggle<CR>
-"set tags=tags;
 filetype plugin indent on
 set completeopt=longest,menu
 "let g:SuperTabRetainCompletionType=2
@@ -646,24 +645,8 @@ set autoindent
 set cindent
 
 " 带有如下符号的单词不要被换行分割
+set iskeyword+=_,$,@,%,#,-
 
- set iskeyword+=_,$,@,%,#,-
-
-
-if &term=="xterm"
-"set t_Co=8
-set t_Sb=^[[4%dm
-set t_Sf=^[[3%dm
-endif
-
-":inoremap ( ()<ESC>i
-":inoremap ) <c-r>=ClosePair(')')<CR>
-":inoremap { {}<ESC>i
-":inoremap } <c-r>=ClosePair('}')<CR>
-":inoremap [ []<ESC>i
-":inoremap ] <c-r>=ClosePair(']')<CR>
-":inoremap < <><ESC>i
-":inoremap > <c-r>=ClosePair('>')<CR>
 
 function ClosePair(char)
 if getline('.')[col('.') - 1] == a:char
@@ -673,8 +656,6 @@ return a:char
 endif
 endf
 
-"set tags=tags;\
-"set path+=include;\
 
 set listchars=tab:>-,trail:-
 highlight WhitespaceEOL ctermbg=red guibg=red
@@ -834,8 +815,12 @@ set colorcolumn=80
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""" Winddoing Configure """"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " 快捷键
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 定义快捷键到行首和行尾
 nmap LB 0
 nmap LE $
@@ -870,6 +855,8 @@ map dff oprintf("===> func: %s, line: %d, file: %s\n", __func__, __LINE__, __FIL
 "autocmd InsertEnter * setlocal paste
 "autocmd InsertLeave * setlocal nopaste
 
+" 配置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "将case 标记之后的语句放在标记缩进位置之后的 N 个字符处。(省缺'shiftwidth')。
 set cinoptions=:N,lN,bN
 
@@ -877,6 +864,10 @@ set cinoptions=:N,lN,bN
 nmap <C-S> :update<CR>
 vmap <C-S> <C-C>:update<CR>
 imap <C-S> <C-O>:update<CR>
+
+"ctag configure
+set tags=./tags;,tags
+set path+=include;
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
