@@ -10,6 +10,8 @@ sudo apt-get install -y  git gitk\
 	tmux \
 	meld \
 	vim  \
+	graphviz \
+	eog \
 	ctags \
 	doxygen \
 	adb \
