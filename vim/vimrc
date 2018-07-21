@@ -921,6 +921,7 @@ Plugin 'msanders/snipmate.vim'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'vim-utils/vim-man'
+Plugin 'vim-scripts/DrawIt'
 
 " 插件列表结束
 call vundle#end()
@@ -1222,4 +1223,16 @@ nmap <silent> sn    <Plug>LocationNext
 nmap K <Plug>(Vman)
 " open man page for word under cursor in a horizontal split
 "nmap K <Plug>(Man)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>vim-scripts/DrawIt
+"绘图--操作
+":DIstart	-- 启动（默认虚线----）
+":DIstop	-- 停止
+":DIdbl		-- 双实线(════)
+":DInrml    -- 单虚线(----)
+":DIsngl	-- 单实现(────)
+"划线： 方向键（直线）；Page up、Page Down（斜线）
+"箭头： <、>、^、v
+"擦除：空格切换
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
