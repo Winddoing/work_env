@@ -1061,6 +1061,9 @@ vnoremap <silent> <F5> :<C-U>:w<CR>:make<CR>
 " Compiling: :GraphvizCompile, <LocalLeader>ll
 " Viewing: :GraphvizShow, <LocalLeader>lv
 " Interactive viewing + editing: :GraphvizInteractive, <LocalLeader>li
+" 导出PDF: GraphvizCompilePDF
+autocmd BufWritePost *.dot :silent !dot -Tpng -o %<.png %
+autocmd BufWinEnter  *.dot :silent !eog %:p:r.png &
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
