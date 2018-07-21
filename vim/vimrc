@@ -1054,6 +1054,8 @@ let g:plantuml_executable_script = 'java -jar ~/.vim/until/plantuml.jar'
 nnoremap <silent> <F5> :w<CR> :make<CR>
 inoremap <silent> <F5> <Esc>:w<CR>:make<CR>
 vnoremap <silent> <F5> :<C-U>:w<CR>:make<CR>
+" Auto open
+autocmd BufWritePost  *.uml :silent !eog %:p:r.png &
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>wmgraphviz.vim
@@ -1061,7 +1063,7 @@ vnoremap <silent> <F5> :<C-U>:w<CR>:make<CR>
 " Compiling: :GraphvizCompile, <LocalLeader>ll
 " Viewing: :GraphvizShow, <LocalLeader>lv
 " Interactive viewing + editing: :GraphvizInteractive, <LocalLeader>li
-" 导出PDF: GraphvizCompilePDF
+" 导出PDF: :GraphvizCompilePDF
 autocmd BufWritePost *.dot :silent !dot -Tpng -o %<.png %
 autocmd BufWinEnter  *.dot :silent !eog %:p:r.png &
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
