@@ -10,6 +10,9 @@ PWD=`pwd`
 user=$USER
 home=$HOME
 
+no_sudo="no_sudo"
+NO_SUDO="$1"
+
 function install_cmd()
 {
 	local cmd=$1
@@ -24,8 +27,10 @@ function which_command()
 
 	command -v $cmd >> /dev/null
 	if [ $? -ne 0 ]; then
-		echo "Install $cmd ..."
-		install_cmd $cmd
+		echo "   Need Install $cmd ...\n"
+		if [ x$no_sudo != x$NO_SUDO ]; then
+			install_cmd $cmd
+		fi
 	fi
 }
 
@@ -124,7 +129,11 @@ function main()
 }
 
 # start
-sudo -l
+
+if [ x$no_sudo != x$NO_SUDO ]; then
+	sudo -l
+fi
+
 if [ $? -eq 0 ]; then
 	main
 fi

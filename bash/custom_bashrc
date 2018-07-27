@@ -3,11 +3,18 @@
 PWD=`pwd`
 user=$USER
 home=$HOME
+hostname=`hostname`
+
+HOST1NAME="vanxum02"
 
 
 # 终端输入提示
-PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n=====>\[\e[31m\]\$\[\e[0m\]"
-#PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\[\e[31m\]\$\[\e[0m\]"
+if [ x$hostname != x$HOST1NAME ]; then
+	PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n=====>\[\e[31m\]\$\[\e[0m\]"
+	#PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\[\e[31m\]\$\[\e[0m\]"
+else
+	PS1="[\A:\u]@[\h]\w\n=====>\$"
+fi
 
 
 #习惯的使用别名
