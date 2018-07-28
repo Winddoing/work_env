@@ -7,10 +7,20 @@ hostname=`hostname`
 
 HOST1NAME="vanxum02"
 
+function git_branch {
+	branch="`git branch 2>/dev/null | grep "^\*" | sed -e "s/^\*\ //"`"
+	if [ "${branch}" != "" ];then
+		if [ "${branch}" = "(no branch)" ];then
+			branch="(`git rev-parse --short HEAD`...)"
+		fi
+		echo "($branch)"
+	fi
+}
 
 # 终端输入提示
 if [ x$hostname != x$HOST1NAME ]; then
-	PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n=====>\[\e[31m\]\$\[\e[0m\]"
+	#PS1='\u@\h \[\033[01;36m\]\W\[\033[01;32m\]$(git_branch)\[\033[00m\]\$ '
+	PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n=====>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
 	#PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\[\e[31m\]\$\[\e[0m\]"
 else
 	PS1="\A [\u]@[\h]\w\n=====>\$"
@@ -43,6 +53,6 @@ stty -ixon
 # locale环境
 export LC_ALL=C
 
-echo "	Winddoing"
+echo "Winddoing"
 
 
