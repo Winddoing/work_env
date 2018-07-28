@@ -715,7 +715,8 @@ au BufRead,BufNewFile *.c set filetype=c
 au BufRead,BufNewFile *.sh set filetype=sh
 au BufRead,BufNewFile *.py set filetype=python
 au BufRead,BufNewFile *.dot set filetype=dot
-autocmd BufNewFile *.cpp,*.c,*.sh,*.py,*.dot exec ":call SetTitle()"
+au BufRead,BufNewFile *.uml set filetype=uml
+autocmd BufNewFile *.cpp,*.c,*.sh,*.py,*.dot,*.uml exec ":call SetTitle()"
 ""定义函数SetTitle，自动插入文件头
 func SetTitle()
 	if &filetype == 'python'
@@ -769,6 +770,13 @@ func SetTitle()
 		call append(1,"digraph G{")
 		call append(2,"")
 		call append(3,"}")
+		normal 3G
+	endif
+	if &filetype == 'uml'
+		call setline(1,"@startuml")
+		call append(1,"title xxxx")
+		call append(2,"")
+		call append(3,"@enduml")
 		normal 3G
 	endif
     "新建文件后，自动定位到文件末尾
