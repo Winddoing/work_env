@@ -22,13 +22,27 @@ alias vi='vim'
 alias grep='grep --color'
 alias man='viman'
 
+if [ hash colordiff 2> /dev/null ]; then
+	echo "I require colordiff but it's not installed.  Aborting."
+else
+	alias diff='colordiff'
+fi
+
 alias ebuild='ssh -X shaowangquan@172.16.200.101'
 alias mbuild='sudo sshfs  shaowangquan@172.16.200.101:/home/shaowangquan /home/wqshao/build-dir -o gid=1000,uid=1000,allow_other'
+
 
 # for tmux
 export TERM="screen-256color"
 
+
 # "CTRL-S：挂起终端（XON） "CTRL-Q：恢复终端（XOFF） "要禁止这些键盘映射
 stty -ixon
 
-echo "Winddoing "
+
+# locale环境
+export LC_ALL=C
+
+echo "	Winddoing"
+
+
