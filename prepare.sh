@@ -27,8 +27,8 @@ function install_software()
 function software_install()
 {
 	install_software "${LINUX_BASEL_SOFTWARE}"
-	#install_software "${LINUX_GRAPH_SOFTWARE}"
-	#install_software "${LINUX_OTHER_SOFTWARE}"
+	install_software "${LINUX_GRAPH_SOFTWARE}"
+	install_software "${LINUX_OTHER_SOFTWARE}"
 }
 
 # main
