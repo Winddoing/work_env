@@ -53,4 +53,10 @@ stty -ixon
 
 echo "Winddoing"
 
+# window10 for ubuntu
+
+uname -a | grep "Microsoft"  >> /dev/null
+if [ $? -eq 0 ]; then
+	echo wqshao | sudo -S service ssh restart && echo "Restart SSH" >> /dev/null
+fi
 
