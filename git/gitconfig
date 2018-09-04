@@ -8,6 +8,7 @@
 	interactive = auto
 [core]
 	Editor = vim
+	whitespace = cr-at-eol
 
 [alias]
 	co = checkout
