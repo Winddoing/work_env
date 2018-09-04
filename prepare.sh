@@ -6,37 +6,35 @@
 ##########################################################
 #!/bin/bash
 
-sudo apt-get install -y  git gitk\
-	tmux \
-	meld \
-	vim  \
-	graphviz \
-	eog \
-	ctags \
-	doxygen \
-	adb \
-	subversion \
-	colordiff \
-	openssh-server \
-	sshfs \
-	tftpd tftp xinetd \
-	samba \
-	smbclient \
-	tree \
-	htop \
-	minicom \
-	gcc \
-	g++ \
-	make \
-	cmake \
-	net-tools \
-	dia \
-	filezilla \
-	stardict \
-	virtualbox \
-	spatialite-gui
+LINUX_BASEL_SOFTWARE="git vim tmux exuberant-ctags doxygen openssh-server
+	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
+	subversion tftpd tftp xinetd sshfs minicom adb"
+
+LINUX_GRAPH_SOFTWARE="gitk meld eog"
+
+LINUX_OTHER_SOFTWARE="dia filezilla stardict virtualbox spatialite-gui"
 
 
+function install_software()
+{
+	for software in $1
+	do
+		echo "Install software $software ..."
+		sudo apt-get install -y $software
+	done
+}
+
+function software_install()
+{
+	install_software "${LINUX_BASEL_SOFTWARE}"
+	install_software "${LINUX_GRAPH_SOFTWARE}"
+	install_software "${LINUX_OTHER_SOFTWARE}"
+}
+
+# main
+sudo -l
+
+software_install
 
 # 邮箱
 # sudo apt-get install thunderbird
