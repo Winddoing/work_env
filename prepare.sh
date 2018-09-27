@@ -12,8 +12,7 @@ LINUX_BASEL_SOFTWARE="git vim tmux exuberant-ctags doxygen openssh-server
 
 LINUX_GRAPH_SOFTWARE="gitk meld eog"
 
-LINUX_OTHER_SOFTWARE="dia filezilla stardict virtualbox spatialite-gui"
-
+LINUX_OTHER_SOFTWARE="dia filezilla stardict virtualbox spatialite-gui sqlitebrowser"
 
 function install_software()
 {
@@ -52,6 +51,7 @@ software_install
 
 # 数据库编辑
 # spatialite-gui
+# sudo apt install sqlitebrowser(好用)
 
 # 网络包分析
 # sudo apt-get install wireshark
