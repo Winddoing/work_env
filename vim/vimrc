@@ -920,6 +920,7 @@ Plugin 'msanders/snipmate.vim'
 "Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'vim-utils/vim-man'
 Plugin 'vim-scripts/DrawIt'
+Plugin 'junegunn/vim-easy-align'
 
 " 插件列表结束
 call vundle#end()
@@ -1190,3 +1191,12 @@ nmap K <Plug>(Vman)
 "箭头： <、>、^、v
 "擦除：空格切换
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>vim-easy-align
+" 对齐
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
