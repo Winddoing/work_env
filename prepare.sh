@@ -6,6 +6,15 @@
 ##########################################################
 #!/bin/bash
 
+# 去掉注释恢复打印
+#debug="x"
+
+if [ x$debug != "x" ]; then
+	output=`tty`
+else
+	output="/dev/null"
+fi
+
 LINUX_BASEL_SOFTWARE="git vim tmux exuberant-ctags doxygen openssh-server
 	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
 	subversion tftpd tftp xinetd sshfs minicom adb"
@@ -18,8 +27,9 @@ function install_software()
 {
 	for software in $1
 	do
-		echo "Install software $software ..."
-		sudo apt-get install -y $software
+		echo -e "\033[32m Install software [$software] ...\033[0m"
+		sudo apt-get install -y $software > $output
+		echo -e ""
 	done
 }
 
@@ -33,6 +43,7 @@ function software_install()
 # main
 sudo -l
 
+echo "TTY: $output"
 software_install
 
 # 邮箱
@@ -58,3 +69,6 @@ software_install
 
 # chm文件阅读器
 # sudo apt-get install kchmviewer
+
+# Java eclipse
+# 软件商店搜索安装
