@@ -17,9 +17,24 @@ function git_branch {
 	fi
 }
 
+# tmux
+function tmux_init()
+{
+	tmux new -s initial_session
+}
+
+function tmux_startup()
+{
+	if which tmux 2>&1 >/dev/null; then
+		test -z "$TMUX" && (tmux attach || tmux_init)
+	fi
+}
+
+
 # 终端输入提示
 if [ x$hostname = x$HOST1NAME ]; then
 	PS1='\A [\u@\h]\w\n=====>$(git_branch)\$'
+	tmux_startup
 else
 	#PS1='\u@\h \[\033[01;36m\]\W\[\033[01;32m\]$(git_branch)\[\033[00m\]\$ '
 	PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n=====>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
@@ -59,14 +74,3 @@ uname -a | grep "Microsoft"  >> /dev/null
 if [ $? -eq 0 ]; then
 	echo wqshao | sudo -S service ssh restart && echo "Restart SSH" >> /dev/null
 fi
-
-# tmux
-function tmux_init()
-{
-	tmux new -s initial_session
-}
-
-if which tmux 2>&1 >/dev/null; then
-	test -z "$TMUX" && (tmux attach || tmux_init)
-fi
-
