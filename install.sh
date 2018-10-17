@@ -40,6 +40,7 @@ function install_vim()
 	local config_file="$home/.vimrc"
 
 	which_command vim
+	echo "Vim version `vim --version | awk 'NR==1'`"
 
 	if [ ! -L $source_file ]; then
 		ln -s $PWD/vim $source_file
@@ -55,6 +56,7 @@ function install_git()
 	local config_file="$home/.gitconfig"
 
 	which_command git
+	echo "Git version `git --version`"
 
 	if [ ! -L $config_file ]; then
 		ln -s $PWD/git/gitconfig $config_file
@@ -64,11 +66,17 @@ function install_git()
 function install_tmux()
 {
 	local config_file="$home/.tmux.conf"
+	local version=`tmux -V | awk '{print int($2)}'`
 
 	which_command tmux
+	echo "Tmux version `tmux -V` [$version]"
 
 	if [ ! -L $config_file ]; then
-		ln -s $PWD/tmux/tmux.conf $config_file
+		if [ $version -gt 1 ]; then # v < 1
+			ln -s $PWD/tmux/tmux.conf $config_file
+		else
+			ln -s $PWD/tmux/tmux2.0_before.conf $config_file
+		fi
 	fi
 }
 

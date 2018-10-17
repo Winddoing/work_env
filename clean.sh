@@ -3,8 +3,14 @@
 PWD=`pwd`
 user=$USER
 home=$HOME
-home=$home/tst
 
+
+function clean_dotfile()
+{
+	rm $home/.vimrc
+	rm $home/.gitconfig
+	rm $home/.tmux.conf
+}
 
 function clean_bash()
 {
@@ -19,6 +25,7 @@ function clean_bash()
 function main()
 {
 	clean_bash
+	clean_dotfile
 }
 
 # start
