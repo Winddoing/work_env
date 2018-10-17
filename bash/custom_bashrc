@@ -61,4 +61,12 @@ if [ $? -eq 0 ]; then
 fi
 
 # tmux
-tmux new -s initial_session
+function tmux_init()
+{
+	tmux new -s initial_session
+}
+
+if which tmux 2>&1 >/dev/null; then
+	test -z "$TMUX" && (tmux attach || tmux_init)
+fi
+
