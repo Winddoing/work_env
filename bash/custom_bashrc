@@ -60,3 +60,5 @@ if [ $? -eq 0 ]; then
 	echo wqshao | sudo -S service ssh restart && echo "Restart SSH" >> /dev/null
 fi
 
+# tmux
+tmux new -s initial_session

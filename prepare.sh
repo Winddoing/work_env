@@ -72,3 +72,6 @@ software_install
 
 # Java eclipse
 # 软件商店搜索安装
+
+# epub电子书阅读器
+# sudo apt install calibre

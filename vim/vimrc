@@ -697,7 +697,7 @@ let g:DoxygenToolkit_returnTag="@returns   "
 let g:DoxygenToolkit_dateTag="@date "
 let g:DoxygenToolkit_versionTag="@version "
 let g:DoxygenToolkit_versionString="1.0"
-let g:DoxygenToolkit_authorName="wqshao, wangquan.shao@ingenic.com"
+let g:DoxygenToolkit_authorName="winddoing, winddoing@sina.cn"
 let s:licenseTag = "Copyright(C)\<enter>"
 let s:licenseTag = s:licenseTag . "For free\<enter>"
 let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
@@ -723,7 +723,7 @@ func SetTitle()
 		call setline(1, "\#coding=utf8")
 		call setline(2, "\"\"\"")
 		call setline(3, "\# File Name	: ".expand("%"))
-		call setline(4, "\# Author	: wqshao")
+		call setline(4, "\# Author	: winddoing")
 		call setline(5, "\# Created Time	: ".strftime("%c"))
 		call setline(6, "\# Description	:")
 		call setline(7, "")
@@ -733,7 +733,7 @@ func SetTitle()
 	if &filetype == 'sh' "如果文件类型为.sh文件
         call setline(1,"\##########################################################")
         call append(line("."), "\# File Name		: ".expand("%"))
-        call append(line(".")+1, "\# Author		: wqshao")
+        call append(line(".")+1, "\# Author		: winddoing")
         call append(line(".")+2, "\# Created Time	: ".strftime("%c"))
 		call append(line(".")+3, "\# Description	:")
         call append(line(".")+4, "\##########################################################")
@@ -743,7 +743,7 @@ func SetTitle()
     if &filetype == 'cpp'
         call setline(1, "/*#############################################################")
         call append(line("."), " *     File Name	: ".expand("%"))
-        call append(line(".")+1, " *     Author		: wqshao")
+        call append(line(".")+1, " *     Author		: winddoing")
         call append(line(".")+2, " *     Created Time	: ".strftime("%c"))
         call append(line(".")+3, " *     Description	:")
         call append(line(".")+4, " *############################################################*/")
@@ -756,7 +756,7 @@ func SetTitle()
     if &filetype == 'c'
         call setline(1, "/*#############################################################")
         call append(line("."), " *     File Name	: ".expand("%"))
-        call append(line(".")+1, " *     Author		: wqshao")
+        call append(line(".")+1, " *     Author		: winddoing")
         call append(line(".")+2, " *     Created Time	: ".strftime("%c"))
         call append(line(".")+3, " *     Description	:")
         call append(line(".")+4, " *############################################################*/")
@@ -921,6 +921,7 @@ Plugin 'msanders/snipmate.vim'
 Plugin 'vim-utils/vim-man'
 Plugin 'vim-scripts/DrawIt'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'edkolev/tmuxline.vim'
 
 " 插件列表结束
 call vundle#end()
@@ -1200,3 +1201,12 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+">>>>>>>>>tmuxline.vim
+"
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt': '>',
+    \ 'right' : '',
+    \ 'right_alt' : '<',
+    \ 'space' : ' '}
+let g:tmuxline_powerline_separators = 0
