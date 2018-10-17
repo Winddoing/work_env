@@ -20,13 +20,19 @@ function git_branch {
 # tmux
 function tmux_init()
 {
-	tmux new -s initial_session
+	echo "tmux init"
+	(tmux new -s init_r_session -d)	#终端运行，接收端相关
+	(tmux new -s init_s_session -d)	#后台运行，发送端相关
+	tmux ls | grep "init_r_session" | grep "attached"
+	if [ $? ]; then
+		tmux attach -t init_r_session
+	fi
 }
 
 function tmux_startup()
 {
 	if which tmux 2>&1 >/dev/null; then
-		test -z "$TMUX" && (tmux attach || tmux_init)
+		test -z "$TMUX" && (tmux attach -t init_s_session || tmux_init)
 	fi
 }
 
