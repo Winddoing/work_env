@@ -606,7 +606,11 @@ noremap <leader>y :CommandTFlush<cr>
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=/bin/grep\ -nH
 
+""""""""""""""""""""""""""""""
+" => Vim help
+""""""""""""""""""""""""""""""
 
+nnoremap <F1> :vertical botright help<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC

@@ -31,6 +31,7 @@ function tmux_init()
 
 function tmux_startup()
 {
+	echo "tmux_startup TMUX=$TMUX"
 	if which tmux 2>&1 >/dev/null; then
 		test -z "$TMUX" && (tmux attach -t init_s_session || tmux_init)
 	fi
