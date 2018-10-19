@@ -1203,10 +1203,21 @@ nmap ga <Plug>(EasyAlign)
 
 ">>>>>>>>>tmuxline.vim
 "
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+	  \'b'    : '#W',
+	  \'c'	  : ['#(whoami)'],
+      \'win'  : ['#I', '#W'],
+      \'cwin' : ['#I', '#W'],
+	  \'x'	  : ['CPU:[#(cat /proc/cpuinfo | grep "processor" | wc -l)]'],
+	  \'y'    : ['#(date +" %Y-%m-%d %H:%M")','%a'],
+      \'z'    : '#H',
+	  \'options' : {'status-justify' : 'left'}}
 let g:tmuxline_separators = {
     \ 'left' : '',
     \ 'left_alt': '>',
     \ 'right' : '',
     \ 'right_alt' : '<',
     \ 'space' : ' '}
+
 let g:tmuxline_powerline_separators = 0

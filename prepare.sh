@@ -75,3 +75,6 @@ software_install
 
 # epub电子书阅读器
 # sudo apt install calibre
+
+# C语言静态语法检测
+# sudo apt install splint
