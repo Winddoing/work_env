@@ -906,6 +906,8 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-git'
+Plugin 'gregsexton/gitv'
 Plugin 'majutsushi/tagbar'
 Plugin 'oplatek/Conque-Shell'
 Plugin 'aklt/plantuml-syntax'
@@ -1039,6 +1041,12 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 set laststatus=2 " Always display the status line
 set statusline+=%{fugitive#statusline()} "  Git Hotness
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>vim-git
+"
+
+">>>>>>>>gitv
+"
 
 ">>>>>>>>> Tagbar
 let g:tagbar_width=35
