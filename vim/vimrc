@@ -300,16 +300,7 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-"Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
-au BufRead,BufNewFile ~/buffer iab <buffer> xh1 ===========================================
-
 map <leader>pp :setlocal paste!<cr>
-
-map <leader>bb :cd ..<cr>
 
 set csprg=/usr/bin/cscope
 set csto=0
@@ -318,13 +309,8 @@ set csverb
 set cscopetag
 "let g:winManagerWindowLayout='FileExplorer|TagList'
 let g:winManagerWindowLayout='FileExplorer'
-"map <F4> :WMToggle<CR>
 set iskeyword+=_,$,@,%,#,-
 
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Auto_Open=0
-nnoremap <F8> :TlistToggle<CR>
 set completeopt=longest,menu
 "let g:SuperTabRetainCompletionType=2
 "let g:SuperTabDefaultCompletionType="<C-X><C-O>"
@@ -335,24 +321,9 @@ set cindent
 " 带有如下符号的单词不要被换行分割
 set iskeyword+=_,$,@,%,#,-
 
-
-function ClosePair(char)
-	if getline('.')[col('.') - 1] == a:char
-		return "\<Right>"
-	else
-		return a:char
-	endif
-endf
-
-set listchars=tab:>-,trail:-
-highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
-
 "折叠方式"zf创建折叠
 "set fdm=indent
 set fdm=manual
-
-vmap <C-S-P> dO#endif<Esc>PO#if 0<Esc>
 
 "set notextmode
 
@@ -368,7 +339,6 @@ nmap dm :%s/\r\+$//e<cr>:set ff=unix<cr>
 ":set ff=unix
 "以dos的换行符格式保存文件, 注意是在行尾变为两个^M
 "set ff=dos
-let Tlist_Use_Right_Window = 1
 
 "add doxygen
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -520,7 +490,6 @@ nmap LE $
 
 nmap qq :q!<cr>
 
-nmap tt :Tlist<cr>
 nmap ww <C-w><C-w>
 nmap -- 5<C-w>-
 nmap ++ 5<C-w>+
