@@ -88,6 +88,7 @@ sudo apt-get install vim
 |      `dff`      | 添加应用层打印`printf("===> func: %s, line: %d, file: %s\n", __func__, __LINE__, __FILE__);` |
 |      `dk`       | 添加内核打印(debug printk)`printk("===> func: %s, line: %d\n", __func__, __LINE__);`         |
 |     `xdate`     | 自动输入当前时间(在`插入模式`下输入`xdate`)                                                  |
+|     `;+f`       | 打开最近编辑的文件																			 |
 
 
 ## 文件查找
