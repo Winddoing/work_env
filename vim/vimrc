@@ -291,6 +291,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType c set omnifunc=ccomplete#Complete
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -579,6 +580,7 @@ Plugin 'vim-utils/vim-man'
 Plugin 'vim-scripts/DrawIt'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'edkolev/tmuxline.vim'
+Plugin 'vim-scripts/OmniCppComplete'
 
 " 插件列表结束
 call vundle#end()
@@ -884,3 +886,20 @@ let g:tmuxline_separators = {
 			\ 'space' : ' '}
 
 let g:tmuxline_powerline_separators = 0
+
+
+">>>>>>>>>>>>>OmniCppComplete
+"C++补全
+"ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q
+set tags+=~/.vim/tags/cpp_src/tags
+nmap c++ :!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q --language-force=C++<cr>
+let OmniCpp_MayCompleteDot = 1 " autocomplete with .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete with ::
+let OmniCpp_SelectFirstItem = 2
+let OmniCpp_NamespaceSearch = 2
+let OmniCpp_ShowPrototypeInAbbr = 1
+let OmniCpp_GlobalScopeSearch=1
+let OmniCpp_DisplayMode=1
+let OmniCpp_DefaultNamespaces=["std"]
+
