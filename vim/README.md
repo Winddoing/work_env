@@ -89,6 +89,9 @@ sudo apt-get install vim
 |      `dk`       | 添加内核打印(debug printk)`printk("===> func: %s, line: %d\n", __func__, __LINE__);`         |
 |     `xdate`     | 自动输入当前时间(在`插入模式`下输入`xdate`)                                                  |
 |     `;+f`       | 打开最近编辑的文件																			 |
+|     `lf`        | 等价于F8        																			 |
+|     `ld`        | 等价于F4       																			     |
+|     `fw`        | 在当前目录下查找光标所在字符串      													     |
 
 
 ## 文件查找

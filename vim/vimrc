@@ -519,6 +519,10 @@ map dk oprintk("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
 map df oprintf("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
 map dff oprintf("===> func: %s, line: %d, file: %s\n", __func__, __LINE__, __FILE__);<Esc>
 
+"查找当前所有文件下光标所在的字符
+"https://blog.csdn.net/ckmufeng/article/details/50396632
+nnoremap fw yiw:vimgrep /<C-R>0/gj **<CR>:copen<CR>
+
 " 配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "将case 标记之后的语句放在标记缩进位置之后的 N 个字符处。(省缺'shiftwidth')。
@@ -682,6 +686,7 @@ let g:ctrlp_extensions = ['funky']
 ">>>>>>>>nerdtre
 "树形目录
 nmap <F4> :NERDTreeToggle<cr>
+nmap ld :NERDTreeToggle<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>ag.vim
@@ -705,6 +710,7 @@ set statusline+=%{fugitive#statusline()} "  Git Hotness
 let g:tagbar_width=35
 let g:tagbar_autofocus=1
 nmap <F8> :TagbarToggle<CR>
+nmap lf :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>Conque-Shell
@@ -717,9 +723,9 @@ nmap <C-b> :ConqueTermVSplit bash <cr>
 ">>>>>>>>plantuml-syntax
 "vim + plantuml
 let g:plantuml_executable_script = 'java -jar ~/.vim/until/plantuml.jar'
-nnoremap <silent> <F5> :w<CR> :make<CR>
-inoremap <silent> <F5> <Esc>:w<CR>:make<CR>
-vnoremap <silent> <F5> :<C-U>:w<CR>:make<CR>
+nnoremap <silent> <F5> :w<CR> :make<CR>:copen<CR>
+inoremap <silent> <F5> <Esc>:w<CR>:make<CR>:copen<CR>
+vnoremap <silent> <F5> :<C-U>:w<CR>:make<CR>:copen<CR>
 " Auto open
 autocmd BufWritePost  *.uml :silent !eog %:p:r.png &
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -886,6 +892,7 @@ let g:tmuxline_separators = {
 			\ 'space' : ' '}
 
 let g:tmuxline_powerline_separators = 0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 ">>>>>>>>>>>>>OmniCppComplete
@@ -902,4 +909,6 @@ let OmniCpp_ShowPrototypeInAbbr = 1
 let OmniCpp_GlobalScopeSearch=1
 let OmniCpp_DisplayMode=1
 let OmniCpp_DefaultNamespaces=["std"]
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
