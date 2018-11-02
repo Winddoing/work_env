@@ -15,7 +15,7 @@ else
 	output="/dev/null"
 fi
 
-LINUX_BASEL_SOFTWARE="git vim tmux exuberant-ctags doxygen openssh-server
+LINUX_BASEL_SOFTWARE="git vim tmux exuberant-ctags cscope doxygen openssh-server
 	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
 	subversion tftpd tftp xinetd sshfs minicom adb"
 
