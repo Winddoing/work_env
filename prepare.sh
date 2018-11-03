@@ -27,9 +27,13 @@ function install_software()
 {
 	for software in $1
 	do
-		echo -e "\033[32m Install software [$software] ...\033[0m"
-		sudo apt-get install -y $software > $output
-		echo -e ""
+		echo -ne "Install software [\033[33m$software\033[0m] ... "
+		sudo apt-get install -y $software > $output 2>&1
+		if [ $? -ne 0 ]; then
+			echo -e "\033[31mfail\033[0m"
+		else
+			echo -e "\033[32msuccess\033[0m"
+		fi
 	done
 }
 
