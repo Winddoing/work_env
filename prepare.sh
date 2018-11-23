@@ -17,7 +17,7 @@ fi
 
 LINUX_BASEL_SOFTWARE="git vim tmux exuberant-ctags cscope doxygen openssh-server
 	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
-	subversion tftpd tftp xinetd sshfs minicom adb"
+	subversion tftpd tftp xinetd sshfs minicom adb astyle splint"
 
 LINUX_GRAPH_SOFTWARE="gitk meld eog"
 
