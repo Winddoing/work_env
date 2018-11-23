@@ -15,6 +15,9 @@ else
 	output="/dev/null"
 fi
 
+install_success_i=0
+install_failed_i=0
+
 LINUX_BASEL_SOFTWARE="git vim tmux exuberant-ctags cscope doxygen openssh-server
 	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
 	subversion tftpd tftp xinetd sshfs minicom adb astyle splint"
@@ -31,9 +34,13 @@ function install_software()
 		sudo apt-get install -y $software > $output 2>&1
 		if [ $? -ne 0 ]; then
 			echo -e "\033[31mfail\033[0m"
+			install_failed_i=$(($install_failed_i+1))
 		else
 			echo -e "\033[32msuccess\033[0m"
+			install_success_i=$(($install_success_i+1))
 		fi
+
+		trap "print_count" INT
 	done
 }
 
@@ -44,11 +51,22 @@ function software_install()
 	install_software "${LINUX_OTHER_SOFTWARE}"
 }
 
+function print_count()
+{
+	echo ""
+	echo "Install success software: $install_success_i"
+	echo "Install fail software: $install_failed_i"
+	echo ""
+	echo "Total number of software: $(($install_success_i+$install_failed_i))"
+	exit 1;
+}
+
 # main
 sudo -l
 
 echo "TTY: $output"
 software_install
+print_count
 
 # 邮箱
 # sudo apt-get install thunderbird
