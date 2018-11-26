@@ -514,6 +514,9 @@ nmap fk :1,$s/ *$//g<cr>
 "取出多余空格
 nmap ds :%s/\s\+$//<cr>
 
+"删除多余空行只留一个空行
+nmap dh :g/^\s*$\n\s*$/d<cr>
+
 "nmap ff :cs find t <C-R>=expand("<cword>")<CR><CR>:cw<CR>
 map dk oprintk("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
 map df oprintf("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
@@ -592,7 +595,7 @@ Plugin 'vim-scripts/DrawIt'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-scripts/OmniCppComplete'
-Plugin 'brookhong/cscope.vim'
+"Plugin 'brookhong/cscope.vim'
 
 " 插件列表结束
 call vundle#end()
