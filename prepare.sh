@@ -20,7 +20,7 @@ install_failed_i=0
 
 LINUX_BASEL_SOFTWARE="git vim tmux exuberant-ctags cscope doxygen openssh-server
 	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
-	subversion tftpd tftp xinetd sshfs minicom adb astyle splint"
+	subversion tftpd tftp xinetd sshfs minicom adb astyle splint cloc"
 
 LINUX_GRAPH_SOFTWARE="gitk meld eog"
 
@@ -100,3 +100,6 @@ print_count
 
 # C语言静态语法检测
 # sudo apt install splint
+
+# 代码统计
+# sudo apt install cloc

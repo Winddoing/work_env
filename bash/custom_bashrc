@@ -53,7 +53,7 @@ fi
 alias vi='vim'
 alias grep='grep --color'
 alias man='viman'
-alias astyle_c='astyle --style=linux --indent=force-tab=4 *.c *.h'  #缩进4个空格
+alias astyle-c='astyle --style=linux --indent=spaces=4 --convert-tabs --pad-oper --unpad-paren --break-blocks=all --delete-empty-lines *.c *.h'  #缩进4个空格
 
 if [ hash colordiff 2> /dev/null ]; then
 	echo "I require colordiff but it's not installed.  Aborting."
@@ -63,6 +63,31 @@ fi
 
 alias ebuild='ssh -X shaowangquan@172.16.200.101'
 alias mbuild='sudo sshfs  shaowangquan@172.16.200.101:/home/shaowangquan /home/wqshao/build-dir -o gid=1000,uid=1000,allow_other'
+
+
+#function
+md5str(){ echo "Calculate simple string: [$1]"; echo -n "MD5: "; echo -n "$1" | md5sum; }
+
+function extract() {
+	if [ -f $1 ] ; then
+		case $1 in
+			*.tar.bz2)   tar xjf $1     ;;
+			*.tar.gz)    tar xzf $1     ;;
+			*.bz2)       bunzip2 $1     ;;
+			*.rar)       unrar e $1     ;;
+			*.gz)        gunzip $1      ;;
+			*.tar)       tar xf $1      ;;
+			*.tbz2)      tar xjf $1     ;;
+			*.tgz)       tar xzf $1     ;;
+			*.zip)       unzip $1       ;;
+			*.Z)         uncompress $1  ;;
+			*.7z)        7z x $1        ;;
+			*)     echo "'$1' cannot be extracted via extract()" ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}
 
 
 # for tmux
