@@ -20,7 +20,7 @@ install_failed_i=0
 
 LINUX_BASEL_SOFTWARE="git vim tmux exuberant-ctags cscope doxygen openssh-server
 	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
-	subversion tftpd tftp xinetd sshfs minicom adb astyle splint cloc"
+	subversion tftpd tftp xinetd sshfs minicom adb astyle splint cloc sparse"
 
 LINUX_GRAPH_SOFTWARE="gitk meld eog"
 
@@ -103,3 +103,7 @@ print_count
 
 # 代码统计
 # sudo apt install cloc
+
+# C代码静态检查工具
+# sudo apt install sparse
+
