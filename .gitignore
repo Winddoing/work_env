@@ -10,3 +10,10 @@
 !/tools/x86/src/binfile/Makefile
 !/tools/x86/src/binfile/*.sh
 !/tools/x86/src/binfile/*.c
+
+## gdb
+tools/x86/arm-linux-gdb
+tools/x86/arm-linux-gdb-add-index
+tools/x86/arm-linux-run
+
+tools/src/tmp
