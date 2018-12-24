@@ -2,12 +2,14 @@
 service tftp
 {
     protocol        = udp
-    port            = 69
     socket_type     = dgram
     wait            = yes
-    user            = nobody
+    user            = root
     server          = /usr/sbin/in.tftpd
-    server_args     = /home/wqshao/tftprootfs
+    server_args     = -s /home/wqshao/tftprootfs
     disable         = no
+    per_source      = 11
+    cps             = 100 2
+    flags           = IPv4
 }
 
