@@ -18,7 +18,7 @@ fi
 install_success_i=0
 install_failed_i=0
 
-LINUX_BASEL_SOFTWARE="git vim tmux exuberant-ctags cscope doxygen openssh-server
+LINUX_BASEL_SOFTWARE="git git-extras tig vim tmux exuberant-ctags cscope doxygen openssh-server
 	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
 	subversion tftpd tftp xinetd sshfs minicom adb astyle splint cloc sparse"
 
