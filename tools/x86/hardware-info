@@ -1,0 +1,73 @@
+#!/bin/bash
+##########################################################
+# File Name		: info.sh
+# Author		: winddoing
+# Created Time	: 2019年02月02日 星期六 14时18分42秒
+# Description	: get the hardware information (ubuntu 18.04)
+##########################################################
+
+function out_yellow()
+{
+    echo -e "\033[33m$1\033[0m"
+}
+
+function out_green()
+{
+    echo -e "\033[32m$1\033[0m"
+}
+
+function out_blue()
+{
+    echo -e "\033[34m$1\033[0m"
+}
+
+
+function get_cpu_info()
+{
+    echo -en "\tName: "
+    out_yellow "`cat /proc/cpuinfo | grep 'model name' | uniq | cut -d: -f2`"
+
+    echo -en "\tPhysical core Num is: "
+    out_yellow "`cat /proc/cpuinfo | grep "physical id" | uniq | wc -l`"
+
+    echo -en "\tLogic Core Num is: "
+    out_yellow "`grep -c 'model name' /proc/cpuinfo`"
+
+    echo -en "\tThreads Num is: "
+    out_yellow "`cat /proc/cpuinfo | grep "processor" | wc -l`"
+}
+
+function get_mem_info()
+{
+    TotalMem=`free -m | grep Mem | awk '{print  $2}'`
+    UsedMem=`awk '/MemTotal/{total=$2}/MemFree/{free=$2}\
+                  END{print (total-free)/1024}' /proc/meminfo`
+
+    echo -e "\tTotal Memory is: \033[32m${TotalMem}\033[0m MB"
+
+    echo -e "\tUsed Memory is: \033[32m${UsedMem}\033[0m MB"
+}
+
+function get_disk_info()
+{
+    echo -e "\tDisk Information: "
+    for x in `df -h | grep /dev | awk '{print $5 "-" $6 "-" $2 "-" $4}' | sed 's/%//g'`
+    do
+        disk_status=(${x//"-"/" "})
+        echo -en "\tDisk Directory \033[36m${disk_status[1]}\033[0m"
+        echo -en " DiskTotal=\033[32m${disk_status[2]}\033[0m"
+        echo -e " DiskUsed=\033[33m${disk_status[3]}\033[0m"
+    done
+
+}
+
+echo -e "\n -------- This Computer's Hardware Config Information is: --------"
+
+echo -e "\n====> CPU Info:"
+get_cpu_info
+echo -e "\n====> Mem Info:"
+get_mem_info
+echo -e "\n====> Disk Info:"
+get_disk_info
+
+echo -e "\n --------------------------- End ---------------------------------\n"
