@@ -22,7 +22,7 @@ LINUX_BASEL_SOFTWARE="git git-extras tig vim tmux exuberant-ctags cscope doxygen
 	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
 	subversion tftpd tftp xinetd sshfs minicom adb astyle splint cloc sparse"
 
-LINUX_GRAPH_SOFTWARE="gitk meld eog"
+LINUX_GRAPH_SOFTWARE="gitk meld eog cutecom"
 
 LINUX_OTHER_SOFTWARE="dia filezilla stardict virtualbox spatialite-gui sqlitebrowser"
 
@@ -106,4 +106,7 @@ print_count
 
 # C代码静态检查工具
 # sudo apt install sparse
+
+# 串口助手
+# sudo apt install cutecom
 

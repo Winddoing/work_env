@@ -47,16 +47,16 @@ int main(int argc, char *argv[])
 	size = fst.st_size;
 
 	if (size > MEM_SIZE) {
-		printf("file size is bigger than MEM_SIZE\n");
+		printf("file size is bigger than MEM_SIZE=%d\n", MEM_SIZE);
 		exit(1);
 	}
 
-	buf = malloc(MEM_SIZE);
+	buf = malloc(size);
 	if (!buf) {
 		printf("No enough memory\n");
 		exit(1);
 	}
-	memset(buf, 0, MEM_SIZE);
+	memset(buf, 0, size);
 
 	if ((ret = fread(buf, sizeof(char), size, fdr)) != size) {
 		printf("Cannot read %s (%s)\n", from, strerror(errno));
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 	}
 
 	// convert here
-	for (i = 0; i < MEM_SIZE; i += 4) {
+	for (i = 0; i < size; i += 4) {
 		unsigned int val;
 
 		val = *(unsigned int *)(buf + i);

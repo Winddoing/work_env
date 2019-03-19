@@ -6,10 +6,10 @@
 
 
 # tool
-/tools/x86/src/binfile/*
-!/tools/x86/src/binfile/Makefile
-!/tools/x86/src/binfile/*.sh
-!/tools/x86/src/binfile/*.c
+/tools/src/binfile/*
+!/tools/src/binfile/Makefile
+!/tools/src/binfile/*.sh
+!/tools/src/binfile/*.c
 
 ## gdb
 tools/x86/arm-linux-gdb

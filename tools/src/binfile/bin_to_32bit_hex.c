@@ -1,22 +1,23 @@
 /*
- * bin_to_8bit_hex.c
+ * bin_to_32bit_hex.c
  *
  * Convert binary format to hex format (string format) 8bit a line.
  *
- * Usage:	MEM_SIZE : The outfile hex file size in memory we want,
- *			   the final srec file size is 3*FILE_SIZE
- *		bin_to_8bit_hex xxx.bin xxx.srec (xxx.srec little-endian one line 8bit)
- *
+ * Usage:	modify MEM_SIZE : The outfile hex file size in memory we want,
+ *		the final srec file size is 2.25 * FILE_SIZE
+ *		bin_to_32bit_hex xxx.bin xxx.srec (xxx.srec big-endian one line 32bit)
  *
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <sys/stat.h>
 #include <string.h>
+#include <sys/stat.h>
 
-#define MEM_SIZE 28672  /* 28KB */
+#define MEM_SIZE 6291456 /* 32KB ROM size */
+//#define MEM_SIZE 16384 /* 16KB ROM size */
+
 int main(int argc, char *argv[])
 {
 	FILE *fdr, *fdw;
@@ -47,16 +48,16 @@ int main(int argc, char *argv[])
 	size = fst.st_size;
 
 	if (size > MEM_SIZE) {
-		printf("file size is bigger than ROM_SIZE\n");
+		printf("file size is bigger than MEM_SIZE\n");
 		exit(1);
 	}
 
-	buf = malloc(MEM_SIZE);
+	buf = malloc(size);
 	if (!buf) {
 		printf("No enough memory\n");
 		exit(1);
 	}
-	memset(buf, 0, MEM_SIZE);
+	memset(buf, 0, size);
 
 	if ((ret = fread(buf, sizeof(char), size, fdr)) != size) {
 		printf("Cannot read %s (%s)\n", from, strerror(errno));
@@ -70,14 +71,15 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-	for (i = 0; i < MEM_SIZE; i += 1) {
-		char val = *(unsigned char *)(buf + i);
-		for (j = 1; j >= 0; j--) {
-			if (ret = fwrite(&chars[(val >> (4 * j)) & 0xf],
-						sizeof(char),
-						1,
-						fdw) != 1) {
-				printf("Cannot write to file %s\n",to);
+	for (i = 0; i < size; i += 4) {
+		unsigned int val;
+
+		val = *(unsigned int *)(buf + i);
+
+		for (j = 7; j >= 0; j--) {
+			if ((ret = fwrite(&chars[(val >> (4 * j)) & 0xf],
+					  sizeof(char), 1, fdw)) != 1) {
+				printf("Cannot write to file %s\n", to);
 				exit(1);
 			}
 		}
