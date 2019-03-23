@@ -22,9 +22,11 @@ LINUX_BASEL_SOFTWARE="git git-extras tig vim tmux exuberant-ctags cscope doxygen
 	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
 	subversion tftpd tftp xinetd sshfs minicom adb astyle splint cloc sparse"
 
-LINUX_GRAPH_SOFTWARE="gitk meld eog cutecom"
+LINUX_GRAPH_SOFTWARE="gitk meld eog cutecom deepin-screenshot atom firefox kolourpaint rapidsvn
+    vlc thunderbird"
 
-LINUX_OTHER_SOFTWARE="dia filezilla stardict virtualbox spatialite-gui sqlitebrowser"
+LINUX_OTHER_SOFTWARE="dia filezilla stardict virtualbox spatialite-gui sqlitebrowser wireshark
+    audacity vooya"
 
 function install_software()
 {
@@ -110,3 +112,14 @@ print_count
 # 串口助手
 # sudo apt install cutecom
 
+# 截图软件
+# sudo apt inatsll deepin-screenshot
+
+# 画图软件
+# sudo apt install kolourpaint
+
+# yuv播放器
+# sudo apt install vooya
+
+# SVN
+# sudo apt install rapidsvn
