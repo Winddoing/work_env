@@ -18,15 +18,16 @@ fi
 install_success_i=0
 install_failed_i=0
 
-LINUX_BASEL_SOFTWARE="git git-extras tig vim tmux exuberant-ctags cscope doxygen openssh-server
-	samba smbclient htop gcc g++ make cmake net-tools graphviz tree colordiff
-	subversion tftpd tftp xinetd sshfs minicom adb astyle splint cloc sparse"
+LINUX_BASEL_SOFTWARE="git git-extras tig vim tmux exuberant-ctags cscope doxygen
+    openssh-server samba smbclient htop gcc g++ make cmake net-tools graphviz
+    tree colordiff subversion tftpd tftp xinetd sshfs minicom adb astyle splint
+    cloc sparse fakeroot"
 
-LINUX_GRAPH_SOFTWARE="gitk meld eog cutecom deepin-screenshot atom firefox kolourpaint rapidsvn
-    vlc thunderbird"
+LINUX_GRAPH_SOFTWARE="gitk meld eog cutecom deepin-screenshot atom firefox vlc
+    kolourpaint rapidsvn thunderbird"
 
-LINUX_OTHER_SOFTWARE="dia filezilla stardict virtualbox spatialite-gui sqlitebrowser wireshark
-    audacity vooya"
+LINUX_OTHER_SOFTWARE="dia filezilla stardict virtualbox spatialite-gui wireshark
+    sqlitebrowser audacity vooya"
 
 function install_software()
 {
