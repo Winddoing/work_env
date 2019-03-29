@@ -90,6 +90,11 @@ fi
 alias ebuild='ssh -X shaowangquan@172.16.200.101'
 alias mbuild='sudo sshfs  shaowangquan@172.16.200.101:/home/shaowangquan /home/wqshao/build-dir -o gid=1000,uid=1000,allow_other'
 alias ydict='ydict'
+alias dia="env GTK_IM_MODULE=xim dia"
+alias matlab='/home/wqshao/software/matlab/bin/matlab'
+# https://motrix.app && chmod +x Motrix-1.1.3-x86_64.AppImage
+alias motrix='/home/wqshao/software/Motrix-1.1.3-x86_64.AppImage'
+
 
 
 # for tmux
