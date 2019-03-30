@@ -94,6 +94,7 @@ sudo apt-get install vim
 |     `ld`        | 等价于F4       																			     |
 |     `fw`        | 在当前目录下查找光标所在字符串      													     |
 |     `xml`       | 格式化xml文件                        													     |
+|     `json       | 格式化json文件                        													     |
 
 
 ## 文件查找
