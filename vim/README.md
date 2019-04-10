@@ -40,6 +40,8 @@ sudo apt-get install vim
 > Version: ubuntu18.04
 
 
+![vim](./vim.png)
+
 # 插件安装
 
 在已有插件的基础上使用`vundle`进行新的插件管理
