@@ -9,6 +9,7 @@
 [core]
 	Editor = vim
 	whitespace = cr-at-eol
+	quotepath = false
 
 [alias]
 	co = checkout
