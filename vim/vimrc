@@ -394,13 +394,13 @@ func SetTitle()
 		call setline(9,"")
 	endif
 	if &filetype == 'sh' "如果文件类型为.sh文件
-		call setline(1,"\##########################################################")
-		call append(line("."), "\# File Name		: ".expand("%"))
-		call append(line(".")+1, "\# Author		: winddoing")
-		call append(line(".")+2, "\# Created Time	: ".strftime("%c"))
-		call append(line(".")+3, "\# Description	:")
-		call append(line(".")+4, "\##########################################################")
-		call append(line(".")+5, "\#!/bin/bash")
+		call setline(1, "\#!/bin/bash")
+		call append(line("."), "\##########################################################")
+		call append(line(".")+1, "\# File Name		: ".expand("%"))
+		call append(line(".")+2, "\# Author		: winddoing")
+		call append(line(".")+3, "\# Created Time	: ".strftime("%c"))
+		call append(line(".")+4, "\# Description	:")
+		call append(line(".")+5, "\##########################################################")
 		call append(line(".")+6, "")
 	endif
 	if &filetype == 'cpp'
