@@ -10,58 +10,65 @@
 #debug="x"
 
 if [ x$debug != "x" ]; then
-	output=`tty`
+    output=`tty`
 else
-	output="/dev/null"
+    output="/dev/null"
 fi
 
 install_success_i=0
 install_failed_i=0
 
-LINUX_BASEL_SOFTWARE="git git-extras tig vim tmux exuberant-ctags cscope doxygen
+LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     openssh-server samba smbclient htop gcc g++ make cmake net-tools graphviz
     tree colordiff subversion tftpd tftp xinetd sshfs minicom adb astyle splint
-    cloc sparse fakeroot icdiff"
+    cloc sparse fakeroot icdiff)
 
-LINUX_GRAPH_SOFTWARE="gitk meld eog cutecom deepin-screenshot atom firefox vlc
-    kolourpaint rapidsvn thunderbird"
+LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot atom firefox vlc
+    kolourpaint rapidsvn thunderbird)
 
-LINUX_OTHER_SOFTWARE="dia filezilla stardict virtualbox spatialite-gui wireshark
-    sqlitebrowser audacity vooya"
+LINUX_OTHER_SOFTWARE=(dia filezilla stardict virtualbox spatialite-gui wireshark
+    sqlitebrowser audacity vooya)
 
 function install_software()
 {
-	for software in $1
-	do
-		echo -ne "Install software [\033[33m$software\033[0m] ... "
-		sudo apt-get install -y $software > $output 2>&1
-		if [ $? -ne 0 ]; then
-			echo -e "\033[31mfail\033[0m"
-			install_failed_i=$(($install_failed_i+1))
-		else
-			echo -e "\033[32msuccess\033[0m"
-			install_success_i=$(($install_success_i+1))
-		fi
+    name=$1[@]
+    slist=("${!name}")
 
-		trap "print_count" INT
-	done
+    for software in "${slist[@]}"
+    do
+        echo -ne "Install software [\033[33m$software\033[0m] ... "
+        sudo apt-get install -y $software > $output 2>&1
+        if [ $? -ne 0 ]; then
+            echo -e "\033[31mfail\033[0m"
+            install_failed_i=$(($install_failed_i+1))
+        else
+            echo -e "\033[32msuccess\033[0m"
+            install_success_i=$(($install_success_i+1))
+        fi
+
+        trap "print_count" INT
+    done
 }
 
 function software_install()
 {
-	install_software "${LINUX_BASEL_SOFTWARE}"
-	install_software "${LINUX_GRAPH_SOFTWARE}"
-	install_software "${LINUX_OTHER_SOFTWARE}"
+    install_software LINUX_BASEL_SOFTWARE
+    install_software LINUX_GRAPH_SOFTWARE
+    install_software LINUX_OTHER_SOFTWARE
 }
 
 function print_count()
 {
-	echo ""
-	echo "Install success software: $install_success_i"
-	echo "Install fail software: $install_failed_i"
-	echo ""
-	echo "Total number of software: $(($install_success_i+$install_failed_i))"
-	exit 1;
+    local all_num
+    all_num=$((${#LINUX_BASEL_SOFTWARE[@]} + ${#LINUX_GRAPH_SOFTWARE[@]} + ${#LINUX_OTHER_SOFTWARE[@]}))
+
+    echo ""
+    echo "Install success software: $install_success_i"
+    echo "Install fail software: $install_failed_i"
+    echo ""
+    echo "Total number of software: $all_num"
+    echo "Not Installed software: $(($all_num - $install_failed_i - $install_success_i))"
+    exit 1;
 }
 
 # main
