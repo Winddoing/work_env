@@ -1,4 +1,23 @@
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>>>> gvim configure
+if has("gui_running") && has("win32")
+    " set the menu & the message to English
+    set langmenu=en_US
+    let $LANG= 'en_US'
+
+    " 窗口大小
+    "set lines=35 columns=140
+	" 窗口最大化
+	autocmd GUIEnter * simalt ~x
+
+    "不显示工具/菜单栏
+    set guioptions-=T
+    set guioptions-=m
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 " 鼠标模式
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set mouse=a
@@ -566,7 +585,11 @@ set noswapfile
 "插件管理  vundle 环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+if has("gui_running") && has("win32")
+	set rtp+=$VIM\vimfiles\bundle\Vundle.vim
+else
+	set rtp+=~/.vim/bundle/Vundle.vim
+endif
 " vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
 
 call vundle#begin()
@@ -957,3 +980,13 @@ nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+">>>>>> gvim configure
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("gui_running") && has("win32")
+    set guifont=Consolas:h12:cANSI
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
