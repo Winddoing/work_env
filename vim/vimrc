@@ -993,6 +993,16 @@ if has("win32")
     set guifont=Consolas:h12:cANSI
 
     let g:tagbar_ctags_bin='$VIM\vimfiles\tags\win_ctags\ctags.exe'
+	
+    "在终端启动vim时，共享NERDTree
+    let g:nerdtree_tabs_open_on_console_startup=1
+    "开启vim时默认打开
+    autocmd VimEnter * NERDTree
+    "关闭最后一个文件时，自动关闭NERDTree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    " 设置宽度
+    let NERDTreeWinSize=20
+
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
