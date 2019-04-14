@@ -744,6 +744,7 @@ nmap ld :NERDTreeToggle<cr>
 ">>>>>>>>ag.vim
 "当前目录下，全局搜索
 let g:ackprg = 'ag --nogroup --nocolor --column'
+nmap <leader>f :norm yiw<CR>:Ag! "<C-R>""<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>vim-fugitive
@@ -998,6 +999,8 @@ if has("win32")
     let g:nerdtree_tabs_open_on_console_startup=1
     "开启vim时默认打开
     autocmd VimEnter * NERDTree
+    wincmd w
+    autocmd VimEnter * wincmd w
     "关闭最后一个文件时，自动关闭NERDTree
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     " 设置宽度
