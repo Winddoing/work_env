@@ -1,19 +1,23 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ">>>>>> gvim configure
-if has("gui_running") && has("win32")
+if has("win32")
     " set the menu & the message to English
     set langmenu=en_US
     let $LANG= 'en_US'
+	if has("gui_running")
+        " 窗口大小
+        "set lines=35 columns=140
+	    " 窗口最大化
+	    autocmd GUIEnter * simalt ~x
 
-    " 窗口大小
-    "set lines=35 columns=140
-	" 窗口最大化
-	autocmd GUIEnter * simalt ~x
+        "不显示工具/菜单栏
+        set guioptions-=T
+        set guioptions-=m
+	endif
 
-    "不显示工具/菜单栏
-    set guioptions-=T
-    set guioptions-=m
+    " Normal模式自动切换至英文输入法
+    set noimdisable
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -585,7 +589,7 @@ set noswapfile
 "插件管理  vundle 环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
-if has("gui_running") && has("win32")
+if has("win32")
 	set rtp+=$VIM\vimfiles\bundle\Vundle.vim
 else
 	set rtp+=~/.vim/bundle/Vundle.vim
@@ -985,8 +989,10 @@ nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 
 ">>>>>> gvim configure
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("gui_running") && has("win32")
+if has("win32")
     set guifont=Consolas:h12:cANSI
+
+    let g:tagbar_ctags_bin='$VIM\vimfiles\tags\win_ctags\ctags.exe'
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
