@@ -24,7 +24,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     cloc sparse fakeroot icdiff)
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot atom firefox vlc
-    kolourpaint rapidsvn thunderbird)
+    kolourpaint rapidsvn thunderbird ksysguard)
 
 LINUX_OTHER_SOFTWARE=(dia filezilla stardict virtualbox spatialite-gui wireshark
     sqlitebrowser audacity vooya)
@@ -131,3 +131,6 @@ print_count
 
 # SVN
 # sudo apt install rapidsvn
+
+# 任务管理和性能监控工具
+# sudo apt install ksysguard
