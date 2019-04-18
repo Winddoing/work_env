@@ -160,7 +160,8 @@ set softtabstop=4
 set tabstop=4
 "set smarttab
 "输入tab时自动将其转化为空格
-set expandtab
+"set expandtab
+set noexpandtab
 
 set lbr
 set tw=500

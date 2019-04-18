@@ -79,7 +79,7 @@ fi
 alias vi='vim'
 alias grep='grep --color'
 alias man='viman'
-alias astyle-c='astyle --style=linux --indent=spaces=4 --convert-tabs --pad-oper --unpad-paren --break-blocks=all'  #缩进4个空格
+alias astyle-c='astyle --style=linux --indent=force-tab=4 --convert-tabs --pad-oper --unpad-paren --break-blocks=all'  #缩进4个空格
 
 if [ hash colordiff 2> /dev/null ]; then
     echo "I require colordiff but it's not installed.  Aborting."
