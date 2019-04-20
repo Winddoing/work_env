@@ -42,11 +42,10 @@ function x() {
 function tmux_init()
 {
     echo "tmux init"
-    (tmux new -s init_r_session -d)	#终端运行，接收端相关
-    (tmux new -s init_s_session -d)	#后台运行，发送端相关
-    tmux ls | grep "init_r_session" | grep "attached"
+    (tmux new -s init_session -d)	#后台运行，发送端相关
+    tmux ls | grep "init_session" | grep "attached"
     if [ $? ]; then
-        tmux attach -t init_r_session
+        tmux attach -t init_session
     fi
 }
 
@@ -54,7 +53,7 @@ function tmux_startup()
 {
     echo "tmux_startup TMUX=$TMUX"
     if which tmux 2>&1 >/dev/null; then
-        test -z "$TMUX" && (tmux attach -t init_s_session || tmux_init)
+        test -z "$TMUX" && (tmux attach -t init_session || tmux_init)
     fi
 }
 
@@ -110,6 +109,7 @@ echo "Winddoing"
 
 uname -a | grep "Microsoft"  >> /dev/null
 if [ $? -eq 0 ]; then
+    alias wqshao='cd /mnt/f/wqshao'
     echo wqshao | sudo -S service ssh restart && echo "Restart SSH" >> /dev/null
-    tmux
+    tmux_startup
 fi
