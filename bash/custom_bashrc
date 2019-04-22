@@ -42,7 +42,8 @@ function x() {
 function tmux_init()
 {
     echo "tmux init"
-    (tmux new -s init_session -d)	#后台运行，发送端相关
+    (tmux new -s init_session -d)
+    (tmux new -s other_session -d) #后台运行，第二次登录的窗口
     tmux ls | grep "init_session" | grep "attached"
     if [ $? ]; then
         tmux attach -t init_session
@@ -53,13 +54,13 @@ function tmux_startup()
 {
     echo "tmux_startup TMUX=$TMUX"
     if which tmux 2>&1 >/dev/null; then
-        test -z "$TMUX" && (tmux attach -t init_session || tmux_init)
+        test -z "$TMUX" && (tmux attach -t other_session || tmux_init)
     fi
 }
 
 function md5str()
-{ 
-    echo "Calculate simple string: [$1]"; echo -n "MD5: "; echo -n "$1" | md5sum; 
+{
+    echo "Calculate simple string: [$1]"; echo -n "MD5: "; echo -n "$1" | md5sum;
 }
 
 
