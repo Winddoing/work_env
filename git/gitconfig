@@ -22,3 +22,6 @@
 	cp = cherry-pick
 	ca = commit -a
 	b = branch
+[i18n]
+	commitEncoding = utf-8
+	logoutputencoding = utf-8
