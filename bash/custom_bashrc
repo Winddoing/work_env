@@ -52,16 +52,10 @@ function tmux_init()
 
 function tmux_startup()
 {
-	local sys_name=$1
-
 	echo "mux_startup TMUX=$TMUX"
 	if which tmux 2>&1 >/dev/null; then
-		if [ $sys_name == "WLS" ]; then
-			#多次连接都进入init_session会话
-			test -z "$TMUX" && (tmux attach -t init_session || tmux_init)
-		else
-			test -z "$TMUX" && (tmux attach -t other_session || tmux_init)
-		fi
+		#每次连接都进入init_session会话
+		test -z "$TMUX" && (tmux attach -t init_session || tmux_init)
 	fi
 }
 
@@ -119,5 +113,5 @@ uname -a | grep "Microsoft"  >> /dev/null
 if [ $? -eq 0 ]; then
     alias wqshao='cd /mnt/f/wqshao'
     echo wqshao | sudo -S service ssh restart && echo "Restart SSH" >> /dev/null
-    tmux_startup WLS
+    tmux_startup
 fi
