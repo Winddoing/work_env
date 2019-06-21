@@ -96,6 +96,9 @@ alias matlab='/home/wqshao/software/matlab/bin/matlab'
 # https://motrix.app && chmod +x Motrix-1.1.3-x86_64.AppImage
 alias motrix='/home/wqshao/software/Motrix-1.1.3-x86_64.AppImage'
 
+# Git Repo 镜像, https://mirrors.tuna.tsinghua.edu.cn/help/git-repo/
+export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/'
+
 
 
 # for tmux

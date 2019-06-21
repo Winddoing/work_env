@@ -134,3 +134,6 @@ print_count
 
 # 任务管理和性能监控工具
 # sudo apt install ksysguard
+
+# 可视化显示Linux内存使用情况
+# sudo apt install smem
