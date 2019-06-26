@@ -1013,6 +1013,7 @@ if has("win32")
     " 设置宽度
     let NERDTreeWinSize=20
 
+    source $VIMRUNTIME/mswin.vim
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
