@@ -24,7 +24,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     cloc sparse fakeroot icdiff indent cgdb)
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot atom firefox vlc
-    kolourpaint rapidsvn thunderbird ksysguard)
+    kolourpaint rapidsvn thunderbird ksysguard typora)
 
 LINUX_OTHER_SOFTWARE=(dia filezilla stardict virtualbox spatialite-gui wireshark
     sqlitebrowser audacity vooya)
@@ -137,3 +137,6 @@ print_count
 
 # 可视化显示Linux内存使用情况
 # sudo apt install smem
+
+# markdown编辑器
+# sudo apt install typora
