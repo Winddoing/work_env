@@ -39,23 +39,28 @@ function x() {
 }
 
 # tmux
-function tmux_init()
+function tmux_new()
 {
-    echo "tmux init"
-    (tmux new -s init_session -d)
-    (tmux new -s other_session -d) #后台运行，第二次登录的窗口
-    tmux ls | grep "init_session" | grep "attached"
-    if [ $? ]; then
-        tmux attach -t init_session
-    fi
+	local session=$1
+	echo "tmux new $session session"
+	tmux ls | grep "$session"
+	if [ $? -ne 0 ]; then
+		(tmux new -s $session -d) #后台运行
+	else
+		echo -e "\t$session Session created ..."
+	fi
+	echo "tmux new OK"
 }
 
 function tmux_startup()
 {
 	echo "mux_startup TMUX=$TMUX"
 	if which tmux 2>&1 >/dev/null; then
+		tmux_new "init_session"
+		tmux_new "other_session"
+
 		#每次连接都进入init_session会话
-		test -z "$TMUX" && (tmux attach -t init_session || tmux_init)
+		test -z "$TMUX" && (tmux attach -t init_session)
 	fi
 }
 
