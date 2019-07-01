@@ -47,7 +47,7 @@ function tmux_new()
 	if [ $? -ne 0 ]; then
 		(tmux new -s $session -d) #后台运行
 	else
-		echo -e "\t$session Session created ..."
+		echo -e "\t$session session was created ..."
 	fi
 	echo "tmux new OK"
 }
