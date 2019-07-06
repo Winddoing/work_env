@@ -21,7 +21,7 @@ install_failed_i=0
 LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     openssh-server samba smbclient htop gcc g++ make cmake net-tools graphviz
     tree colordiff subversion tftpd tftp xinetd sshfs minicom adb astyle splint
-    cloc sparse fakeroot icdiff indent cgdb)
+    cloc sparse fakeroot icdiff indent cgdb tldr)
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot atom firefox vlc
     kolourpaint rapidsvn thunderbird ksysguard typora)
@@ -91,6 +91,7 @@ print_count
 
 # HexEdit是一款十六进制编辑器
 # sudo apt install hexedit
+# sudo apt install wxhexeditor #图形
 
 # 数据库编辑
 # spatialite-gui
