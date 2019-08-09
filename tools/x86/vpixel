@@ -1,0 +1,17 @@
+#!/usr/bin/expect -f
+
+spawn telnet 192.168.1.111
+#username： root
+#password： (enter)
+
+expect {
+    "login" {
+        send "root\r";
+        exp_continue
+    }
+    "*Password:" {
+        send "\n\r"
+    }
+}
+
+interact #执行完成后保持交互状态，把控制权交给控制台

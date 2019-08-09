@@ -98,9 +98,11 @@ alias m-build='sudo sshfs  shaowangquan@172.16.200.101:/home/shaowangquan /home/
 #alias m-share='sudo mount -t cifs -o username=xxx,domain=xxx,password=xxx,iocharset=utf8,dir_mode=0755,file_mode=0666,uid=wqshao,gid=wqshao //192.186.1.1/home /home/wqshao/share; ls /home/wqshao/share'
 alias ydict='ydict'
 alias dia="env GTK_IM_MODULE=xim dia"
-alias matlab='/home/wqshao/software/matlab/bin/matlab'
+alias matlab='$HOME/software/matlab/bin/matlab'
 # https://motrix.app && chmod +x Motrix-1.1.3-x86_64.AppImage
-alias motrix='/home/wqshao/software/Motrix-1.1.3-x86_64.AppImage'
+alias motrix='$HOME/software/Motrix-1.1.3-x86_64.AppImage'
+alias listen1='$HOME/software/Listen1_2.4.0_linux_x86_64.AppImage &'
+
 alias enca-utf-8='enca -L zh_CN -x UTF-8'
 
 # Git Repo 镜像, https://mirrors.tuna.tsinghua.edu.cn/help/git-repo/

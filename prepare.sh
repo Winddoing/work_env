@@ -141,3 +141,15 @@ print_count
 
 # markdown编辑器
 # sudo apt install typora
+
+# 录屏软件
+# sudo apt install simplescreenrecorder
+
+# 画板
+# sudo apt install mypaint
+
+# 跨平台局域网传输文件
+# sudo apt install nitroshare
+
+# X86软件逆向工具
+# sudo apt install edb-debugger
