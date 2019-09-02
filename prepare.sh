@@ -153,3 +153,6 @@ print_count
 
 # X86软件逆向工具
 # sudo apt install edb-debugger
+
+# 系统资源监控工具
+# sudo apt install glances

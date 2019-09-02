@@ -101,8 +101,8 @@ alias dia="env GTK_IM_MODULE=xim dia"
 alias matlab='$HOME/software/matlab/bin/matlab'
 # https://motrix.app && chmod +x Motrix-1.1.3-x86_64.AppImage
 alias motrix='$HOME/software/Motrix-1.1.3-x86_64.AppImage'
-alias listen1='$HOME/software/Listen1_2.4.0_linux_x86_64.AppImage &'
-
+alias listen1='$HOME/software/Listen1_2.4.0_linux_x86_64.AppImage'
+alias drawio='$HOME/software/draw.io-x86_64-11.1.4.AppImage'
 alias enca-utf-8='enca -L zh_CN -x UTF-8'
 
 # Git Repo 镜像, https://mirrors.tuna.tsinghua.edu.cn/help/git-repo/

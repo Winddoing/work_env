@@ -159,9 +159,14 @@ set softtabstop=4
 " 设置编辑时制表符占用空格数
 set tabstop=4
 "set smarttab
+
 "输入tab时自动将其转化为空格
-"set expandtab
-set noexpandtab
+set expandtab
+"set noexpandtab
+
+"Linux kernel code style
+""set expandtab
+"set noexpandtab
 
 set lbr
 set tw=500
@@ -416,6 +421,7 @@ func SetTitle()
 		call setline(7, "")
 		call setline(8, "\"\"\"")
 		call setline(9,"")
+        normal 10G
 	endif
 	if &filetype == 'sh' "如果文件类型为.sh文件
 		call setline(1, "\#!/bin/bash")
@@ -426,6 +432,7 @@ func SetTitle()
 		call append(line(".")+4, "\# Description	:")
 		call append(line(".")+5, "\##########################################################")
 		call append(line(".")+6, "")
+        normal 9G
 	endif
 	if &filetype == 'cpp'
 		call setline(1, "/*#############################################################")
@@ -439,6 +446,7 @@ func SetTitle()
 		call append(line(".")+7, "")
 		call append(line(".")+8, "using namespace std;")
 		call append(line(".")+9, "")
+        normal 12G
 	endif
 	if &filetype == 'c'
 		call setline(1, "/*#############################################################")
@@ -450,7 +458,9 @@ func SetTitle()
 		call append(line(".")+5, "")
 		call append(line(".")+6, "#include <stdio.h>")
 		call append(line(".")+7, "#include <stdlib.h>")
-		call append(line(".")+8, "")
+		call append(line(".")+8, "#include <stdint.h>")
+		call append(line(".")+9, "")
+        normal 12G
 	endif
 	if &filetype == 'dot'
 		call setline(1,"//usr/bin/dot")
@@ -639,7 +649,7 @@ Plugin 'vim-scripts/DrawIt'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-scripts/OmniCppComplete'
-"Plugin 'brookhong/cscope.vim'
+Plugin 'lfv89/vim-interestingwords'
 
 " 插件列表结束
 call vundle#end()
@@ -973,24 +983,18 @@ let OmniCpp_DisplayMode=1
 let OmniCpp_DefaultNamespaces=["std"]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>>>>>>cscope.vim
-" cscope -Rb
-" s: Find this C symbol
-nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
-" g: Find this definition
-nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
-" d: Find functions called by this function
-nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
-" c: Find functions calling this function
-nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
-" t: Find this text string
-nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
-" e: Find this egrep pattern
-nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
-" f: Find this file
-nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
-" i: Find files #including this file
-nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+">>>>>>>>>>>>>vim-interestingwords
+"用不同颜色高亮感兴趣的单词
+"Highlight with <Leader>k
+"Navigate highlighted words with n and N
+"Clear every word highlight with <Leader>kk throughout the buffer
+nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
+nnoremap <silent> <leader>kk :call UncolorAllWords()<cr>
+
+nnoremap <silent> n :call WordNavigation('forward')<cr>
+nnoremap <silent> N :call WordNavigation('backward')<cr>
+
+let g:interestingWordsRandomiseColors = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -1001,7 +1005,7 @@ if has("win32")
     set guifont=Consolas:h12:cANSI
 
     let g:tagbar_ctags_bin='$VIM\vimfiles\tags\win_ctags\ctags.exe'
-	
+
     "在终端启动vim时，共享NERDTree
     let g:nerdtree_tabs_open_on_console_startup=1
     "开启vim时默认打开
