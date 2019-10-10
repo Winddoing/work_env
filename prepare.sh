@@ -18,6 +18,9 @@ fi
 install_success_i=0
 install_failed_i=0
 
+INSTALL_CMD=apt
+LINUX_INSTALL_CMD=(apt-get apt yum)
+
 LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     openssh-server samba smbclient htop gcc g++ make cmake net-tools graphviz
     tree colordiff subversion tftpd tftp xinetd sshfs minicom adb astyle splint
@@ -37,7 +40,7 @@ function install_software()
     for software in "${slist[@]}"
     do
         echo -ne "Install software [\033[33m$software\033[0m] ... "
-        sudo apt-get install -y $software > $output 2>&1
+        sudo $INSTALL_CMD install -y $software > $output 2>&1
         if [ $? -ne 0 ]; then
             echo -e "\033[31mfail\033[0m"
             install_failed_i=$(($install_failed_i+1))
@@ -71,10 +74,27 @@ function print_count()
     exit 1;
 }
 
+function select_install_cmd()
+{
+    cmdarray=$1[@]
+    cmdlist=("${!cmdarray}")
+
+    for cmd in "${cmdlist[@]}"
+    do
+        #echo "Install select $cmd"
+        which $cmd > $output 2>&1
+        if [ $? -eq 0 ]; then
+            INSTALL_CMD=$cmd
+        fi
+    done
+}
+
 # main
 sudo -l
 
 echo "TTY: $output"
+select_install_cmd LINUX_INSTALL_CMD
+echo -e "Current Install cmd [\033[31m$INSTALL_CMD\033[0m]"
 software_install
 print_count
 
