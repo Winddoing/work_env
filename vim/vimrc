@@ -337,7 +337,6 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>pp :setlocal paste!<cr>
 
 set csprg=/usr/bin/cscope
 set csto=0
@@ -575,6 +574,10 @@ map dff oprintf("===> func: %s, line: %d, file: %s\n", __func__, __LINE__, __FIL
 nnoremap fw yiw:vimgrep /<C-R>0/gj **<CR>:copen<CR>
 
 map json :%!python -m json.tool<cr>
+
+"paste模式,为粘贴是注释不换行
+map <leader>p :set paste<cr>
+map <leader>pp :set nopaste<cr>
 
 " 配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
