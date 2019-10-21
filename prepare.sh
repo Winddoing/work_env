@@ -176,3 +176,6 @@ print_count
 
 # 系统资源监控工具
 # sudo apt install glances
+
+# 3D赛车游戏
+# sudo apt install torcs
