@@ -179,3 +179,4 @@ print_count
 
 # 3D赛车游戏
 # sudo apt install torcs
+# sudo apt install supertuxkart
