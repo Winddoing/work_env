@@ -29,7 +29,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot atom firefox vlc
     kolourpaint rapidsvn thunderbird ksysguard typora)
 
-LINUX_OTHER_SOFTWARE=(dia filezilla stardict virtualbox spatialite-gui wireshark
+LINUX_OTHER_SOFTWARE=(filezilla stardict virtualbox wireshark
     sqlitebrowser audacity vooya)
 
 function install_software()
