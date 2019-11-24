@@ -36,10 +36,13 @@ function install_software()
 {
     name=$1[@]
     slist=("${!name}")
+    num=${#slist[@]}
+    cnt=1
 
+    echo "Install $1"
     for software in "${slist[@]}"
     do
-        echo -ne "Install software [\033[33m$software\033[0m] ... "
+        echo -ne "Install software[$cnt/$num] [\033[33m$software\033[0m] ... "
         sudo $INSTALL_CMD install -y $software > $output 2>&1
         if [ $? -ne 0 ]; then
             echo -e "\033[31mfail\033[0m"
@@ -48,6 +51,7 @@ function install_software()
             echo -e "\033[32msuccess\033[0m"
             install_success_i=$(($install_success_i+1))
         fi
+        cnt=$(($cnt+1))
 
         trap "print_count" INT
     done
