@@ -26,11 +26,13 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     tree colordiff subversion tftpd tftp xinetd sshfs minicom adb astyle splint
     cloc sparse fakeroot icdiff indent cgdb tldr repo fcitx-bin fcitx-table)
 
-LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot atom firefox vlc
-    kolourpaint rapidsvn thunderbird ksysguard typora)
+LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot firefox vlc
+    kolourpaint rapidsvn thunderbird ksysguard)
 
-LINUX_OTHER_SOFTWARE=(filezilla stardict virtualbox wireshark
-    sqlitebrowser audacity vooya)
+LINUX_OTHER_SOFTWARE=(filezilla virtualbox sqlitebrowser audacity)
+
+LINUX_3RD_PARTY_SOFTWARE=(adobe-flashplugin browser-plugin-freshplayer-pepperflash
+    atom typora vooya)
 
 function install_software()
 {
@@ -62,12 +64,14 @@ function software_install()
     install_software LINUX_BASEL_SOFTWARE
     install_software LINUX_GRAPH_SOFTWARE
     install_software LINUX_OTHER_SOFTWARE
+    install_software LINUX_3RD_PARTY_SOFTWARE
 }
 
 function print_count()
 {
     local all_num
-    all_num=$((${#LINUX_BASEL_SOFTWARE[@]} + ${#LINUX_GRAPH_SOFTWARE[@]} + ${#LINUX_OTHER_SOFTWARE[@]}))
+    all_num=$((${#LINUX_BASEL_SOFTWARE[@]} + ${#LINUX_GRAPH_SOFTWARE[@]} \
+        + ${#LINUX_OTHER_SOFTWARE[@]} + ${#LINUX_3RD_PARTY_SOFTWARE[@]}))
 
     echo ""
     echo "Install success software: $install_success_i"

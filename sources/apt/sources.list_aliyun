@@ -8,4 +8,8 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiv
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb https://typora.io/linux ./
+# deb-src https://typora.io/linux ./
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb http://archive.canonical.com/ bionic partner
+# deb-src http://archive.canonical.com/ bionic partner
