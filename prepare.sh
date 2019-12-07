@@ -28,7 +28,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     cpustat cpufrequtils)
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot firefox vlc
-    kolourpaint rapidsvn thunderbird ksysguard)
+    kolourpaint rapidsvn thunderbird ksysguard gnome-tweaks)
 
 LINUX_OTHER_SOFTWARE=(filezilla virtualbox sqlitebrowser audacity)
 
