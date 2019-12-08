@@ -25,10 +25,10 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     openssh-server samba smbclient htop gcc g++ make cmake net-tools graphviz
     tree colordiff subversion tftpd tftp xinetd sshfs minicom adb astyle splint
     cloc sparse fakeroot icdiff indent cgdb tldr repo fcitx-bin fcitx-table
-    cpustat cpufrequtils)
+    cpustat cpufrequtils linux-tools-generic apitrace apitrace-gui)
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot firefox vlc
-    kolourpaint rapidsvn thunderbird ksysguard gnome-tweaks)
+    kolourpaint rapidsvn thunderbird ksysguard gnome-tweaks simplescreenrecorder)
 
 LINUX_OTHER_SOFTWARE=(filezilla virtualbox sqlitebrowser audacity)
 
