@@ -42,7 +42,7 @@ function install_software()
     num=${#slist[@]}
     cnt=1
 
-    echo "Install $1"
+    echo "Install $1 Total: $num"
     for software in "${slist[@]}"
     do
         echo -ne "Install software[$cnt/$num] [\033[33m$software\033[0m] ... "
