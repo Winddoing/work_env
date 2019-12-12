@@ -26,7 +26,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     tree colordiff subversion tftpd tftp xinetd sshfs minicom adb astyle splint
     cloc sparse fakeroot icdiff indent cgdb tldr repo fcitx-bin fcitx-table
     cpustat cpufrequtils linux-tools-generic apitrace apitrace-gui read-edid
-    edid-decode)
+    edid-decode speedtest-cli)
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot firefox vlc
     kolourpaint rapidsvn thunderbird ksysguard gnome-tweaks simplescreenrecorder
@@ -191,9 +191,3 @@ print_count
 # 3D赛车游戏
 # sudo apt install torcs
 # sudo apt install supertuxkart
-
-# 磁盘管理：创建划分格式化
-# sudo apt install gparted
-
-# 远程桌面
-# sudo apt install remmina
