@@ -1,5 +1,7 @@
 # 更换源
 
+**ubuntu 18.04**
+
 > /etc/apt/sources.list
 
 ```
