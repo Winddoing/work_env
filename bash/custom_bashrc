@@ -108,6 +108,8 @@ alias enca-utf-8='enca -L zh_CN -x UTF-8'
 # Git Repo 镜像, https://mirrors.tuna.tsinghua.edu.cn/help/git-repo/
 export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/'
 
+# for android build, 为了去除所有本地化的设置，让命令能正确执行
+#export LC_ALL=C
 
 
 # for tmux
