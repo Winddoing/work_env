@@ -73,6 +73,7 @@ function md5str()
 # 终端输入提示
 if [ x$hostname = x$HOST1NAME ]; then
     PS1='\A [\u@\h]\w\n=====>$(git_branch)\$'
+    export LESSCHARSET=utf-8 #git log中文乱码
     tmux_startup
 else
     #PS1='\u@\h \[\033[01;36m\]\W\[\033[01;32m\]$(git_branch)\[\033[00m\]\$ '
