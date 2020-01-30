@@ -5,7 +5,8 @@ user=$USER
 home=$HOME
 hostname=`hostname`
 
-HOST1NAME="vanxum02"
+HOST1NAME1="vanxum02"
+HOST1NAME2="deepin"
 
 function git_branch {
     branch="`git branch 2>/dev/null | grep "^\*" | sed -e "s/^\*\ //"`"
@@ -71,9 +72,12 @@ function md5str()
 
 
 # 终端输入提示
-if [ x$hostname = x$HOST1NAME ]; then
+if [ x$hostname = x$HOST1NAME1 ]; then
     PS1='\A [\u@\h]\w\n=====>$(git_branch)\$'
     export LESSCHARSET=utf-8 #git log中文乱码
+    tmux_startup
+elif [ x$hostname = x$HOST1NAME2 ]; then
+    PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n=====>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
     tmux_startup
 else
     #PS1='\u@\h \[\033[01;36m\]\W\[\033[01;32m\]$(git_branch)\[\033[00m\]\$ '
