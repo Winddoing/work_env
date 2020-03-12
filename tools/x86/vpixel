@@ -16,5 +16,6 @@ expect {
 
 send "cfg get software_version\r"
 send "cat /etc/svn-up.log\n"
+send "cat /etc/version.info\n"
 
 interact #执行完成后保持交互状态，把控制权交给控制台

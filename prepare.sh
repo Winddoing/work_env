@@ -194,3 +194,6 @@ print_count
 
 # 测网速
 # sudo apt install speedtest-cli
+
+# 远程桌面
+# sudo apt install xrdp tightvncserver
