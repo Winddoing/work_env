@@ -30,7 +30,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot firefox vlc
     kolourpaint rapidsvn thunderbird ksysguard gnome-tweaks simplescreenrecorder
-    remmina gparted)
+    remmina gparted xpad)
 
 LINUX_OTHER_SOFTWARE=(filezilla virtualbox sqlitebrowser audacity)
 
@@ -197,3 +197,6 @@ print_count
 
 # 远程桌面
 # sudo apt install xrdp tightvncserver
+
+# 便签
+# sudo apt install xpad
