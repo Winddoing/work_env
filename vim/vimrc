@@ -560,6 +560,7 @@ nmap fk :1,$s/ *$//g<cr>
 
 "取出多余空格
 nmap ds :%s/\s\+$//<cr>
+nmap db :g/^$/d<cr>
 
 "删除多余空行只留一个空行
 nmap dh :g/^\s*$\n\s*$/d<cr>
