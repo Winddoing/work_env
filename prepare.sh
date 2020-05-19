@@ -30,7 +30,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot firefox vlc
     kolourpaint rapidsvn thunderbird ksysguard gnome-tweaks simplescreenrecorder
-    remmina gparted xpad)
+    remmina gparted xpad gufw)
 
 LINUX_OTHER_SOFTWARE=(filezilla virtualbox sqlitebrowser audacity)
 
@@ -116,6 +116,10 @@ print_count
 
 # BT下载工具
 # sudo apt install ktorrent
+
+# ed2k下载工具——MSDN
+# sudo apt install amule
+# https://dn3.freedownloadmanager.org/6/latest/freedownloadmanager.deb
 
 # 图形界面的FTP客户端
 # sudo apt install filezilla
