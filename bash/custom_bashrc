@@ -6,7 +6,7 @@ home=$HOME
 hostname=`hostname`
 
 HOST1NAME1="vanxum02"
-HOST1NAME2="deepin"
+HOST1NAME2="ubuntu"
 
 function git_branch {
     branch="`git branch 2>/dev/null | grep "^\*" | sed -e "s/^\*\ //"`"
