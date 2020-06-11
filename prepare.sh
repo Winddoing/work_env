@@ -30,7 +30,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot firefox vlc
     kolourpaint rapidsvn thunderbird ksysguard gnome-tweaks simplescreenrecorder
-    remmina gparted xpad gufw)
+    remmina gparted xpad gufw iptux)
 
 LINUX_OTHER_SOFTWARE=(filezilla virtualbox sqlitebrowser audacity)
 
@@ -204,3 +204,6 @@ print_count
 
 # 便签
 # sudo apt install xpad
+
+# 飞鸽传书
+# sudo apt install iptux
