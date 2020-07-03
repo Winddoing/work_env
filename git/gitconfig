@@ -25,3 +25,7 @@
 [i18n]
 	commitEncoding = utf-8
 	logoutputencoding = utf-8
+[http]
+	postBuffer = 1048576000
+[gui]
+	encoding = utf-8
