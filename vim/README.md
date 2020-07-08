@@ -35,6 +35,7 @@
         * [生成目录](#生成目录)
         * [更新目录](#更新目录)
 * [Window下的gvim操作](#window下的gvim操作)
+* [vim/gvim](#vimgvim)
 * [参考：](#参考)
 
 <!-- vim-markdown-toc -->
@@ -311,6 +312,16 @@ hi Comment         ctermfg=49
 |  Shift+v(选中) <br/>`Shift` `+` `y`   | 选中区域复制到剪切板（vim->其他程序）   |
 |            `Shift` `*` `y`            | 当前行复制到剪切板                      |
 | `Shift` `+` `p` <br/> `Shift` `*` `p` | 选中区域粘贴剪切板内容（其他程序->vim） |
+
+# vim/gvim
+
+```
+set number
+"禁止生成undofile文件和备份文件
+set noundofile
+set nobackup
+set noswapfile
+```
 
 # 参考：
 
