@@ -1021,7 +1021,8 @@ if has("win32")
     " 设置宽度
     let NERDTreeWinSize=20
 
-    source $VIMRUNTIME/mswin.vim
+    "使能后，Ctrl+v VISUAL块模式与粘贴功能冲突
+    "source $VIMRUNTIME/mswin.vim
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
