@@ -19,9 +19,9 @@ function git_branch {
 }
 
 function ssh_info {
-    local ssh_info=$SSH_CONNECTION | awk '{print $1}'
+    local ssh_info="`echo $SSH_CONNECTION | awk '{print $3}'`"
     if [ -n "$ssh_info" ];then
-        echo ":($ssh_info)"
+        echo " in $ssh_info "
     fi
 }
 
@@ -80,15 +80,15 @@ function md5str()
 
 # 终端输入提示
 if [ x$hostname = x$HOST1NAME1 ]; then
-    PS1='\A [\u@\h$(ssh_info)]\w\n=====>$(git_branch)\$'
+    PS1='\A [\u@\h]\w\n↪$(ssh_info)=>$(git_branch)\$'
     export LESSCHARSET=utf-8 #git log中文乱码
     tmux_startup
 elif [ x$hostname = x$HOST1NAME2 ]; then
-    PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h$(ssh_info)\[\e[32m\]]\w\n=====>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
+    PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n↪$(ssh_info)=>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
     tmux_startup
 else
     #PS1='\u@\h \[\033[01;36m\]\W\[\033[01;32m\]$(git_branch)\[\033[00m\]\$ '
-    PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h$(ssh_info)\[\e[32m\]]\w\n=====>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
+    PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n↪$(ssh_info)=>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
     #PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\[\e[31m\]\$\[\e[0m\]"
 fi
 
