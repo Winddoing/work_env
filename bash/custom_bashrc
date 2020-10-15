@@ -70,30 +70,13 @@ function tmux_startup()
 		#每次连接都进入init_session会话
 		test -z "$TMUX" && (tmux attach -t init_session)
 	fi
+    screenfetch 2>/dev/null
 }
 
 function md5str()
 {
     echo "Calculate simple string: [$1]"; echo -n "MD5: "; echo -n "$1" | md5sum;
 }
-
-
-# 终端输入提示
-if [ x$hostname = x$HOST1NAME1 ]; then
-    PS1='\A [\u@\h]\w\n↪$(ssh_info)=>$(git_branch)\$'
-    export LESSCHARSET=utf-8 #git log中文乱码
-    tmux_startup
-elif [ x$hostname = x$HOST1NAME2 ]; then
-    PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n↪$(ssh_info)=>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
-    tmux_startup
-else
-    #PS1='\u@\h \[\033[01;36m\]\W\[\033[01;32m\]$(git_branch)\[\033[00m\]\$ '
-    PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n↪$(ssh_info)=>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
-    #PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\[\e[31m\]\$\[\e[0m\]"
-    if [ -n "$SSH_CONNECTION" ]; then
-        tmux_startup
-    fi
-fi
 
 
 #习惯的使用别名
@@ -132,15 +115,20 @@ export TERM="screen-256color"
 # "CTRL-S：挂起终端（XON） "CTRL-Q：恢复终端（XOFF） "要禁止这些键盘映射
 stty -ixon
 
-# window10 for ubuntu
 
-uname -a | grep "Microsoft"  >> /dev/null
-if [ $? -eq 0 ]; then
-    alias wqshao='cd /mnt/f/wqshao'
-    echo wqshao | sudo -S service ssh restart && echo "Restart SSH" >> /dev/null
+# 终端输入提示
+if [ x$hostname = x$HOST1NAME1 ]; then
+    PS1='\A [\u@\h]\w\n↪$(ssh_info)=>$(git_branch)\$'
+    export LESSCHARSET=utf-8 #git log中文乱码
     tmux_startup
+elif [ x$hostname = x$HOST1NAME2 ]; then
+    PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n↪$(ssh_info)=>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
+    tmux_startup
+else
+    #PS1='\u@\h \[\033[01;36m\]\W\[\033[01;32m\]$(git_branch)\[\033[00m\]\$ '
+    PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n↪$(ssh_info)=>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'
+    #PS1="\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\[\e[31m\]\$\[\e[0m\]"
+    if [ -n "$SSH_CONNECTION" ]; then
+        tmux_startup
+    fi
 fi
-
-echo "Winddoing"
-screenfetch
-
