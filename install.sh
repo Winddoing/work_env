@@ -73,9 +73,9 @@ function install_tmux()
 
 	if [ ! -L $config_file ]; then
 		if [ "$version" -gt "1" ]; then # v < 1
-			ln -s $PWD/tmux/tmux.conf $config_file
+			ln -sf $PWD/tmux/tmux.conf $config_file
 		else
-			ln -s $PWD/tmux/tmux2.0_before.conf $config_file
+			ln -sf $PWD/tmux/tmux2.0_before.conf $config_file
 		fi
 	fi
 }

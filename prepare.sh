@@ -24,13 +24,13 @@ LINUX_INSTALL_CMD=(apt-get apt yum)
 LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     openssh-server samba smbclient htop gcc g++ make cmake net-tools graphviz
     tree colordiff subversion tftpd tftp xinetd sshfs minicom adb astyle splint
-    cloc sparse fakeroot icdiff indent cgdb tldr repo fcitx-bin fcitx-table
-    cpustat cpufrequtils linux-tools-generic apitrace apitrace-gui read-edid
-    edid-decode speedtest-cli sysstat)
+    cloc sparse fakeroot icdiff indent cgdb tldr repo
+    cpustat cpufrequtils linux-tools-generic apitrace read-edid
+    edid-decode speedtest-cli sysstat screenfetch)
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog cutecom deepin-screenshot firefox vlc
     kolourpaint rapidsvn thunderbird ksysguard gnome-tweaks simplescreenrecorder
-    remmina gparted xpad gufw iptux)
+    remmina gparted xpad gufw fcitx-bin fcitx-table)
 
 LINUX_OTHER_SOFTWARE=(filezilla virtualbox sqlitebrowser audacity)
 
@@ -100,12 +100,21 @@ function select_install_cmd()
     done
 }
 
+function sys_update()
+{
+    sudo $INSTALL_CMD update
+    sudo $INSTALL_CMD upgrade
+    sudo $INSTALL_CMD autoremove
+    sudo $INSTALL_CMD autoclean
+}
+
 # main
 sudo -l
 
 echo "TTY: $output"
 select_install_cmd LINUX_INSTALL_CMD
 echo -e "Current Install cmd [\033[31m$INSTALL_CMD\033[0m]"
+sys_update
 software_install
 print_count
 
@@ -207,3 +216,4 @@ print_count
 
 # 飞鸽传书
 # sudo apt install iptux
+
