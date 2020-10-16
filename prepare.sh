@@ -15,6 +15,8 @@ else
     output="/dev/null"
 fi
 
+trap 'echo "Ctrl+c interrupted!"; exit' INT
+
 install_success_i=0
 install_failed_i=0
 
@@ -23,16 +25,15 @@ LINUX_INSTALL_CMD=(apt-get apt yum)
 
 LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     openssh-server samba smbclient htop gcc g++ make cmake net-tools graphviz
-    tree colordiff subversion tftpd tftp xinetd sshfs minicom adb astyle splint
-    cloc sparse fakeroot icdiff indent cgdb tldr repo
-    cpustat cpufrequtils linux-tools-generic apitrace read-edid
-    edid-decode speedtest-cli sysstat screenfetch)
+    tree colordiff subversion tftpd tftp sshfs minicom adb astyle splint
+    cloc sparse fakeroot icdiff indent cgdb tldr cpustat cpufrequtils
+    linux-tools-generic apitrace read-edid edid-decode speedtest-cli sysstat
+    screenfetch)
 
-LINUX_GRAPH_SOFTWARE=(gitk meld eog deepin-screenshot firefox vlc
-    kolourpaint thunderbird ksysguard gnome-tweaks remmina gparted
-    fcitx-bin fcitx-table okular)
+LINUX_GRAPH_SOFTWARE=(gitk meld eog deepin-screenshot firefox vlc kolourpaint
+    thunderbird ksysguard gnome-tweaks remmina gparted okular)
 
-LINUX_OTHER_SOFTWARE=(filezilla virtualbox sqlitebrowser audacity)
+LINUX_OTHER_SOFTWARE=(virtualbox sqlitebrowser audacity)
 
 LINUX_3RD_PARTY_SOFTWARE=(adobe-flashplugin browser-plugin-freshplayer-pepperflash
     atom typora vooya)
@@ -85,6 +86,10 @@ function print_count()
     exit 1;
 }
 
+function out() {
+    echo -e "\e[01;31m$@ \e[0m"
+}
+
 function select_install_cmd()
 {
     cmdarray=$1[@]
@@ -102,10 +107,14 @@ function select_install_cmd()
 
 function sys_update()
 {
-    sudo $INSTALL_CMD update
-    sudo $INSTALL_CMD upgrade
-    sudo $INSTALL_CMD autoremove
-    sudo $INSTALL_CMD autoclean
+    out "apt Update"
+    sudo apt update
+    out "apt Upgrade"
+    sudo apt upgrade
+    out "apt Autoremove"
+    sudo apt autoremove
+    out "apt Autoclen"
+    sudo apt autoclean
 }
 
 # main
