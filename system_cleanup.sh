@@ -6,6 +6,7 @@
 # Description	:
 ##########################################################
 
+set -x
 
 # 删除系统不再使用的孤立软件
 sudo apt-get autoremove
@@ -22,7 +23,7 @@ dpkg -l |grep ^rc|awk '{print $2}' |sudo xargs dpkg -P
 dpkg --get-selections|grep linux
 
 # 删除无用内核
-sudo apt-get purge linux-image-4.15.0*
+#sudo apt-get purge linux-image-4.15.0*
 
 
 
