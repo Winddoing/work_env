@@ -6,6 +6,8 @@
 ##########################################################
 #!/bin/bash
 
+set -x
+
 PWD=`pwd`
 user=$USER
 home=$HOME
@@ -19,6 +21,7 @@ sudo chmod 777 $home/tftprootfs -R
 
 sudo cp tftp  /etc/xinetd.d
 
-sudo /etc/init.d/xinetd restart
+sudo systemctl restart xinetd.service
+
 
 

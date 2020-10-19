@@ -25,19 +25,19 @@ LINUX_INSTALL_CMD=(apt-get apt yum)
 
 LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     openssh-server samba smbclient htop gcc g++ make cmake net-tools graphviz
-    tree colordiff subversion tftpd tftp sshfs minicom adb astyle splint
+    tree colordiff subversion tftpd tftp sshfs minicom adb astyle splint hwloc
     cloc sparse fakeroot icdiff indent cgdb tldr cpustat cpufrequtils
     linux-tools-generic apitrace read-edid edid-decode speedtest-cli sysstat
     screenfetch)
 
-LINUX_GRAPH_SOFTWARE=(gitk meld eog deepin-screenshot firefox vlc kolourpaint
+LINUX_GRAPH_SOFTWARE=(gitk meld eog firefox vlc kolourpaint
     thunderbird ksysguard gnome-tweaks remmina gparted okular
     fcitx fcitx-config-gtk fcitx-googlepinyin)
 
-LINUX_OTHER_SOFTWARE=(virtualbox sqlitebrowser audacity)
+LINUX_OTHER_SOFTWARE=(virtualbox sqlitebrowser audacity wireshark)
 
-LINUX_3RD_PARTY_SOFTWARE=(adobe-flashplugin browser-plugin-freshplayer-pepperflash
-    atom typora vooya)
+LINUX_3RD_PARTY_SOFTWARE=(browser-plugin-freshplayer-pepperflash atom typora
+    vooya)
 
 function install_software()
 {
