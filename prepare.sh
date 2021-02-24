@@ -30,7 +30,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     linux-tools-generic apitrace read-edid edid-decode speedtest-cli sysstat
     screenfetch)
 
-LINUX_GRAPH_SOFTWARE=(gitk meld eog firefox vlc kolourpaint
+LINUX_GRAPH_SOFTWARE=(gitk meld eog firefox vlc kolourpaint flameshot
     thunderbird ksysguard gnome-tweaks remmina gparted okular
     fcitx fcitx-config-gtk fcitx-googlepinyin)
 
@@ -176,7 +176,7 @@ print_count
 # sudo apt install cutecom
 
 # 截图软件
-# sudo apt inatsll deepin-screenshot
+# sudo apt inatsll flameshot
 
 # 画图软件
 # sudo apt install kolourpaint
@@ -227,3 +227,5 @@ print_count
 # 飞鸽传书
 # sudo apt install iptux
 
+# 命令行的交互式绘图工具
+# sudo apt install gnuplot

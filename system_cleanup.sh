@@ -8,6 +8,8 @@
 
 set -x
 
+sudo apt install -y deborphan
+
 # 删除系统不再使用的孤立软件
 sudo apt-get autoremove
 

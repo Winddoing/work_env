@@ -121,6 +121,9 @@ sudo apt-get install vim
 |    `q + /`      | 显示搜索记录                                                                                 |
 |      `;+p`      | 开启paste模式,为粘贴是注释不换行                                                             |
 |      `;+pp`     | 关闭paste模式                                                                                |
+|     `ggguG`     | 全文大写转化为小写                                                                           |
+|     `gggUG`     | 全文小写转化为大写                                                                           |
+|     `gU,gu`     | 大小写转换                                                                                   |
 
 
 ## 文件查找
