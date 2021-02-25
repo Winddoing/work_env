@@ -110,7 +110,7 @@ export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/'
 #export LC_ALL=C
 
 # for tmux
-export TERM="screen-256color"
+#export TERM="screen-256color"
 
 # "CTRL-S：挂起终端（XON） "CTRL-Q：恢复终端（XOFF） "要禁止这些键盘映射
 stty -ixon
