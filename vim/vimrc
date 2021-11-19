@@ -165,8 +165,8 @@ set expandtab
 "set noexpandtab
 
 "Linux kernel code style
-""set expandtab
-"set noexpandtab
+"set expandtab
+set noexpandtab
 
 set lbr
 set tw=500
