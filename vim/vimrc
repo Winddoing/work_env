@@ -165,8 +165,8 @@ set expandtab
 "set noexpandtab
 
 "Linux kernel code style
-""set expandtab
-"set noexpandtab
+"set expandtab
+set noexpandtab
 
 set lbr
 set tw=500
@@ -654,6 +654,7 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-scripts/OmniCppComplete'
 Plugin 'lfv89/vim-interestingwords'
+Plugin 'zivyangll/git-blame.vim'
 
 " 插件列表结束
 call vundle#end()
@@ -999,6 +1000,11 @@ nnoremap <silent> n :call WordNavigation('forward')<cr>
 nnoremap <silent> N :call WordNavigation('backward')<cr>
 
 let g:interestingWordsRandomiseColors = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>>>>>git-blame.vim
+"查看当前行代码的提交记录
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
