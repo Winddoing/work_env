@@ -10,6 +10,8 @@ PWD=`pwd`
 user=$USER
 home=$HOME
 
+set -x
+
 NFS_DIR="$home/nfs"
 
 # ubuntu 18.04
