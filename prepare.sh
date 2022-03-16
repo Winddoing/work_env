@@ -28,7 +28,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
     tree colordiff subversion tftpd tftp sshfs minicom adb astyle splint hwloc
     cloc sparse fakeroot icdiff indent cgdb tldr cpustat cpufrequtils
     linux-tools-generic apitrace read-edid edid-decode speedtest-cli sysstat
-    screenfetch)
+    screenfetch mediainfo)
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog firefox vlc kolourpaint flameshot
     thunderbird ksysguard gnome-tweaks remmina gparted okular
@@ -229,3 +229,6 @@ print_count
 
 # 命令行的交互式绘图工具
 # sudo apt install gnuplot
+
+# chrome浏览器
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb

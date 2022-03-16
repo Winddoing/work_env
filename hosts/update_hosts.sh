@@ -44,3 +44,5 @@ cat $HOSTS $GITHUB_HOSTS > $NEW_HOSTS
 echo "Update $HOSTS"
 sudo cp $NEW_HOSTS $HOSTS -arpv
 sudo systemd-resolve --flush-caches
+
+cat $HOSTS
