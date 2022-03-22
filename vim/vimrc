@@ -175,6 +175,10 @@ set ai "Auto indent
 set si "Smart indet
 set wrap "Wrap lines
 
+"tab缩进指示线
+""note: there is a space after the last \ above
+set list listchars=tab:\┊\ 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 光标停留在上次打开的位置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -620,9 +624,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomasr/molokai'
 Plugin 'Lokaltog/vim-powerline'
 "Plugin 'octol/vim-cpp-enhanced-highlight'  "改变函数名称颜色
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'derekwyatt/vim-fswitch'
-"Plugin 'Yggdroot/indentLine'
+Plugin 'Yggdroot/indentLine'
 Plugin 'lilydjwg/fcitx.vim'
 "Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
@@ -669,31 +672,6 @@ filetype plugin indent on
 syntax keyword cppSTLtype initializer_list
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-">>>>>>>>>vim-indent-guides
-" 随 vim 自启动
-"let g:indent_guides_enable_on_vim_startup=1
-" 从第二层开始可视化显示缩进
-let g:indent_guides_start_level=2
-" 色块宽度
-let g:indent_guides_guide_size=1
-" 快捷键 i 开/关缩进可视化
-:nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
-
-let g:indent_guides_auto_colors = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=2
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=4
-
-
-" 基于缩进或语法进行代码折叠
-set foldmethod=indent
-set foldmethod=syntax
-" 启动 vim 时关闭折叠代码
-set nofoldenable
-"操作：za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 ">>>>>>>>vim-powerline
 set guifont=PowerlineSymbols\ for\ Powerline
 set nocompatible
@@ -708,6 +686,10 @@ nmap <silent> <Leader>sw :FSHere<cr>
 "操作: 键入 [;sw] 就能在实现文件和接口文件间切换
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+">>>>>>>>indentLine
+"空格缩进指示线
+let g:indentLine_char_list = ['┊']
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>supertab
 "SuperTab使Tab快捷键
