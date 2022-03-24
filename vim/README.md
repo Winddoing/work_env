@@ -27,6 +27,9 @@
 	* [目录](#目录)
 		* [生成目录](#生成目录)
 		* [更新目录](#更新目录)
+* [vim实用技巧](#vim实用技巧)
+	* [屏蔽插件](#屏蔽插件)
+	* [查看启动时间](#查看启动时间)
 * [Window下的gvim操作](#window下的gvim操作)
 * [vim/gvim](#vimgvim)
 * [参考：](#参考)
@@ -314,6 +317,20 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 ### 更新目录
 ```
 :UpdateToc
+```
+
+# vim实用技巧
+
+## 屏蔽插件
+
+```
+alias vi='vim --noplugin'
+```
+
+## 查看启动时间
+
+```
+vim --startuptime timefile test.c
 ```
 
 # Window下的gvim操作
