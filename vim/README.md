@@ -298,6 +298,12 @@ hi Comment         ctermfg=49
 
 # 插件使用
 
+创建管理`vim-plug`
+
+```
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
 ## 目录
 
 ### 生成目录

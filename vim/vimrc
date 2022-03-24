@@ -155,6 +155,8 @@ autocmd BufReadPost * normal! g`"
 " 关闭VIM内置补全的preview窗口
 set completeopt-=preview
 
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 快捷方式
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -225,47 +227,40 @@ set fileencoding=utf-8
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" => 插件管理  vundle 环境设置
+"" => 插件管理 vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off
-if has("win32")
-	set rtp+=$VIM\vimfiles\bundle\Vundle.vim
-else
-	set rtp+=~/.vim/bundle/Vundle.vim
-endif
-" vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
+" https://github.com/junegunn/vim-plug
+" 升级vim-plug: 
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-call vundle#begin()
+call plug#begin()
 
-Plugin 'VundleVim/Vundle.vim'
-"Plugin 'altercation/vim-colors-solarized'
-"Plugin 'tomasr/molokai'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'Yggdroot/indentLine'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/DoxygenToolkit.vim'
-Plugin 'aklt/plantuml-syntax'
-Plugin 'wannesm/wmgraphviz.vim'
-Plugin 'iamcco/markdown-preview.vim'
-Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'Raimondi/delimitMate'
-Plugin 'rkulla/pydiction'
-Plugin 'fholgado/minibufexpl.vim'
-Plugin 'Shougo/neocomplcache.vim'
-Plugin 'msanders/snipmate.vim'
-Plugin 'vim-utils/vim-man'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'vim-scripts/OmniCppComplete'
-Plugin 'lfv89/vim-interestingwords'
-Plugin 'zivyangll/git-blame.vim'
+"Plug 'tomasr/molokai'
+Plug 'Lokaltog/vim-powerline'
+Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-fugitive'
+Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['c', 'cpp'] }
+Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
+Plug 'wannesm/wmgraphviz.vim', { 'for': 'dot' }
+Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
+Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
+Plug 'Raimondi/delimitMate'
+Plug 'rkulla/pydiction', { 'for': 'python' }
+Plug 'fholgado/minibufexpl.vim'
+Plug 'Shougo/neocomplcache.vim'
+Plug 'msanders/snipmate.vim'
+Plug 'vim-utils/vim-man'
+Plug 'junegunn/vim-easy-align'
+Plug 'edkolev/tmuxline.vim'
+Plug 'vim-scripts/OmniCppComplete'
+Plug 'lfv89/vim-interestingwords'
+Plug 'zivyangll/git-blame.vim'
 
-" 插件列表结束
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " 插件设置
