@@ -34,15 +34,6 @@ set mouse=n
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" => 主题颜色
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=256
-"colorscheme morning
-colorscheme molokai
-"colorscheme darkblue
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => Fn 快捷键
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "F1 for uncomment
@@ -236,7 +227,8 @@ set fileencoding=utf-8
 
 call plug#begin()
 
-"Plug 'tomasr/molokai'
+Plug 'tomasr/molokai'
+Plug 'axmac/vim-morning'
 Plug 'Lokaltog/vim-powerline'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -263,9 +255,22 @@ Plug 'zivyangll/git-blame.vim'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => 主题颜色
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colorscheme molokai
+"colorscheme morning
+
+
 " 插件设置
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>>>>>>molokai
+" 主题颜色
+let g:molokai_original = 1
+let g:rehash256 = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 ">>>>>>>>vim-powerline
 set guifont=PowerlineSymbols\ for\ Powerline
 set nocompatible
