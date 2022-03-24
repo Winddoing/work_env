@@ -241,17 +241,17 @@ Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['c', 'cpp'] }
 Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
 Plug 'wannesm/wmgraphviz.vim', { 'for': 'dot' }
-Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
-Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.vim', { 'for': 'md' }
+Plug 'mzlogin/vim-markdown-toc', { 'for': 'md' }
 Plug 'Raimondi/delimitMate'
-Plug 'rkulla/pydiction', { 'for': 'python' }
+Plug 'rkulla/pydiction', { 'for': 'py' }
 Plug 'fholgado/minibufexpl.vim'
 Plug 'Shougo/neocomplcache.vim'
 Plug 'msanders/snipmate.vim'
 Plug 'vim-utils/vim-man'
 Plug 'junegunn/vim-easy-align'
 Plug 'edkolev/tmuxline.vim'
-Plug 'vim-scripts/OmniCppComplete'
+Plug 'vim-scripts/OmniCppComplete', { 'for': 'cpp' }
 Plug 'lfv89/vim-interestingwords'
 Plug 'zivyangll/git-blame.vim'
 
@@ -453,7 +453,6 @@ let g:tmuxline_powerline_separators = 0
 ">>>>>>>>>>>>>OmniCppComplete
 "C++补全
 "ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q
-set tags+=~/.vim/tags/cpp_src/tags
 nmap c++ :!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q --language-force=C++<cr>
 let OmniCpp_MayCompleteDot = 1 " autocomplete with .
 let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
