@@ -32,17 +32,19 @@ end_line=$(sed -n '$=' $HOSTS)
 
 sudo sed -i "${start_line},${end_line}d" $HOSTS
 
-# 3.下载最新host文件为github
-echo "Download the latest hosts"
-wget -qO $GITHUB_HOSTS https://gitee.com/ineo6/hosts/raw/master/hosts
+if [ x"$1" != x"c" ]; then
+	# 3.下载最新host文件为github
+	echo "Download the latest hosts"
+	wget -qO $GITHUB_HOSTS https://gitee.com/ineo6/hosts/raw/master/hosts
 
-# 4.文件合并
-echo "Merge hosts"
-cat $HOSTS $GITHUB_HOSTS > $NEW_HOSTS
+	# 4.文件合并
+	echo "Merge hosts"
+	cat $HOSTS $GITHUB_HOSTS > $NEW_HOSTS
 
-# 5.更新hosts文件并刷新
-echo "Update $HOSTS"
-sudo cp $NEW_HOSTS $HOSTS -arpv
+	# 5.更新hosts文件并刷新
+	echo "Update $HOSTS"
+	sudo cp $NEW_HOSTS $HOSTS -arpv
+fi
 sudo systemd-resolve --flush-caches
 
 cat $HOSTS
