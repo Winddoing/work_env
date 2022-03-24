@@ -1,4 +1,3 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ">>>>>> gvim configure
 if has("win32")
@@ -22,7 +21,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" 鼠标模式
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => 鼠标模式
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set mouse=a
 set mouse=n
@@ -31,31 +31,28 @@ set mouse=c
 set mouse=h
 set mouse=n
 "set mouse=v
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set clipboard+=unnamed
-set report=0
 
-"颜色主题
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => 主题颜色
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
 "colorscheme morning
 colorscheme molokai
 "colorscheme darkblue
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Fn 快捷键
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => Fn 快捷键
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "F1 for uncomment
 "Vim help
 nnoremap <F1> :vertical botright help<CR>
 
 "F6 for uncomment
-"查找时区分大小写
-"nmap <F2> :set ic<cr>/
-
-"F6 for uncomment
-"查找时不区分大小写
-"nmap <F3> :set noic<cr>/
+vmap <F6> :s=^\(//\)*==g<cr>:noh<cr>
+nmap <F6> :s=^\(//\)*==g<cr>:noh<cr>
+imap <F6> <ESC>:s=^\(//\)*==g<cr>:noh<cr>
 
 "F7 for uncomment
 vmap <F7> :s=^\(//\)*=//=g<cr>:noh<cr>
@@ -65,11 +62,7 @@ imap <F7> <ESC>:s=^\(//\)*=//=g<cr>:noh<cr>
 vmap <F7># :s=^\(#\)*=#=g<cr>:noh<cr>
 nmap <F7># :s=^\(#\)*=#=g<cr>:noh<cr>
 imap <F7># <ESC>:s=^\(#\)*=#=g<cr>:noh<cr>
-"F6 for uncomment
 
-vmap <F6> :s=^\(//\)*==g<cr>:noh<cr>
-nmap <F6> :s=^\(//\)*==g<cr>:noh<cr>
-imap <F6> <ESC>:s=^\(//\)*==g<cr>:noh<cr>
 "F12 for uncomment
 vmap <F12> :s=^\(//\)*=/*=g<cr>:s=\(//\)*$=*/=g<cr>:noh<cr>
 nmap <F12> :s=^\(//\)*=/*=g<cr>:s=\(//\)*$=*/=g<cr>:noh<cr>
@@ -79,79 +72,23 @@ imap <F12> <ESC>:s=^\(//\)*=/*=g<cr>:s=\(//\)*$=*/=g<cr>:noh<cr>
 vmap <F9> :s=^\(\/\*\)*==g<cr>:s=\(\*\/\)*$==g<cr>:noh<cr>
 nmap <F9> :s=^\(\/\*\)*==g<cr>:s=\(\*\/\)*$==g<cr>:noh<cr>
 imap <F9> <ESC>:s=^\(\/\*\)*==g<cr>:s=\(\*\/\)*$==g<cr>:noh<cr>
-"-----------------------------------------------------csc
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
-set history=700
 
-" 开启文件类型侦测
-filetype on
-" 根据侦测到的不同类型加载对应的插件
-" Enable filetype plugin
-filetype plugin on
-" 自适应不同语言的智能缩进
-filetype indent on
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => 常用配置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 将前缀键定义为逗号，默认为"\"
 let mapleader = ";"
-let g:mapleader = ";"
 
-" Fast saving
-nmap <leader>w :w!<cr>
+" 光标上下两侧最少保留的屏幕行数,缩写“so”
+set scrolloff=7
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the curors - when moving vertical..
-set so=7
-
-set wildmenu "Turn on WiLd menu
-
-" 显示光标当前位置
-set ruler "Always show current position
-
-set cmdheight=1 "The commandbar height
-
-set hid "Change buffer - without saving
-
-" Set backspace config
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-""Ignore case when searching
+" 搜索时忽略大小写
 set ignorecase
-set smartcase
 
 " 高亮显示搜索结果
-set hlsearch "Highlight search things
+set hlsearch
 
-set incsearch "Make search act like search in modern browsers
-set nolazyredraw "Don't redraw while executing macros
-
-set magic "Set magic on, for regular expressions
-
-set showmatch "Show matching bracets when text indicator is over them
-set mat=2 "How many tenths of a second to blink
-
-" No sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
-set selection=exclusive
-set selectmode=mouse,key
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 设置格式化时制表符占用空格数
 set shiftwidth=4
 " 让 vim 把连续数量的空格视为一个制表符
@@ -160,231 +97,213 @@ set softtabstop=4
 set tabstop=4
 "set smarttab
 
-"输入tab时自动将其转化为空格
+" 输入tab时自动将其转化为空格
 set expandtab
 "set noexpandtab
 
-"Linux kernel code style
+" Linux kernel code style
 "set expandtab
 set noexpandtab
 
-set lbr
-set tw=500
+" 在处理未保存或只读文件的时候，弹出确认
+"set confirm
 
-set ai "Auto indent
-set si "Smart indet
-set wrap "Wrap lines
+" 去掉输入错误的提示声音
+set noeb
 
-"tab缩进指示线
-""note: there is a space after the last \ above
-set list listchars=tab:\┊\ 
+" 高亮显示当前行/列
+set cursorline
+"set cursorcolumn
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 开启行号显示
+set nu
+
+" 分割线显示
+" color set: ColorColumn
+set colorcolumn=80
+" Make it obvious where 80 characters is
+"set textwidth=110
+"set colorcolumn=+1
+
+" 允许在未保存的情况下切换缓冲区,方便跳转
+set hidden 
+
+" 将case 标记之后的语句放在标记缩进位置之后的 N 个字符处。(省缺'shiftwidth')。
+set cinoptions=:N,lN,bN
+
+" 文件备份与恢复
+set nobackup
+set nowb
+set noswapfile
+
+" 允许用指定语法高亮配色方案替换默认方案,文件$VIMRUNTIME/syntax
+syntax on
+" 开启文件类型侦测
+filetype on
+" 根据侦测到的不同类型加载对应的插件
+" Enable filetype plugin
+filetype plugin on
+" 自适应不同语言的智能缩进
+filetype indent on
+
+" 外部更改文件时自动读取
+set autoread
+
 " 光标停留在上次打开的位置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Uncomment the following to have Vim jump to the last position when reopening a file
-if has("autocmd")
-	au BufReadPost * if line("`\"") > 1 && line("`\"") <= line("$") | exe "normal! g`\"" | endif
-endif
-"""""""""""""""""""""
-"Only do this part when compiled with support for autocommands.
-if has("autocmd")
-	" When editing a file, always jump to the last known cursor position.
-	" Don't do it when the position is invalid or when inside an event handler
-	" (happens when dropping a file on gvim).
-	autocmd BufReadPost *
-				\ if line("'\"") > 0 && line("'\"") <= line("$") |
-				\   exe "normal g`\"" |
-				\ endif
+autocmd BufReadPost * normal! g`"
 
-endif " has("autocmd")
-""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Visual mode related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Really useful!
-"  In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Command mode related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Smart mappings on the command line
-cno $h e ~/
-cno $d e ~/Desktop/
-cno $j e ./
-cno $c e <C-\>eCurrentFileDir("e")<cr>
-
-" $q is super useful when browsing on the command line
-cno $q <C-\>eDeleteTillSlash()<cr>
-
-" Bash like keys for the command line
-vnoremap <C-A>		<Home>
-vnoremap <C-E>		<End>
-vnoremap <C-K>		<C-U>
-
-cnoremap <C-P> <Up>
-cnoremap <C-N> <Down>
-
-" Useful on some European keyboards
-map 陆 $
-imap 陆 $
-vmap 陆 $
-cmap 陆 $
-
-
-func! Cwd()
-	let cwd = getcwd()
-	return "e " . cwd
-endfunc
-
-func! DeleteTillSlash()
-	let g:cmd = getcmdline()
-	if MySys() == "linux" || MySys() == "mac"
-		let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*", "\\1", "")
-	else
-		let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\]\\).*", "\\1", "")
-	endif
-	if g:cmd == g:cmd_edited
-		if MySys() == "linux" || MySys() == "mac"
-			let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
-		else
-			let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
-		endif
-	endif
-	return g:cmd_edited
-endfunc
-
-func! CurrentFileDir(cmd)
-	return a:cmd . " " . expand("%:p:h") . "/"
-endfunc
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map space to / (search) and c-space to ? (backgwards search)
-map <space> /
-map <c-space> ?
-map <silent> <leader><cr> :noh<cr>
-
-" Smart way to move btw. windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" Close the current buffer
-map <leader>bd :Bclose<cr>
-
-" Close all the buffers
-map <leader>ba :1,300 bd!<cr>
-
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-	let l:currentBufNum = bufnr("%")
-	let l:alternateBufNum = bufnr("#")
-
-	if buflisted(l:alternateBufNum)
-		buffer #
-	else
-		bnext
-	endif
-
-	if bufnr("%") == l:currentBufNum
-		new
-	endif
-
-	if buflisted(l:currentBufNum)
-		execute("bdelete! ".l:currentBufNum)
-	endif
-endfunction
-
-" Specify the behavior when switching between buffers
-try
-	set switchbuf=usetab
-	"  set stal=2           //shang mian xian shi
-catch
-endtry
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General Abbrevs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => 快捷方式
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 插入当前时间
 iab xdate <c-r>=strftime("%Y/%m/%d %H:%M:%S")<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Omni complete functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType python set omnifunc=python3complete#Complete
-autocmd FileType python setlocal completeopt-=preview
-autocmd FileType javascrīpt set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType c set omnifunc=ccomplete#Complete
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-"Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => MISC
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set csprg=/usr/bin/cscope
-set csto=0
-set cst
-set csverb
-set cscopetag
-"let g:winManagerWindowLayout='FileExplorer|TagList'
-let g:winManagerWindowLayout='FileExplorer'
-set iskeyword+=_,$,@,%,#,-
-
-set completeopt=longest,menu
-"let g:SuperTabRetainCompletionType=2
-"let g:SuperTabDefaultCompletionType="<C-X><C-O>"
-
-set autoindent
-set cindent
-
-" 带有如下符号的单词不要被换行分割
-set iskeyword+=_,$,@,%,#,-
-
-"折叠方式"zf创建折叠
-"set fdm=indent
-set fdm=manual
-
-"set notextmode
-
-"以unix格式显示换行符
+" 以unix格式显示换行符
 nmap xsm :e ++ff=unix
-"以dos格式显示换行符
+" 以dos格式显示换行符
 nmap xsm :e ++ff=dos
 
-"set filetype=unix
-"删除行尾的一个^M
+" 删除多余空格
+nmap ds :%s/\s\+$//<cr>
+nmap db :g/^$/d<cr>
+
+" 删除多余空行只留一个空行
+nmap dh :g/^\s*$\n\s*$/d<cr>
+
+" 删除行尾的一个^M
 nmap dm :%s/\r\+$//e<cr>:set ff=unix<cr>
-"以UNIX的换行符格式保存文件，注意是去掉一个^M
-":set ff=unix
-"以dos的换行符格式保存文件, 注意是在行尾变为两个^M
-"set ff=dos
 
-"add doxygen
+" 格式化
+" XML
+function XML()
+    set filetype=xml
+    :%s/></>\r</g   "把><替换成>回车<
+    :normal gg=G<cr>
+endfunction
+nmap xml :call XML()<cr>
+
+map json :%!python -m json.tool<cr>
+
+" 二进制转十六进制
+nmap 216 :%!xxd<cr>
+
+" 快捷打印
+map dk  oprintk("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
+map df  oprintf("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
+map dff oprintf("===> func: %s, line: %d, file: %s\n", __func__, __LINE__, __FILE__);<Esc>
+
+" Ctrl + s保存文件
+nmap <C-S> :update<cr>
+vmap <C-S> <C-C>:update<cr>
+imap <C-S> <C-O>:update<cr>
+
+" 显示tab缩进指示线
+" note: there is a space after the last \ above
+map lt :set list listchars=tab:\┊\ <cr>
+
+" 多编辑窗口切换
+nmap ww <C-w><C-w>
+" 上下窗口调整
+nmap -- 5<C-w>-
+nmap ++ 5<C-w>+
+" 左右窗口调整
+nmap >> 5<C-w>>
+nmap << 5<C-w><
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <F2> :DoxAuthor<cr>/
-nmap <F3> :Dox<cr>/
+"" => 文本编码
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936
+set fileencoding=utf-8
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => 插件管理  vundle 环境设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype off
+if has("win32")
+	set rtp+=$VIM\vimfiles\bundle\Vundle.vim
+else
+	set rtp+=~/.vim/bundle/Vundle.vim
+endif
+" vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
+
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'tomasr/molokai'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'Yggdroot/indentLine'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
+Plugin 'aklt/plantuml-syntax'
+Plugin 'wannesm/wmgraphviz.vim'
+Plugin 'iamcco/markdown-preview.vim'
+Plugin 'mzlogin/vim-markdown-toc'
+Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'Raimondi/delimitMate'
+Plugin 'rkulla/pydiction'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'Shougo/neocomplcache.vim'
+Plugin 'msanders/snipmate.vim'
+Plugin 'vim-utils/vim-man'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'vim-scripts/OmniCppComplete'
+Plugin 'lfv89/vim-interestingwords'
+Plugin 'zivyangll/git-blame.vim'
+
+" 插件列表结束
+call vundle#end()
+filetype plugin indent on
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 插件设置
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>>>>>>vim-powerline
+set guifont=PowerlineSymbols\ for\ Powerline
+set nocompatible
+set t_Co=256
+let g:Powerline_symbols = 'unicode'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>indentLine
+"空格缩进指示线
+let g:indentLine_enabled = 1
+let g:indentLine_char_list = ['┊']
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>nerdtre
+"树形目录
+nmap <F4> :NERDTreeToggle<cr>
+nmap ld :NERDTreeToggle<cr>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>vim-fugitive
+"显示：当前模式、Git分支、文件路径、文件是否保存以及当前所载行和 列的信息。这是通过vim-powerline来实现的。
+set laststatus=2 " Always display the status line
+set statusline+=%{fugitive#statusline()} "  Git Hotness
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>> Tagbar
+let g:tagbar_width = 40
+let g:tagbar_autofocus = 1
+" 禁止首字母排序
+let g:tagbar_sort = 0
+nmap <F8> :TagbarToggle<CR>
+nmap lf :TagbarToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>DoxygenToolkit.vim
+" Doxygen风格的注释
 let g:DoxygenToolkit_commentType = "C"
 let g:DoxygenToolkit_briefTag_pre="@brief  "
 let g:DoxygenToolkit_paramTag_pre="@param "
@@ -400,379 +319,9 @@ let g:DoxygenToolkit_licenseTag = s:licenseTag
 
 let g:DoxygenToolkit_briefTag_funcName="yes"
 let g:doxygen_enhanced_color=1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-"新建.c,.h,.sh,.java文件，自动插入文件头
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufRead,BufNewFile *.cpp set filetype=cpp
-au BufRead,BufNewFile *.c set filetype=c
-au BufRead,BufNewFile *.sh set filetype=sh
-au BufRead,BufNewFile *.py set filetype=python
-au BufRead,BufNewFile *.dot set filetype=dot
-au BufRead,BufNewFile *.uml set filetype=uml
-autocmd BufNewFile *.cpp,*.c,*.sh,*.py,*.dot,*.uml exec ":call SetTitle()"
-""定义函数SetTitle，自动插入文件头
-func SetTitle()
-	if &filetype == 'python'
-		call setline(1, "\#/usr/bin/python3")
-		call setline(2, "\#coding=utf8")
-		call setline(3, "")
-		call setline(4, "\# File Name	: ".expand("%"))
-		call setline(5, "\# Author	: winddoing")
-		call setline(6, "\# Created Time	: ".strftime("%c"))
-		call setline(7, "\# Description	:")
-		call setline(8, "")
-		call setline(9, "")
-        normal 10G
-	endif
-	if &filetype == 'sh' "如果文件类型为.sh文件
-		call setline(1, "\#!/bin/bash")
-		call append(line("."), "\##########################################################")
-		call append(line(".")+1, "\# File Name		: ".expand("%"))
-		call append(line(".")+2, "\# Author		: winddoing")
-		call append(line(".")+3, "\# Created Time	: ".strftime("%c"))
-		call append(line(".")+4, "\# Description	:")
-		call append(line(".")+5, "\##########################################################")
-		call append(line(".")+6, "")
-        normal 9G
-	endif
-	if &filetype == 'cpp'
-		call setline(1, "/*#############################################################")
-		call append(line("."), " *     File Name	: ".expand("%"))
-		call append(line(".")+1, " *     Author		: winddoing")
-		call append(line(".")+2, " *     Created Time	: ".strftime("%c"))
-		call append(line(".")+3, " *     Description	:")
-		call append(line(".")+4, " *############################################################*/")
-		call append(line(".")+5, "")
-		call append(line(".")+6, "#include <iostream>")
-		call append(line(".")+7, "")
-		call append(line(".")+8, "using namespace std;")
-		call append(line(".")+9, "")
-        normal 12G
-	endif
-	if &filetype == 'c'
-		call setline(1, "/*#############################################################")
-		call append(line("."), " *     File Name	: ".expand("%"))
-		call append(line(".")+1, " *     Author		: winddoing")
-		call append(line(".")+2, " *     Created Time	: ".strftime("%c"))
-		call append(line(".")+3, " *     Description	:")
-		call append(line(".")+4, " *############################################################*/")
-		call append(line(".")+5, "")
-		call append(line(".")+6, "#include <stdio.h>")
-		call append(line(".")+7, "#include <stdlib.h>")
-		call append(line(".")+8, "#include <stdint.h>")
-		call append(line(".")+9, "")
-        normal 12G
-	endif
-	if &filetype == 'dot'
-		call setline(1,"//usr/bin/dot")
-		call append(1,"digraph G{")
-		call append(2,"")
-		call append(3,"}")
-		normal 3G
-	endif
-	if &filetype == 'uml'
-		call setline(1,"@startuml")
-		call append(1,"title xxxx")
-		call append(2,"")
-		call append(3,"@enduml")
-		normal 3G
-	endif
-	"新建文件后，自动定位到文件末尾
-	autocmd BufNewFile * normal G
-
-endfunc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"文本编码
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
-set termencoding=utf-8
-set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp936
-set fileencoding=utf-8
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"属性设置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 在处理未保存或只读文件的时候，弹出确认
-"set confirm
-
-" 去掉输入错误的提示声音
-set noeb
-
-" 高亮显示当前行/列
-set cursorline
-"set cursorcolumn
-
-" 开启行号显示
-set nu
-
-" 允许用指定语法高亮配色方案替换默认方案
-syntax on
-
-" 分割线显示
-" color set: ColorColumn
-set colorcolumn=80
-" Make it obvious where 80 characters is
-"set textwidth=110
-"set colorcolumn=+1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""" Winddoing Configure """"""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"格式化
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" XML
-function XML()
-    set filetype=xml
-    :%s/></>\r</g   "把><替换成>回车<
-    :normal gg=G<cr>
-endfunction
-
-nmap xml :call XML()<cr>
-
-nmap 216 :%!xxd<cr>
-
-" 快捷键
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 定义快捷键到行首和行尾
-nmap LB 0
-nmap LE $
-
-nmap qq :q!<cr>
-
-nmap ww <C-w><C-w>
-nmap -- 5<C-w>-
-nmap ++ 5<C-w>+
-nmap >> 5<C-w>>
-nmap << 5<C-w><
-nmap 11 :set nonu<cr>
-nmap 22 :set nu<cr>
-nmap cm :!
-map ss :split<cr>
-map vv :vsplit<cr>
-nmap ff :1,$s///g
-nmap fk :1,$s/ *$//g<cr>
-"nmap fk :1,$s/^.*\.//g<cr>	"exaple 12.aaa-->aaa
-
-"取出多余空格
-nmap ds :%s/\s\+$//<cr>
-nmap db :g/^$/d<cr>
-
-"删除多余空行只留一个空行
-nmap dh :g/^\s*$\n\s*$/d<cr>
-
-"nmap ff :cs find t <C-R>=expand("<cword>")<CR><CR>:cw<CR>
-map dk oprintk("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
-map df oprintf("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
-map dff oprintf("===> func: %s, line: %d, file: %s\n", __func__, __LINE__, __FILE__);<Esc>
-
-"查找当前所有文件下光标所在的字符
-"https://blog.csdn.net/ckmufeng/article/details/50396632
-nnoremap fw yiw:vimgrep /<C-R>0/gj **<CR>:copen<CR>
-
-map json :%!python -m json.tool<cr>
-
-"paste模式,为粘贴是注释不换行
-map <leader>p :set paste<cr>
-map <leader>pp :set nopaste<cr>
-
-" 配置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => 将case 标记之后的语句放在标记缩进位置之后的 N 个字符处。(省缺'shiftwidth')。
-set cinoptions=:N,lN,bN
-
-" => Ctrl + s保存文件
-nmap <C-S> :update<CR>
-vmap <C-S> <C-C>:update<CR>
-imap <C-S> <C-O>:update<CR>
-
-" => ctag configure
-set tags=./tags;,tags
-set path+=include;
-
-" => Files, backups and undo
-" Turn backup off, since most stuff is in SVN, git anyway...
-set nobackup
-set nowb
-set noswapfile
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"插件管理  vundle 环境设置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off
-if has("win32")
-	set rtp+=$VIM\vimfiles\bundle\Vundle.vim
-else
-	set rtp+=~/.vim/bundle/Vundle.vim
-endif
-" vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
-
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-"Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'Lokaltog/vim-powerline'
-"Plugin 'octol/vim-cpp-enhanced-highlight'  "改变函数名称颜色
-Plugin 'derekwyatt/vim-fswitch'
-Plugin 'Yggdroot/indentLine'
-Plugin 'lilydjwg/fcitx.vim'
-"Plugin 'ervandew/supertab'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-"Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'rking/ag.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
-Plugin 'gregsexton/gitv'
-Plugin 'majutsushi/tagbar'
-Plugin 'oplatek/Conque-Shell'
-Plugin 'aklt/plantuml-syntax'
-Plugin 'wannesm/wmgraphviz.vim'
-Plugin 'iamcco/markdown-preview.vim'
-Plugin 'iamcco/mathjax-support-for-mkdp'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'mzlogin/vim-kramdown-tab'
-Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'Raimondi/delimitMate'
-Plugin 'rkulla/pydiction'
-Plugin 'fholgado/minibufexpl.vim'
-Plugin 'Shougo/neocomplcache.vim'
-Plugin 'msanders/snipmate.vim'
-"Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'vim-utils/vim-man'
-Plugin 'vim-scripts/DrawIt'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'vim-scripts/OmniCppComplete'
-Plugin 'lfv89/vim-interestingwords'
-Plugin 'zivyangll/git-blame.vim'
-
-" 插件列表结束
-call vundle#end()
-filetype plugin indent on
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" 插件设置
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-">>>>>>>>>vim-cpp-enhanced-highlight
-" STL 容器类型高亮
-syntax keyword cppSTLtype initializer_list
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>vim-powerline
-set guifont=PowerlineSymbols\ for\ Powerline
-set nocompatible
-set t_Co=256
-let g:Powerline_symbols = 'unicode'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-">>>>>>>>vim-fswitch
-" *.cpp 和 *.h 间切换
-nmap <silent> <Leader>sw :FSHere<cr>
-"操作: 键入 [;sw] 就能在实现文件和接口文件间切换
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>indentLine
-"空格缩进指示线
-let g:indentLine_char_list = ['┊']
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>supertab
-"SuperTab使Tab快捷键
-"let g:SuperTabMappingForward = "<tab>"
-"let g:SuperTabMappingBackward= "s-tab"  " Tab空格使用Shift+<tab>
-"let g:SuperTabDefaultCompletionType="context"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-">>>>>>>>ctrlp.vim
-"查找文件  Ctrl+p
-"let g:ctrlp_match_window = 'top,order:btt,min:1,max:10,results:20'
-"let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlP'
-map <leader>f :CtrlPMRU<CR>
-let g:ctrlp_custom_ignore = {
-			\ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-			\ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-			\ }
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
-
-if executable('ag')
-	" Use Ag over Grep
-	set grepprg=ag\ --nogroup\ --nocolor
-	" Use ag in CtrlP for listing files.
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-	" Ag is fast enough that CtrlP doesn't need to cache
-	let g:ctrlp_use_caching = 0
-endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>ctrlp-funky
-"模糊搜索当前文件中所有函数
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_extensions = ['funky']
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>nerdtre
-"树形目录
-nmap <F4> :NERDTreeToggle<cr>
-nmap ld :NERDTreeToggle<cr>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>ag.vim
-"当前目录下，全局搜索
-let g:ackprg = 'ag --nogroup --nocolor --column'
-nmap <leader>f :norm yiw<CR>:Ag! "<C-R>""<cr>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>vim-fugitive
-"显示：当前模式、Git分支、文件路径、文件是否保存以及当前所载行和 列的信息。这是通过vim-powerline来实现的。
-set laststatus=2 " Always display the status line
-set statusline+=%{fugitive#statusline()} "  Git Hotness
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>vim-git
-"
-
-">>>>>>>>gitv
-"
-
-">>>>>>>>> Tagbar
-let g:tagbar_width = 40
-let g:tagbar_autofocus = 1
-" 禁止首字母排序
-let g:tagbar_sort = 0
-nmap <F8> :TagbarToggle<CR>
-nmap lf :TagbarToggle<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>Conque-Shell
-"vim + shell
-"nmap <C-r> :ConqueTermVSplit bash <cr>
-"nmap <C-P> :ConqueTermSplit bash <cr>
-nmap <C-b> :ConqueTermVSplit bash <cr>
+nmap <F2> :DoxAuthor<cr>/
+nmap <F3> :Dox<cr>/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>plantuml-syntax
@@ -795,7 +344,6 @@ autocmd BufWritePost *.dot :silent !dot -Tpng -o %<.png %
 autocmd BufWritePost *.dot :silent !eog %:p:r.png &
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 ">>>>>>>>markdown-preview.vim
 " vim + makedown + firefox
 let g:mkdp_path_to_chrome = "firefox"
@@ -816,15 +364,6 @@ nmap <silent> <F10> <Plug>StopMarkdownPreview
 imap <silent> <F10> <Plug>StopMarkdownPreview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>mathjax-support-for-mkdp
-"支持数学公式显示
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>vim-markdown
-"语法高亮
-let g:vim_markdown_frontmatter=1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 ">>>>>>>vim-markdown-toc
 "生成文章目录
 let g:vmt_auto_update_on_save = 1
@@ -837,17 +376,13 @@ let g:vmt_auto_update_on_save = 1
 ":UpdateToc 更新已有目录
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>vim-kramdown-tab
-"列表缩进
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 ">>>>>>>vim-table-mode
 "表格的排版
 let g:table_mode_corner='|'
 let g:table_mode_header_fillchar='-'
 let g:table_mode_delimiter=' '
 "先生成表格内容，用空格分隔, 使用命令:Tableize
+vmap tt :Tableize <cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>delimitMate
@@ -880,47 +415,12 @@ let g:neocomplcache_force_overwrite_completefunc = 1
 " 自动补全代码块，如main+<Tab>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"">>>>>>>>>>vim-gutentags
-""自动索引
-""gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-"let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-"
-"" 所生成的数据文件的名称
-"let g:gutentags_ctags_tagfile = '.tags'
-"
-"" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-"let s:vim_tags = expand('~/.cache/tags')
-"let g:gutentags_cache_dir = s:vim_tags
-"
-"" 配置 ctags 的参数
-"let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-"let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-"let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-"
-"" 检测 ~/.cache/tags 不存在就新建
-"if !isdirectory(s:vim_tags)
-"	silent! call mkdir(s:vim_tags, 'p')
-"endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 ">>>>>>>>>vim-utils/vim-man
 "vim中使用man 操作：Shift + k
 " open man page for word under cursor in a vertical split
 nmap K <Plug>(Vman)
 " open man page for word under cursor in a horizontal split
 "nmap K <Plug>(Man)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>>vim-scripts/DrawIt
-"绘图--操作
-":DIstart	-- 启动（默认虚线----）
-":DIstop	-- 停止
-":DIdbl		-- 双实线(════)
-":DInrml    -- 单虚线(----)
-":DIsngl	-- 单实现(────)
-"划线： 方向键（直线）；Page up、Page Down（斜线）
-"箭头： <、>、^、v
-"擦除：空格切换
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>>vim-easy-align
@@ -952,7 +452,6 @@ let g:tmuxline_separators = {
 
 let g:tmuxline_powerline_separators = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 ">>>>>>>>>>>>>OmniCppComplete
 "C++补全
@@ -986,9 +485,78 @@ let g:interestingWordsRandomiseColors = 1
 
 ">>>>>>>>>>>>>git-blame.vim
 "查看当前行代码的提交记录
-nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
+nnoremap <Leader>g :<C-u>call gitblame#echo()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => ctag配置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set tags=./tags;,tags
+set path+=include;
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => cscope配置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 添加cscope数据库到当前vim
+if has("cscope")
+    set csprg=/usr/bin/cscope " 指定用来执行cscope的命令
+    set csto=1 " 设置cstag命令查找次序：0先找cscope数据库再找标签文件；1先找标签文件再找cscope数据库
+    set cst " 同时搜索cscope数据库和标签文件
+    set nocsverb
+    if filereadable("cscope.out") " 若当前目录下存在cscope数据库，添加该数据库到vim
+        cs add cscope.out
+    endif
+    set csverb
+endif
+
+" 查找本 C 符号
+nmap css :cs find s <C-R>=expand("<cword>")<CR><CR>
+" 查找本定义
+nmap csg :cs find g <C-R>=expand("<cword>")<CR><CR>
+" 查找本函数调用的函数
+nmap csd :cs find d <C-R>=expand("<cword>")<CR><CR>
+" 查找调用本函数的函数
+nmap csc :cs find c <C-R>=expand("<cword>")<CR><CR>
+" 查找本字符串
+nmap cst :cs find t <C-R>=expand("<cword>")<CR><CR>
+" 查找本 egrep 模式
+nmap cse :cs find e <C-R>=expand("<cword>")<CR><CR>
+" 查找本文件
+nmap csf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+" 查找包含本文件的文件
+nmap csi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+
+" Ctrl+o 回到原位置
+" Ctrl+i 追踪之前跳转
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => 新建文件，自动插入文件头
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.dot set filetype=dot
+au BufRead,BufNewFile *.uml set filetype=uml
+autocmd BufNewFile *.dot,*.uml exec ":call SetTitle()"
+""定义函数SetTitle，自动插入文件头
+func SetTitle()
+	if &filetype == 'dot'
+		call setline(1,"//usr/bin/dot")
+		call append(1,"digraph G{")
+		call append(2,"")
+		call append(3,"}")
+		normal 3G
+	endif
+	if &filetype == 'uml'
+		call setline(1,"@startuml")
+		call append(1,"title xxxx")
+		call append(2,"")
+		call append(3,"@enduml")
+		normal 3G
+	endif
+	"新建文件后，自动定位到文件末尾
+	autocmd BufNewFile * normal G
+endfunc
 
 
 ">>>>>> gvim configure
@@ -1013,4 +581,3 @@ if has("win32")
     "source $VIMRUNTIME/mswin.vim
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
