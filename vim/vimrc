@@ -239,7 +239,6 @@ Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
 Plug 'wannesm/wmgraphviz.vim', { 'for': 'dot' }
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
-Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'Raimondi/delimitMate'
 Plug 'rkulla/pydiction', { 'for': 'python' }
 Plug 'fholgado/minibufexpl.vim'
@@ -377,15 +376,6 @@ let g:vmt_auto_update_on_save = 1
 ":GenTocGFM  生成 GFM 链接风格的文章目录。
 ":GenTocRedcarpet  生成 Redcarpet 链接风格的文章目录。
 ":UpdateToc 更新已有目录
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>vim-table-mode
-"表格的排版
-let g:table_mode_corner='|'
-let g:table_mode_header_fillchar='-'
-let g:table_mode_delimiter=' '
-"先生成表格内容，用空格分隔, 使用命令:Tableize
-vmap tt :Tableize <cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>delimitMate
