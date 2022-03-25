@@ -481,7 +481,7 @@ let g:interestingWordsRandomiseColors = 1
 
 ">>>>>>>>>>>>>git-blame.vim
 "查看当前行代码的提交记录
-nnoremap <Leader>g :<C-u>call gitblame#echo()<CR>
+nmap gb :<C-u>call gitblame#echo()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -508,21 +508,21 @@ if has("cscope")
 endif
 
 " 查找本 C 符号
-nmap css :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 " 查找本定义
-nmap csg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 " 查找本函数调用的函数
-nmap csd :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " 查找调用本函数的函数
-nmap csc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 " 查找本字符串
-nmap cst :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
 " 查找本 egrep 模式
-nmap cse :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 " 查找本文件
-nmap csf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <Leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " 查找包含本文件的文件
-nmap csi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <Leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 " Ctrl+o 回到原位置
 " Ctrl+i 追踪之前跳转
