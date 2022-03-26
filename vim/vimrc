@@ -253,6 +253,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'vim-scripts/OmniCppComplete', { 'for': 'cpp' }
 Plug 'lfv89/vim-interestingwords'
 Plug 'zivyangll/git-blame.vim'
+Plug 'dense-analysis/ale', { 'for': ['c', 'cpp'] }
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -520,6 +521,25 @@ let g:interestingWordsRandomiseColors = 1
 nmap gb :<C-u>call gitblame#echo()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+">>>>>>>>>>>>>ale
+"静态语法检测,依赖clang
+
+"只在保存文件时进行语法检测
+"文件内容发生变化时不进行检查
+let g:ale_lint_on_text_changed = 'never'
+"打开文件时不进行检查
+let g:ale_lint_on_enter = 0
+
+"始终开启标志列
+let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
+
+"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+
+"<Leader>d查看错误或警告的详细信息
+nmap <Leader>l :ALEDetail<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => ctag配置
