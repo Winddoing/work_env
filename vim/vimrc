@@ -184,6 +184,8 @@ nmap ++ 5<C-w>+
 nmap >> 5<C-w>>
 nmap << 5<C-w><
 
+" 打开一个终端
+nmap <C-B> :vert term<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 文本编码
@@ -228,7 +230,7 @@ Plug 'msanders/snipmate.vim'
 Plug 'vim-utils/vim-man'
 Plug 'junegunn/vim-easy-align'
 Plug 'edkolev/tmuxline.vim'
-Plug 'vim-scripts/OmniCppComplete', { 'for': 'cpp' }
+Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'lfv89/vim-interestingwords'
 Plug 'zivyangll/git-blame.vim'
 Plug 'dense-analysis/ale', { 'for': ['c', 'cpp'] }
@@ -298,14 +300,14 @@ let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'
 let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.linenr = ' '
+let g:airline_symbols.maxlinenr = 'Ξ'
+let g:airline_symbols.colnr = ' '
 let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+"let g:airline_symbols.whitespace = 'Ξ'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>indentLine

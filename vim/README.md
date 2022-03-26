@@ -2,7 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [安装 VIM8.x](#安装-vim8x)
-* [插件安装](#插件安装)
+* [插件管理](#插件管理)
 * [常用操作](#常用操作)
 	* [Fn功能键](#fn功能键)
 	* [快捷键](#快捷键)
@@ -24,9 +24,8 @@
 * [修改配置](#修改配置)
 	* [代码注释颜色](#代码注释颜色)
 * [插件使用](#插件使用)
-	* [目录](#目录)
-		* [生成目录](#生成目录)
-		* [更新目录](#更新目录)
+	* [vim-markdown-toc](#vim-markdown-toc)
+	* [ale](#ale)
 * [vim实用技巧](#vim实用技巧)
 	* [屏蔽插件](#屏蔽插件)
 	* [查看启动时间](#查看启动时间)
@@ -41,19 +40,50 @@
 ```
 sudo apt-get install vim
 ```
-> Version: ubuntu18.04
+> Version: ubuntu20.04
 
 
 ![vim](./vim.png)
 
-# 插件安装
+# 插件管理
 
 使用`vim-plug`进行新的插件管理
 
-进入vi执行：
-``` shell
-:PluginInstall
 ```
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+
+
+vim-plug配置项：
+
+| 选项                    | 功能描述                                                     |
+| :---------------------- | :----------------------------------------------------------- |
+| `branch`/`tag`/`commit` | 所用插件git仓库的Branch/tag/commit                           |
+| `rtp`                   | 包含vim插件的子目录                                          |
+| `dir`                   | 该vim插件的定制化目录 (Custom directory)                     |
+| `as`                    | 给vim插件取别名                                              |
+| `do`                    | Post-update hook，某些vim插件在完成安装或更新后，需要执行额外的操作，可以使用 do 选项指定具体的操作或函数 |
+| `on`                    | 按需加载: vim命令或`<Plug>`-mappings                         |
+| `for`                   | 按需加载: 文件类型                                           |
+| `frozen`                | Do not update unless explicitly specified                    |
+
+
+
+vim-plug的命令列表：
+
+| 命令                                | 功能描述                                                     |
+| :---------------------------------- | :----------------------------------------------------------- |
+| `PlugInstall [name ...] [#threads]` | 安装插件                                                     |
+| `PlugUpdate [name ...] [#threads]`  | 安装或更新vim插件                                            |
+| `PlugClean[!]`                      | 卸装未使用的目录 (bang version will clean without prompt)    |
+| `PlugUpgrade`                       | 更新vim-plug自身                                             |
+| `PlugStatus`                        | 查看vim插件的状态                                            |
+| `PlugDiff`                          | 对比上次PlugUpdate的更改 (Examine changes from the previous update and the pending changes) |
+| `PlugSnapshot[!] [output path]`     | 保存当前插件的镜像副本到指定目录 (Generate script for restoring the current snapshot of the plugins) |
+
+
 
 
 # 常用操作
@@ -128,6 +158,7 @@ sudo apt-get install vim
 |      `gb`       | 查看当前行代码的提交记录                                     |
 | `<leader> + k`  | 不同颜色高亮当前单词                                         |
 | `<leader> + kk` | 取消所有不同颜色高亮                                         |
+|   `ctrl + b`    | 垂直方向上打开一个终端                                       |
 
 
 > 额外的功能组合键：`<leader> = ；`
@@ -186,6 +217,9 @@ show : Show connections               (Usage: show)
 | `6`or`e` | `<leader> + e`  | 查找这个egrep匹配模式            |
 | `7`or`f` | `<leader> + f`  | 查找这个文件                     |
 | `8`or`i` | `<leader> + i`  | 查找#include这个文件的文件（们） |
+
+
+
 
 
 ## 字符串替换
@@ -308,17 +342,29 @@ hi Comment         ctermfg=49
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-## 目录
+## vim-markdown-toc
 
-### 生成目录
+生成目录
+
 ```
 :GenTocGFM
 ```
 
-### 更新目录
+更新目录
+
 ```
 :UpdateToc
 ```
+
+
+
+## ale
+
+语法检测，依赖`clang`，目前配置只在保存（:w）时进行语法检测。
+
+
+
+
 
 # vim实用技巧
 
@@ -334,13 +380,17 @@ alias vi='vim --noplugin'
 vim --startuptime timefile test.c
 ```
 
-# Window下的gvim操作
 
-|                 操作                  | 说明                                    |
-| :-----------------------------------: | --------------------------------------- |
-|  Shift+v(选中) <br/>`Shift` `+` `y`   | 选中区域复制到剪切板（vim->其他程序）   |
-|            `Shift` `*` `y`            | 当前行复制到剪切板                      |
-| `Shift` `+` `p` <br/> `Shift` `*` `p` | 选中区域粘贴剪切板内容（其他程序->vim） |
+
+## linux内核tag
+
+```
+make SUBARCH=arm64 SRCARCH=arm64 COMPILED_SOURCE=1 tags cscope
+```
+
+> make执行的脚本文件内核目录下`scripts/tags.sh`
+
+
 
 
 # vim/gvim
