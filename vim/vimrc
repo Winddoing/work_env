@@ -233,7 +233,7 @@ call plug#begin()
 
 Plug 'tomasr/molokai'
 Plug 'axmac/vim-morning'
-Plug 'Lokaltog/vim-powerline'
+Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
@@ -245,7 +245,6 @@ Plug 'iamcco/markdown-preview.vim', { 'for': 'md' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'md' }
 Plug 'Raimondi/delimitMate'
 Plug 'rkulla/pydiction', { 'for': 'py' }
-Plug 'fholgado/minibufexpl.vim'
 Plug 'Shougo/neocomplcache.vim'
 Plug 'msanders/snipmate.vim'
 Plug 'vim-utils/vim-man'
@@ -261,6 +260,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 主题颜色
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256
 colorscheme molokai
 "colorscheme morning
 
@@ -274,11 +274,59 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>vim-powerline
-set guifont=PowerlineSymbols\ for\ Powerline
-set nocompatible
-set t_Co=256
-let g:Powerline_symbols = 'unicode'
+">>>>>>>>vim-airline
+"显示在状态栏
+set laststatus=2
+
+"let g:airline_theme="molokai"
+let g:airline_powerline_fonts = 1
+
+
+"打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
+let g:airline#extensions#tabline#enabled = 1
+"显示文件编号
+let g:airline#extensions#tabline#buffer_nr_show = 1
+"只显示文件名
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>0 <Plug>AirlineSelectTab0
+
+"下一个buf
+nmap aa :bnext<cr>
+"前一个buf
+nmap zz :bprevious<cr>
+
+" 关闭状态显示空白符号计数
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#symbol = '!'
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+" Unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>indentLine
@@ -294,9 +342,7 @@ nmap ld :NERDTreeToggle<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>vim-fugitive
-"显示：当前模式、Git分支、文件路径、文件是否保存以及当前所载行和 列的信息。这是通过vim-powerline来实现的。
-set laststatus=2 " Always display the status line
-set statusline+=%{fugitive#statusline()} "  Git Hotness
+"显示：当前模式、Git分支、文件路径、文件是否保存以及当前所载行和 列的信息
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>> Tagbar
@@ -390,16 +436,6 @@ let g:vmt_auto_update_on_save = 1
 "Python自动补全
 let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 let g:pydiction_menu_height = 5
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>minibufexpl.vim
-"打开多文件编辑
-"下一个buf
-nmap aa :bnext<cr>
-"前一个buf
-nmap zz :bprevious<cr>
-":b<n>    n是数字，第n个buf
-nmap bb :b
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>>>neocomplcache.vim
