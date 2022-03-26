@@ -1,25 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-">>>>>> gvim configure
-if has("win32")
-    " set the menu & the message to English
-    set langmenu=en_US
-    let $LANG= 'en_US'
-	if has("gui_running")
-        " 窗口大小
-        "set lines=35 columns=140
-	    " 窗口最大化
-	    autocmd GUIEnter * simalt ~x
-
-        "不显示工具/菜单栏
-        set guioptions-=T
-        set guioptions-=m
-	endif
-
-    " Normal模式自动切换至英文输入法
-    set noimdisable
-endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 鼠标模式
@@ -609,27 +587,3 @@ func SetTitle()
 	"新建文件后，自动定位到文件末尾
 	autocmd BufNewFile * normal G
 endfunc
-
-
-">>>>>> gvim configure
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("win32")
-    set guifont=Consolas:h12:cANSI
-
-    let g:tagbar_ctags_bin='$VIM\vimfiles\tags\win_ctags\ctags.exe'
-
-    "在终端启动vim时，共享NERDTree
-    let g:nerdtree_tabs_open_on_console_startup=1
-    "开启vim时默认打开
-    autocmd VimEnter * NERDTree
-    wincmd w
-    autocmd VimEnter * wincmd w
-    "关闭最后一个文件时，自动关闭NERDTree
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    " 设置宽度
-    let NERDTreeWinSize=20
-
-    "使能后，Ctrl+v VISUAL块模式与粘贴功能冲突
-    "source $VIMRUNTIME/mswin.vim
-endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
