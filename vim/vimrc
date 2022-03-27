@@ -212,35 +212,36 @@ set fileencoding=utf-8
 
 " 全局变量plug_url_format设置下载仓库地址，默认为github官网
 " 国内镜像加速以下可用，2022/03/24 22:17:50
-"let g:plug_url_format='https://git::@hub.fastgit.xyz/%s.git'
+let g:plug_url_format='https://git::@hub.fastgit.xyz/%s.git'
 
 call plug#begin()
 
-Plug 'tomasr/molokai'
-Plug 'axmac/vim-morning'
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'fholgado/minibufexpl.vim'
 Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['c', 'cpp'] }
 Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
 Plug 'wannesm/wmgraphviz.vim', { 'for': 'dot' }
-Plug 'iamcco/markdown-preview.vim', { 'for': 'md' }
+Plug 'iamcco/markdown-preview.vim', { 'do': ':MarkdownPreview' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'md' }
+Plug 'jszakmeister/markdown2ctags', { 'for': 'md' }
 Plug 'Raimondi/delimitMate'
 Plug 'rkulla/pydiction', { 'for': 'py' }
 Plug 'Shougo/neocomplcache.vim'
 Plug 'msanders/snipmate.vim'
-Plug 'vim-utils/vim-man'
+Plug 'vim-utils/vim-man', { 'for': ['c', 'cpp'] }
 Plug 'junegunn/vim-easy-align'
-Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/tmuxline.vim'
 Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'lfv89/vim-interestingwords'
 Plug 'zivyangll/git-blame.vim'
 Plug 'dense-analysis/ale', { 'for': ['c', 'cpp'] }
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'bfrg/vim-cpp-modern', { 'for': ['c', 'cpp'] }
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -248,20 +249,16 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 主题颜色
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=256
-colorscheme molokai
-"colorscheme morning
+set termguicolors
+set background=dark
+"set background=light
+colorscheme gruvbox
+
 
 
 " 插件设置
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-">>>>>>>>molokai
-" 主题颜色
-let g:molokai_original = 1
-let g:rehash256 = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 ">>>>>>>>vim-airline
 "显示在状态栏
 set laststatus=2
@@ -302,8 +299,10 @@ let g:indentLine_enabled = 1
 let g:indentLine_char_list = ['┊']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>nerdtre
+">>>>>>>>NERDTree
 "树形目录
+"指定鼠标模式（1.双击打开；2.单目录双文件；3.单击打开）
+let NERDTreeMouseMode = 3
 nmap <F4> :NERDTreeToggle<cr>
 nmap ld :NERDTreeToggle<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -317,6 +316,8 @@ let g:tagbar_width = 40
 let g:tagbar_autofocus = 1
 " 禁止首字母排序
 let g:tagbar_sort = 0
+" 单击选择
+let g:tagbar_singleclick = 1
 nmap <F8> :TagbarToggle<CR>
 nmap lf :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -409,13 +410,35 @@ let g:vmt_auto_update_on_save = 1
 ":UpdateToc 更新已有目录
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+">>>>>>>>markdown2ctags
+"目录大纲
+" Add support for markdown files in tagbar.
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '~/.vim/plugged/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes --sro=»',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '»',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
+
+" 打开md文件时自动列出大纲列表
+autocmd BufWinEnter *.md :TagbarToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 ">>>>>>>>delimitMate
 "自动补全引号(单引号/双引号/反引号), 括号(()[]{})]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>pydiction
 "Python自动补全
-let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+let g:pydiction_location = '~/.vim/plugged/pydiction/complete-dict'
 let g:pydiction_menu_height = 5
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -538,6 +561,22 @@ let g:Lf_DefaultExternalTool='rg'
 
 "映射列表选择到方向键
 let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>>>>>>vim-cpp-modern
+" C/C++语法高亮
+" Disable function highlighting (affects both C and C++ files)
+let g:cpp_function_highlight = 1
+
+" Enable highlighting of C++11 attributes
+let g:cpp_attributes_highlight = 1
+
+" Highlight struct/class member variables (affects both C and C++ files)
+let g:cpp_member_highlight = 1
+
+" Put all standard C and C++ keywords under Vim's highlight group 'Statement'
+" (affects both C and C++ files)
+let g:cpp_simple_highlight = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
