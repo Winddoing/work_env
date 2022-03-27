@@ -95,7 +95,7 @@ set colorcolumn=80
 "set colorcolumn=+1
 
 " 允许在未保存的情况下切换缓冲区,方便跳转
-set hidden 
+set hidden
 
 " 将case 标记之后的语句放在标记缩进位置之后的 N 个字符处。(省缺'shiftwidth')。
 set cinoptions=:N,lN,bN
@@ -201,7 +201,7 @@ set fileencoding=utf-8
 "" => 插件管理 vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " https://github.com/junegunn/vim-plug
-" 升级vim-plug: 
+" 升级vim-plug:
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -234,6 +234,7 @@ Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'lfv89/vim-interestingwords'
 Plug 'zivyangll/git-blame.vim'
 Plug 'dense-analysis/ale', { 'for': ['c', 'cpp'] }
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -266,7 +267,7 @@ let g:airline_powerline_fonts = 1
 "打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
 let g:airline#extensions#tabline#enabled = 1
 "显示文件编号
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_show = 0
 "只显示文件名
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
@@ -520,6 +521,25 @@ nmap sn <Plug>(ale_next_wrap)
 
 "<Leader>d查看错误或警告的详细信息
 nmap <Leader>l :ALEDetail<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>>>>>>>LeaderF
+" 模糊查找
+let g:Lf_WorkingDirectoryMode = 'AF'
+let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
+let g:Lf_WildIgnore={'file':['*.vcproj', '*.vcxproj'],'dir':[]}
+"开启快捷键
+let g:Lf_ShortcutF = '<c-p>'
+"关闭图标显示
+let g:Lf_ShowDevIcons = 0
+
+let g:Lf_UseVersionControlTool=1 "default value, can ignore
+let g:Lf_DefaultExternalTool='rg'
+
+"映射列表选择到方向键
+let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => ctag配置
