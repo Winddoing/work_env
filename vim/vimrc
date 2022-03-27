@@ -187,6 +187,11 @@ nmap << 5<C-w><
 " 打开一个终端
 nmap <C-B> :vert term<cr>
 
+" 高亮行尾空格
+"autocmd FileType * highlight BadWhiteSpace ctermbg=124 guibg=Red
+"autocmd FileType * match BadWhiteSpace /\s\+$/
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 文本编码
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -218,6 +223,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
+Plug 'fholgado/minibufexpl.vim'
 Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['c', 'cpp'] }
 Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
 Plug 'wannesm/wmgraphviz.vim', { 'for': 'dot' }
@@ -265,28 +271,7 @@ let g:airline_powerline_fonts = 1
 
 
 "打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
-let g:airline#extensions#tabline#enabled = 1
-"显示文件编号
-let g:airline#extensions#tabline#buffer_nr_show = 0
-"只显示文件名
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>0 <Plug>AirlineSelectTab0
-
-"下一个buf
-nmap aa :bnext<cr>
-"前一个buf
-nmap zz :bprevious<cr>
+"let g:airline#extensions#tabline#enabled = 1
 
 " 关闭状态显示空白符号计数
 let g:airline#extensions#whitespace#enabled = 0
@@ -334,6 +319,20 @@ let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
 nmap <F8> :TagbarToggle<CR>
 nmap lf :TagbarToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>minibufexpl.vim
+"
+let g:miniBufExplUseSingleClick = 1 "Change buffer with single click on a buffer
+let g:miniBufExplMaxSize = 1
+"是否显示标号
+let g:miniBufExplShowBufNumbers = 0
+
+"下一个buf
+nmap aa :bnext<cr>
+"前一个buf
+nmap zz :bprevious<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>DoxygenToolkit.vim
@@ -533,6 +532,7 @@ let g:Lf_ShortcutF = '<c-p>'
 "关闭图标显示
 let g:Lf_ShowDevIcons = 0
 
+"实时检索
 let g:Lf_UseVersionControlTool=1 "default value, can ignore
 let g:Lf_DefaultExternalTool='rg'
 
