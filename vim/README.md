@@ -26,6 +26,8 @@
 * [插件使用](#插件使用)
 	* [vim-markdown-toc](#vim-markdown-toc)
 	* [ale](#ale)
+		* [linux内核](#linux内核)
+		* [cmake工程](#cmake工程)
 * [vim实用技巧](#vim实用技巧)
 	* [屏蔽插件](#屏蔽插件)
 	* [查看启动时间](#查看启动时间)
@@ -362,8 +364,26 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 
 语法检测，依赖`clang`，目前配置只在保存（:w）时进行语法检测。
 
+在实际使用中总是报找不到头文件的错误主要原因是没有生成`compile_commands.json`文件
 
 
+### linux内核
+
+运行以下脚本自动生成
+```
+./scripts/clang-tools/gen_compile_commands.py
+```
+或
+```
+make compile_commands.json
+```
+
+### cmake工程
+
+在CMakeLists.txt中添加:
+```
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+```
 
 
 # vim实用技巧
