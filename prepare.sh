@@ -10,9 +10,9 @@
 #debug="x"
 
 if [ x$debug != "x" ]; then
-    output=`tty`
+	output=`tty`
 else
-    output="/dev/null"
+	output="/dev/null"
 fi
 
 trap 'echo "Ctrl+c interrupted!"; exit' INT
@@ -23,99 +23,101 @@ install_failed_i=0
 INSTALL_CMD=apt
 LINUX_INSTALL_CMD=(apt-get apt yum)
 
-LINUX_BASEL_SOFTWARE=(git git-extras tig vim tmux exuberant-ctags cscope doxygen
-    openssh-server samba smbclient htop gcc g++ make cmake net-tools graphviz
-    tree colordiff subversion tftpd tftp sshfs minicom adb astyle splint hwloc
-    cloc sparse fakeroot icdiff indent cgdb tldr cpustat cpufrequtils
-    linux-tools-generic apitrace read-edid edid-decode speedtest-cli sysstat
-    screenfetch mediainfo)
+LINUX_BASEL_SOFTWARE=(git git-extras tig
+	vim tmux universal-ctags cscope global python3 doxygen graphviz
+	openssh-server samba smbclient htop gcc g++ make cmake net-tools 
+	tree colordiff tftpd tftp sshfs minicom adb astyle splint hwloc
+	cloc sparse fakeroot icdiff indent tldr cpustat cpufrequtils
+	linux-tools-generic apitrace read-edid edid-decode speedtest-cli sysstat
+	screenfetch mediainfo)
+	# subversion
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog firefox vlc kolourpaint flameshot
-    thunderbird ksysguard gnome-tweaks remmina gparted okular
-    fcitx fcitx-config-gtk fcitx-googlepinyin goldendict translate-shell)
+	thunderbird ksysguard gnome-tweaks remmina gparted okular
+	fcitx fcitx-config-gtk fcitx-googlepinyin goldendict translate-shell)
 
 LINUX_OTHER_SOFTWARE=(virtualbox sqlitebrowser audacity wireshark)
 
 LINUX_3RD_PARTY_SOFTWARE=(browser-plugin-freshplayer-pepperflash atom typora
-    vooya)
+	vooya)
 
 function install_software()
 {
-    name=$1[@]
-    slist=("${!name}")
-    num=${#slist[@]}
-    cnt=1
+	name=$1[@]
+	slist=("${!name}")
+	num=${#slist[@]}
+	cnt=1
 
-    echo "Install $1 Total: $num"
-    for software in "${slist[@]}"
-    do
-        echo -ne "Install software[$cnt/$num] [\033[33m$software\033[0m] ... "
-        sudo $INSTALL_CMD install -y $software > $output 2>&1
-        if [ $? -ne 0 ]; then
-            echo -e "\033[31mfail\033[0m"
-            install_failed_i=$(($install_failed_i+1))
-        else
-            echo -e "\033[32msuccess\033[0m"
-            install_success_i=$(($install_success_i+1))
-        fi
-        cnt=$(($cnt+1))
+	echo "Install $1 Total: $num"
+	for software in "${slist[@]}"
+	do
+		echo -ne "Install software[$cnt/$num] [\033[33m$software\033[0m] ... "
+		sudo $INSTALL_CMD install -y $software > $output 2>&1
+		if [ $? -ne 0 ]; then
+			echo -e "\033[31mfail\033[0m"
+			install_failed_i=$(($install_failed_i+1))
+		else
+			echo -e "\033[32msuccess\033[0m"
+			install_success_i=$(($install_success_i+1))
+		fi
+		cnt=$(($cnt+1))
 
-        trap "print_count" INT
-    done
+		trap "print_count" INT
+	done
 }
 
 function software_install()
 {
-    install_software LINUX_BASEL_SOFTWARE
-    install_software LINUX_GRAPH_SOFTWARE
-    install_software LINUX_OTHER_SOFTWARE
-    install_software LINUX_3RD_PARTY_SOFTWARE
+	install_software LINUX_BASEL_SOFTWARE
+	install_software LINUX_GRAPH_SOFTWARE
+	install_software LINUX_OTHER_SOFTWARE
+	install_software LINUX_3RD_PARTY_SOFTWARE
 }
 
 function print_count()
 {
-    local all_num
-    all_num=$((${#LINUX_BASEL_SOFTWARE[@]} + ${#LINUX_GRAPH_SOFTWARE[@]} \
-        + ${#LINUX_OTHER_SOFTWARE[@]} + ${#LINUX_3RD_PARTY_SOFTWARE[@]}))
+	local all_num
+	all_num=$((${#LINUX_BASEL_SOFTWARE[@]} + ${#LINUX_GRAPH_SOFTWARE[@]} \
+		+ ${#LINUX_OTHER_SOFTWARE[@]} + ${#LINUX_3RD_PARTY_SOFTWARE[@]}))
 
-    echo ""
-    echo "Install success software: $install_success_i"
-    echo "Install fail software: $install_failed_i"
-    echo ""
-    echo "Total number of software: $all_num"
-    echo "Not Installed software: $(($all_num - $install_failed_i - $install_success_i))"
-    exit 1;
+	echo ""
+	echo "Install success software: $install_success_i"
+	echo "Install fail software: $install_failed_i"
+	echo ""
+	echo "Total number of software: $all_num"
+	echo "Not Installed software: $(($all_num - $install_failed_i - $install_success_i))"
+	exit 1;
 }
 
 function out() {
-    echo -e "\e[01;31m$@ \e[0m"
+	echo -e "\e[01;31m$@ \e[0m"
 }
 
 function select_install_cmd()
 {
-    cmdarray=$1[@]
-    cmdlist=("${!cmdarray}")
+	cmdarray=$1[@]
+	cmdlist=("${!cmdarray}")
 
-    for cmd in "${cmdlist[@]}"
-    do
-        #echo "Install select $cmd"
-        which $cmd > $output 2>&1
-        if [ $? -eq 0 ]; then
-            INSTALL_CMD=$cmd
-        fi
-    done
+	for cmd in "${cmdlist[@]}"
+	do
+		#echo "Install select $cmd"
+		which $cmd > $output 2>&1
+		if [ $? -eq 0 ]; then
+			INSTALL_CMD=$cmd
+		fi
+	done
 }
 
 function sys_update()
 {
-    out "apt Update"
-    sudo apt update
-    out "apt Upgrade"
-    sudo apt upgrade
-    out "apt Autoremove"
-    sudo apt autoremove
-    out "apt Autoclen"
-    sudo apt autoclean
+	out "apt Update"
+	sudo apt update
+	out "apt Upgrade"
+	sudo apt upgrade
+	out "apt Autoremove"
+	sudo apt autoremove
+	out "apt Autoclen"
+	sudo apt autoclean
 }
 
 # main

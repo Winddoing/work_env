@@ -80,7 +80,7 @@ function md5str()
 
 
 #习惯的使用别名
-alias vi='vim'
+alias vi='vim --noplugin'
 alias grep='grep --color'
 alias man='viman'
 alias astyle-c='astyle --style=linux --indent=force-tab=4 --convert-tabs --pad-oper --unpad-paren --break-blocks=all'  #缩进4个空格
