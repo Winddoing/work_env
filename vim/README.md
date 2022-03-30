@@ -385,6 +385,18 @@ make compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 ```
 
+## vim-gutentags
+
+- 安装
+```
+sudo apt install global python3
+```
+> gtags依赖python3环境，因此也需要安装python3, `/usr/share/global/gtags/script/pygments_parser.py`
+
+- `g:gutentags_project_root`: 确定当前文件所属的项目目录，会从当前文件所在目录开始向父目录递归，直到找到这些标志文件。如果没有，则gutentags认为该文件是个野文件，不会帮它生成ctags/gtags数据
+ - 如果你的项目不在 svn/git/hg 仓库中的话，可以在项目根目录 touch 一个空的名为`.root`的文件即可
+
+
 
 # vim实用技巧
 
