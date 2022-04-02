@@ -28,10 +28,14 @@
 	* [ale](#ale)
 		* [linux内核](#linux内核)
 		* [cmake工程](#cmake工程)
+	* [vim-gutentags](#vim-gutentags)
 * [vim实用技巧](#vim实用技巧)
 	* [屏蔽插件](#屏蔽插件)
 	* [查看启动时间](#查看启动时间)
 	* [linux内核tag](#linux内核tag)
+	* [tag跳转 — `:tag tag`](#tag跳转--tag-tag)
+		* [:ts](#ts)
+		* [:tj](#tj)
 * [vim/gvim](#vimgvim)
 * [参考：](#参考)
 
@@ -424,6 +428,42 @@ make SUBARCH=arm64 SRCARCH=arm64 COMPILED_SOURCE=1 tags cscope
 
 
 
+## tag跳转 — `:tag tag`
+
+由于使用`vim-gutentags`自动生成tags数据库，导致`vim -t tag`命令无法使用。
+
+为了方便对特定函数的跳转在vim中可以使用`:ts tag`或`：tj tag`,也可以使用`:tag tag`
+
+### :ts
+
+> 列出符号x的定义
+
+```
+                                                        :ts :tselect
+:ts[elect][!] [name]    List the tags that match [name], using the
+                        information in the tags file(s).
+                        When [name] is not given, the last tag name from the
+                        tag stack is used.
+                        See tag-! for [!].
+                        With a '>' in the first column is indicated which is
+                        the current position in the list (if there is one).
+                        [name] can be a regexp pattern, see tag-regexp.
+                        See tag-priority for the priorities used in the
+                        listing.
+```
+
+### :tj
+
+> 如果只找到一个符号定义，那么直接跳转到符号定义处，如果有多个，则全部列出让用户自行选择
+
+```
+                                                        :tj :tjump
+:tj[ump][!] [name]      Like ":tselect", but jump to the tag directly when
+                        there is only one match.
+```
+
+
+
 
 # vim/gvim
 
@@ -438,3 +478,4 @@ set noswapfile
 # 参考：
 
 1. [像 IDE 一样使用 vim](https://github.com/yangyangwithgnu/use_vim_as_ide)
+2. [130+ Essential Vim Commands](https://catswhocode.com/vim-commands/)

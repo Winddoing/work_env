@@ -24,8 +24,8 @@ INSTALL_CMD=apt
 LINUX_INSTALL_CMD=(apt-get apt yum)
 
 LINUX_BASEL_SOFTWARE=(git git-extras tig
-	vim tmux universal-ctags cscope global python3 doxygen graphviz
-	openssh-server samba smbclient htop gcc g++ make cmake net-tools 
+	vim universal-ctags cscope global python3 python-is-python3 doxygen graphviz
+	openssh-server samba smbclient htop gcc g++ make cmake net-tools tmux
 	tree colordiff tftpd tftp sshfs minicom adb astyle splint hwloc
 	cloc sparse fakeroot icdiff indent tldr cpustat cpufrequtils
 	linux-tools-generic apitrace read-edid edid-decode speedtest-cli sysstat
