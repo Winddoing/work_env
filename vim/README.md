@@ -36,6 +36,8 @@
 	* [tag跳转 — `:tag tag`](#tag跳转--tag-tag)
 		* [:ts](#ts)
 		* [:tj](#tj)
+	* [多文件关闭一个](#多文件关闭一个)
+	* [两行合并一行](#两行合并一行)
 * [vim/gvim](#vimgvim)
 * [参考：](#参考)
 
@@ -462,6 +464,15 @@ make SUBARCH=arm64 SRCARCH=arm64 COMPILED_SOURCE=1 tags cscope
                         there is only one match.
 ```
 
+## 多文件关闭一个
+
+切换到想关闭的文件窗口，输入`:bd`，即可关闭
+
+> bd: buffers delete
+
+## 两行合并一行
+
+操作快捷键大写`J`，也就是`shift+j`
 
 
 

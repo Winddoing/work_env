@@ -124,6 +124,9 @@ autocmd BufReadPost * normal! g`"
 " 关闭VIM内置补全的preview窗口
 set completeopt-=preview
 
+" 命令行Tab补全提示
+set wildmenu
+set wildmode=longest:full,full
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -321,7 +324,7 @@ let g:tagbar_autofocus = 1
 " 禁止首字母排序
 let g:tagbar_sort = 0
 " 单击选择
-let g:tagbar_singleclick = 0
+let g:tagbar_singleclick = 1
 nmap <F8> :TagbarToggle<CR>
 nmap lf :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
