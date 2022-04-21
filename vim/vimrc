@@ -236,7 +236,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'rkulla/pydiction', { 'for': 'py' }
 Plug 'Shougo/neocomplcache.vim'
 Plug 'msanders/snipmate.vim'
-Plug 'vim-utils/vim-man', { 'for': ['c', 'cpp'] }
+Plug 'vim-utils/vim-man'
 Plug 'junegunn/vim-easy-align'
 "Plug 'edkolev/tmuxline.vim'
 Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
