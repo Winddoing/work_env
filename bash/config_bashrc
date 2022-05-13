@@ -3,4 +3,5 @@
 
 export PATH=$PATH:$HOME/.tools/x86
 source $HOME/.custom_bashrc
+source $HOME/.custom_cmd
 

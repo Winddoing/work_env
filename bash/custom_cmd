@@ -1,0 +1,66 @@
+#!/bin/bash
+
+################################################################################
+function md5str()
+{
+    echo "Calculate simple string: [$1]"; echo -n "MD5: "; echo -n "$1" | md5sum;
+}
+
+# make
+################################################################################
+function get_make_command()
+{
+	echo command make
+}
+
+function make()
+{
+	local start_time=$(date +"%s")
+	$(get_make_command) "$@"
+	local ret=$?
+	local end_time=$(date +"%s")
+	local tdiff=$(($end_time-$start_time))
+	local hours=$(($tdiff / 3600 ))
+	local mins=$((($tdiff % 3600) / 60))
+	local secs=$(($tdiff % 60))
+	echo
+	if [ $ret -eq 0 ] ; then
+		echo -n -e "\033[1;32m #### make \""$@"\" completed successfully!"
+	else
+		echo -n -e "\033[1;31m #### make target \""$@"\" failed !!!"
+	fi
+	if [ $hours -gt 0 ] ; then
+		printf "(%02g:%02g:%02g (hh:mm:ss))" $hours $mins $secs
+	elif [ $mins -gt 0 ] ; then
+		printf "(%02g:%02g (mm:ss))" $mins $secs
+	elif [ $secs -gt 0 ] ; then
+		printf "(%s seconds)" $secs
+	fi
+	echo -e " ####\033[1;0m"
+	echo
+	return $ret
+}
+
+# 解压
+################################################################################
+function x() {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)     echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+

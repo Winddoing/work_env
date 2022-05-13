@@ -106,12 +106,16 @@ function install_bash()
 {
 	local config_file="$home/.config_bashrc"
 	local config_file_set="$home/.custom_bashrc"
+	local custom_cmd_file="$home/.custom_cmd"
 
 	if [ ! -L $config_file ]; then
 		ln -s $PWD/bash/config_bashrc $config_file
 	fi
 	if [ ! -L $config_file_set ]; then
 		ln -s $PWD/bash/custom_bashrc $config_file_set
+	fi
+	if [ ! -L $custom_cmd_file ]; then
+		ln -s $PWD/bash/custom_cmd $custom_cmd_file
 	fi
 
 	bash_add_config
