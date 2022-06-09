@@ -670,29 +670,4 @@ nmap <Leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 " Ctrl+o 回到原位置
 " Ctrl+i 追踪之前跳转
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" => 新建文件，自动插入文件头
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufRead,BufNewFile *.dot set filetype=dot
-au BufRead,BufNewFile *.uml set filetype=uml
-autocmd BufNewFile *.dot,*.uml exec ":call SetTitle()"
-""定义函数SetTitle，自动插入文件头
-func SetTitle()
-	if &filetype == 'dot'
-		call setline(1,"//usr/bin/dot")
-		call append(1,"digraph G{")
-		call append(2,"")
-		call append(3,"}")
-		normal 3G
-	endif
-	if &filetype == 'uml'
-		call setline(1,"@startuml")
-		call append(1,"title xxxx")
-		call append(2,"")
-		call append(3,"@enduml")
-		normal 3G
-	endif
-	"新建文件后，自动定位到文件末尾
-	autocmd BufNewFile * normal G
-endfunc
+source ~/.vim/new_file_head.vimrc
