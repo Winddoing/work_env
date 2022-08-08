@@ -2,6 +2,8 @@
 <!-- vim-markdown-toc GFM -->
 
 * [安装 VIM8.x](#安装-vim8x)
+	* [ubuntu](#ubuntu)
+	* [Centos7](#centos7)
 * [插件管理](#插件管理)
 * [常用操作](#常用操作)
 	* [Fn功能键](#fn功能键)
@@ -45,11 +47,20 @@
 
 # 安装 VIM8.x
 
+## ubuntu
+
 ```
 sudo apt-get install vim
 ```
 > Version: ubuntu20.04
 
+## Centos7
+
+```
+sudo rpm -Uvh http://mirror.ghettoforge.org/distributions/gf/gf-release-latest.gf.el7.noarch.rpm
+sudo rpm --import http://mirror.ghettoforge.org/distributions/gf/RPM-GPG-KEY-gf.el7
+sudo yum --enablerepo=gf-plus install vim-enhanced
+```
 
 ![vim](./vim.png)
 

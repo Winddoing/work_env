@@ -4,16 +4,8 @@
 !/tools/src/binfile/*.sh
 !/tools/src/binfile/*.c
 
-## gdb
-tools/x86/arm-linux-gdb
-tools/x86/arm-linux-gdb-add-index
-tools/x86/arm-linux-run
-tools/x86/aarch64-linux-gdb
-tools/x86/aarch64-linux-gdb-add-index
-tools/x86/aarch64-linux-run
-
-
 tools/src/tmp
 
 
-tools/x86/ydict
+# vim
+vim/.netrwhist

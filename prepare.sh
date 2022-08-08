@@ -147,7 +147,7 @@ print_count
 
 # HexEdit是一款十六进制编辑器
 # sudo apt install hexedit
-# sudo apt install wxhexeditor #图形
+# sudo apt install ghex #图形
 
 # 数据库编辑
 # spatialite-gui
