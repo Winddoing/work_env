@@ -214,7 +214,7 @@ Plug 'vim-airline/vim-airline'
 "Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'majutsushi/tagbar'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['c', 'cpp'] }
 Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
@@ -266,6 +266,9 @@ let g:airline_powerline_fonts = 1
 
 "打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
 "let g:airline#extensions#tabline#enabled = 1
+
+"状态栏显示当前行所在函数名
+let g:airline#extensions#tagbar#enabled = 1
 
 " 关闭状态显示空白符号计数
 let g:airline#extensions#whitespace#enabled = 0

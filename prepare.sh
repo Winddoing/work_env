@@ -234,3 +234,6 @@ print_count
 
 # chrome浏览器
 # wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+# 各种语言的离线文档
+# sudo apt install zeal
