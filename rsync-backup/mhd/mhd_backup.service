@@ -1,0 +1,11 @@
+[Unit] 
+Description = Backup MHD
+ConditionPathIsDirectory = /home/wqshao/Nextcloud/
+ConditionPathIsDirectory = /media/wqshao/Winddoing/
+ConditionFileIsExecutable = /home/wqshao/.work_env/rsync-backup/mhd/rsync_nextcloud_mhd.sh
+
+[Service] 
+ExecStart = /bin/bash /home/wqshao/.work_env/rsync-backup/mhd/rsync_nextcloud_mhd.sh
+
+[Install] 
+WantedBy = multi-user.target

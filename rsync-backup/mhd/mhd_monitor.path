@@ -1,0 +1,10 @@
+[Unit]
+Description = monitor mhd are mounted
+
+[Path]
+#PathChanged = /dev/sda
+PathExists = /media/wqshao/Winddoing/
+Unit = mhd_backup.service
+
+[Install]
+WantedBy = multi-user.target

@@ -118,6 +118,22 @@ set completeopt-=preview
 set wildmenu
 set wildmode=longest:full,full
 
+" 会话的自动保存和加载
+let g:AutoSessionFile="project.vim"
+let g:OrigPWD=getcwd()
+if filereadable(g:AutoSessionFile)
+    if (argc() == 0)
+        au VimEnter * call EnterHandler()
+        au VimLeave * call LeaveHandler()
+    endif
+endif
+function! LeaveHandler()
+    exec "mks! ".g:OrigPWD."/".g:AutoSessionFile
+endfunction
+function! EnterHandler()
+    exe "source ".g:AutoSessionFile
+endfunction
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 快捷方式

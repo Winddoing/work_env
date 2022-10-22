@@ -20,6 +20,8 @@
 	* [符号对齐](#符号对齐)
 		* [等号对齐](#等号对齐)
 		* [空格对齐](#空格对齐)
+	* [session会话](#session会话)
+		* [自动加载恢复](#自动加载恢复)
 	* [其他](#其他)
 		* [多个标签切换](#多个标签切换)
 		* [十六进制显示](#十六进制显示)
@@ -50,7 +52,7 @@
 ## ubuntu
 
 ```
-sudo apt-get install vim
+sudo apt install vim universal-ctags cscope global
 ```
 > Version: ubuntu20.04
 
@@ -333,6 +335,40 @@ vimdiff a1 a2
 
 1. 选中需要对齐的文本（Ctrl-V）
 2. `ga + <space>`
+
+
+
+## session会话
+
+如果在vim中已经打开了好多窗口，想要保持这个环境，等下次编辑浏览时再载入，可以使用session会话来完成
+
+```
+:help mksession  查看mksession的帮助
+:mksession!      保存当前的vim状态，在当前目录会产生一个会话文件Session.vim，其中！表示强制
+或者
+:mks!
+$vim -S          vim会自动载入当前目录的会话文件Session.vim，之前:mksession!保持的状态又回来啦。
+```
+
+
+
+### 自动加载恢复
+
+当前vimrc中配置了自动加载恢复会话的功能，但是在**第一次使用时需要将保存的会话重命名为project.vim**
+
+```
+:mks! project.vim
+```
+
+- 恢复
+
+  直接执行vim不带任何参数，即可根据project.vim文件恢复之前保存的会话状态。
+
+- 保存
+
+  只有存在project.vim文件，并且是直接用vim恢复的会话，在退出时会自动保存将状态到project.vim文件中
+
+
 
 ## 其他
 
