@@ -32,6 +32,7 @@
 	* [ale](#ale)
 		* [linux内核](#linux内核)
 		* [cmake工程](#cmake工程)
+	* [leaderf](#leaderf)
 	* [vim-gutentags](#vim-gutentags)
 * [vim实用技巧](#vim实用技巧)
 	* [屏蔽插件](#屏蔽插件)
@@ -62,6 +63,8 @@ sudo apt install vim universal-ctags cscope global
 sudo rpm -Uvh http://mirror.ghettoforge.org/distributions/gf/gf-release-latest.gf.el7.noarch.rpm
 sudo rpm --import http://mirror.ghettoforge.org/distributions/gf/RPM-GPG-KEY-gf.el7
 sudo yum --enablerepo=gf-plus install vim-enhanced
+
+sudo yum ctags cscope global
 ```
 
 ![vim](./vim.png)
@@ -133,6 +136,8 @@ vim-plug的命令列表：
 | :------------: | :--------------------------------------------------------- |
 |      `0`       | 行首                                                       |
 |      `$`       | 行末                                                       |
+|      `e`       | 移动到下一个word结尾，不在空行停留                         |
+|      `b`       | 移动到上一个word开头                                       |
 |      `gf`      | 头文件跳转                                                 |
 |      `gD`      | 跳转到局部变量的定义处                                     |
 |   `Ctrl + ]`   | 跳转至函数或变量定义处                                     |
@@ -156,6 +161,13 @@ vim-plug的命令列表：
 |      `zf`      | 折叠当前选中行                                             |
 |      `zf%`     | 折叠当前函数，光标必须放在大括号上                         |
 |      `za`      | 打开当前折叠行                                             |
+| `(N)Ctrl + u`  | 窗口向上滚动N行，默认滚动窗口行数的一半。（光标没有移动）  |
+| `(N)Ctrl + d`  | 窗口向下滚动N行，默认滚动窗口行数的一半。（光标没有移动）  |
+| `(N)Ctrl + y`  | 窗口向上滚动N行，默认向上滚动一行。（光标没有移动）        |
+| `(N)Ctrl + e`  | 窗口向下滚动N行，默认向下滚动一行。（光标没有移动）        |
+| `(N)Ctrl + b`  | 窗口向上滚动N页，默认滚动一页。（光标被迫移动）            |
+| `(N)Ctrl + f`  | 窗口向下滚动N页，默认滚动一页。（光标被迫移动）            |
+
 
 | 快捷键(自定义)  | 功能                                                         |
 | :-------------: | :----------------------------------------------------------- |
@@ -440,6 +452,13 @@ make compile_commands.json
 ```
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 ```
+
+## leaderf
+
+模糊查找文件
+
+快捷键：`Ctrl + p`
+
 
 ## vim-gutentags
 

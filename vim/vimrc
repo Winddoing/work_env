@@ -194,7 +194,7 @@ nmap >> 5<C-w>>
 nmap << 5<C-w><
 
 " 在最下方水平打开一个终端
-nmap <C-B> :botright term<cr>
+nmap <c-l> :botright term<cr>
 
 " 高亮行尾空格
 "autocmd FileType * highlight BadWhiteSpace ctermbg=124 guibg=Red
@@ -349,6 +349,7 @@ let g:miniBufExplShowBufNumbers = 0
 nmap aa :bnext<cr>
 "前一个buf
 nmap zz :bprevious<cr>
+":bdelete 删除当前buf
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
