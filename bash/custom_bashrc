@@ -57,7 +57,19 @@ function tmux_startup()
 alias vi='vim --noplugin'
 alias grep='grep --color'
 alias man='viman'
-alias astyle-c='astyle --style=linux --indent=force-tab=4 --convert-tabs --pad-oper --unpad-paren --break-blocks=all'  #缩进4个空格
+
+# https://astyle.sourceforge.net/astyle.html
+# --style=linux : linux风格
+# --indent=force-tab=4 --convert-tabs： Tab缩进并强制转换为4个空格，与linux内核缩进一致
+# --pad-oper：在操作符号两边添加空格字符
+# --unpad-paren：去除括号内壁多余空格
+# --break-blocks=all：在标题块(关键字上方)周围填充空行（例如“if”、“for”、“while”…）。将结束头块（例如“else”、“catch”）视为独立块
+# --pad-header： 表示”if”、”for”、”while”等keyword右边添加一个空格
+# --indent-continuation=4: 函数名及参数分为两行时第二行缩进
+# --indent-after-parens: 函数多行与--indent-continuation配合使用
+# --indent-preproc-block: 嵌套宏定义进行缩进
+# --delete-empty-lines: 删除多余空行
+alias astyle-c='astyle --style=linux --indent=force-tab=4 --convert-tabs --pad-oper --unpad-paren --break-blocks=all --pad-header --indent-continuation=2 --indent-after-parens --indent-preproc-block --delete-empty-lines'
 
 if [ hash colordiff 2> /dev/null ]; then
     echo "I require colordiff but it's not installed.  Aborting."

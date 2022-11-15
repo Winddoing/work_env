@@ -33,7 +33,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig
 	# subversion
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog firefox vlc kolourpaint flameshot
-	thunderbird ksysguard gnome-tweaks remmina gparted okular
+	thunderbird ksysguard gnome-tweaks remmina remmina-plugin-spice gparted okular
 	fcitx fcitx-config-gtk fcitx-googlepinyin goldendict translate-shell)
 
 LINUX_OTHER_SOFTWARE=(virtualbox sqlitebrowser audacity wireshark)
