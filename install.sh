@@ -13,11 +13,19 @@ home=$HOME
 no_sudo="no_sudo"
 NO_SUDO="$1"
 
+info() {
+	echo -e "\e[32m$@\e[0m"
+}
+
+note() {
+	echo -e "\e[33m$@\e[0m"
+}
+
 function install_cmd()
 {
 	local cmd=$1
 	#ubuntu
-	echo "sudo apt-get install $cmd ..."
+	echo "	sudo apt-get install $cmd ..."
 	sudo apt-get install $cmd
 }
 
@@ -27,7 +35,7 @@ function which_command()
 
 	command -v $cmd >> /dev/null
 	if [ $? -ne 0 ]; then
-		echo "   Need Install $cmd ...\n"
+		note "Need Install $cmd ...\n"
 		if [ x$no_sudo != x$NO_SUDO ]; then
 			install_cmd $cmd
 		fi
@@ -39,12 +47,13 @@ function install_vim()
 	local source_file="$home/.vim"
 	local config_file="$home/.vimrc"
 
+	info "Install and Config vim."
+
 	which_command vim
 	echo "Vim version `vim --version | awk 'NR==1'`"
 
 	if [ ! -L $source_file ]; then
 		ln -s $PWD/vim $source_file
-		echo xxxxxxxxxxxxxx
 	fi
 	if [ ! -L $config_file ]; then
 		ln -s $PWD/vim/vimrc $config_file
@@ -53,11 +62,19 @@ function install_vim()
 
 function install_git()
 {
+	local config_file="$home/.gitconfig"
+
+	info "Install and Config git."
+
 	which_command git
 	echo "Git version `git --version`"
 
-	git config --global user.name  "winddoing"
-	git config --global user.email "winddoing@sina.cn"
+	if [ ! -f $config_file ]; then
+		echo "Config name and email."
+		git config --global user.name  "winddoing"
+		git config --global user.email "winddoing@sina.cn"
+	fi
+
 	# 别名
 	git config --global alias.co checkout
 	git config --global alias.ci commit
@@ -100,6 +117,8 @@ function install_tmux()
 	local config_file="$home/.tmux.conf"
 	local version=`tmux -V | awk '{print int($2)}'`
 
+	info "Install and Config tmux."
+
 	which_command tmux
 	echo "Tmux version `tmux -V` [$version]"
 
@@ -140,6 +159,8 @@ function install_bash()
 	local config_file_set="$home/.custom_bashrc"
 	local custom_cmd_file="$home/.custom_cmd"
 
+	info "Config bash configure file."
+
 	if [ ! -L $config_file ]; then
 		ln -s $PWD/bash/config_bashrc $config_file
 	fi
@@ -156,6 +177,8 @@ function install_bash()
 function install_tools()
 {
 	local source_file="$home/.tools"
+
+	info "Config tools."
 
 	if [ ! -L $source_file ]; then
 		ln -s $PWD/tools/ $source_file
