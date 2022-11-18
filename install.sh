@@ -53,14 +53,46 @@ function install_vim()
 
 function install_git()
 {
-	local config_file="$home/.gitconfig"
-
 	which_command git
 	echo "Git version `git --version`"
 
-	if [ ! -L $config_file ]; then
-		ln -s $PWD/git/gitconfig $config_file
-	fi
+	git config --global user.name  "winddoing"
+	git config --global user.email "winddoing@sina.cn"
+	# 别名
+	git config --global alias.co checkout
+	git config --global alias.ci commit
+	git config --global alias.st status
+	git config --global alias.br branch
+	git config --global alias.hist 'log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
+	git config --global alias.type 'cat-file -t'
+	git config --global alias.dump 'cat-file -p'
+	# 颜色
+	git config --global color.diff auto
+	git config --global color.status auto
+	git config --global color.branch auto
+	git config --global color.interactive auto
+	# 编辑器
+	git config --global core.editor vim
+	# 4空格缩进
+	git config --global core.pager 'less -x1,5'
+	# 去掉git提交时出现很多^M提示符
+	git config --global core.whitespace  cr-at-eol
+	# 关闭中文文件名或者路径被转义
+	git config --global core.quotepath false
+	# 图形界面编码
+	git config --global gui.encoding utf-8
+	# 提交信息编码
+	git config --global i18n.commitencoding utf-8
+	# 输出log编码
+	git config --global i18n.logoutputencoding utf-8
+	# 合并工具
+	git config --global merge.tool meld
+	# 临时将密码存储在内存中,默认有效时间900s，15分钟
+	git config --global credential.helper cache
+	# 调整http提交文件大小为100M，默认为1M
+	git config --global http.postBuffer 100M
+	# commit模板
+	git config --global commit.template $PWD/git/gitmessage
 }
 
 function install_tmux()
