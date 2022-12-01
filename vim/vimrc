@@ -680,4 +680,9 @@ nmap <Leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 " Ctrl+o 回到原位置
 " Ctrl+i 追踪之前跳转
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => 日志文件特殊字段高亮
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.log setfiletype log  " ~/.vim/syntax/log.vim
+
 source ~/.vim/new_file_head.vimrc
