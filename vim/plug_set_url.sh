@@ -1,7 +1,10 @@
 #!/bin/bash
 
-old_plug_url="https://git::@hub.fastgit.xyz"
-new_plug_url="https://github.com"
+#old_plug_url="https://git::@hub.fastgit.xyz"
+#new_plug_url="https://github.com"
+
+old_plug_url="https://github.com"
+new_plug_url="https://github.91chi.fun/https://github.com"
 
 for plug in `ls ./plugged`
 do

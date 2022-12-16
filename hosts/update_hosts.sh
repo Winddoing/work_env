@@ -36,7 +36,8 @@ if [ x"$1" != x"c" ]; then
 	# 3.下载最新host文件为github
 	echo "Download the latest hosts"
 	#wget -qO $GITHUB_HOSTS https://gitee.com/ineo6/hosts/raw/master/hosts
-	wget -qO $GITHUB_HOSTS https://gitlab.com/ineo6/hosts/-/raw/master/hosts
+	#wget -qO $GITHUB_HOSTS https://gitlab.com/ineo6/hosts/-/raw/master/hosts
+	wget -qO $GITHUB_HOSTS https://gitlab.com/ineo6/hosts/-/raw/master/next-hosts
 
 	# 4.文件合并
 	echo "Merge hosts"

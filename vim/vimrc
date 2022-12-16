@@ -222,6 +222,8 @@ set fileencoding=utf-8
 " 全局变量plug_url_format设置下载仓库地址，默认为github官网
 " 国内镜像加速以下可用，2022/03/24 22:17:50
 "let g:plug_url_format='https://git::@hub.fastgit.xyz/%s.git'
+" 2022-12-16 升级可用
+let g:plug_url_format='https://github.91chi.fun/https://github.com/%s.git'
 
 call plug#begin()
 
