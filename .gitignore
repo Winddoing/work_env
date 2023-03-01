@@ -6,6 +6,7 @@
 
 tools/src/tmp
 
+*.AppImage
 
 # vim
 vim/.netrwhist

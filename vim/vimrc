@@ -44,9 +44,13 @@ set scrolloff=7
 
 " 搜索时忽略大小写
 set ignorecase
+" 搜索智能匹配大小写
+set smartcase
 
 " 高亮显示搜索结果
 set hlsearch
+" 开启实时搜索功能
+set incsearch
 
 " 设置格式化时制表符占用空格数
 set shiftwidth=4
