@@ -9,7 +9,7 @@
 
 echo "Download vim config."
 
-vim_dir=$(mktemp --tmpdir -d vim.XXX)
+vim_dir=$(mktemp --tmpdir -d vim.XXXX)
 
 cd $vim_dir
 git init
@@ -24,4 +24,8 @@ echo "Install vim config $vim_last_modify"
 mv $vim_dir/vim ~/.vim
 mv ~/.vim/vimrc ~/.vimrc
 
-rm $vim_dir
+echo "let g:plug_url_format='https://ghproxy.com/https://github.com/%s.git'" >> ~/.vimrc
+echo "\"Config time: $vim_last_modify" >> ~/.vimrc
+echo "\"Install time: $(date)" >> ~/.vimrc
+
+rm -rf $vim_dir
