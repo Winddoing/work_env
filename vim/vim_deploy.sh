@@ -28,7 +28,10 @@ mv ~/.vim/vimrc ~/.vimrc
 
 rm -rf $vim_dir
 
-echo "let g:plug_url_format='https://ghproxy.com/https://github.com/%s.git'" >> ~/.vimrc
+github_url="let g:plug_url_format='https://ghproxy.com/https://github.com/%s.git'"
+
+sed -i "/plug#begin/i$github_url" ~/.vimrc
+
 echo "\"Config time: $vim_last_modify" >> ~/.vimrc
 echo "\"Install time: $(date)" >> ~/.vimrc
 
