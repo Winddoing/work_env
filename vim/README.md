@@ -22,6 +22,7 @@
 		* [空格对齐](#空格对齐)
 	* [session会话](#session会话)
 		* [自动加载恢复](#自动加载恢复)
+	* [拷贝系统剪切板](#拷贝系统剪切板)
 	* [其他](#其他)
 		* [多个标签切换](#多个标签切换)
 		* [十六进制显示](#十六进制显示)
@@ -64,7 +65,7 @@ sudo rpm -Uvh http://mirror.ghettoforge.org/distributions/gf/gf-release-latest.g
 sudo rpm --import http://mirror.ghettoforge.org/distributions/gf/RPM-GPG-KEY-gf.el7
 sudo yum --enablerepo=gf-plus install vim-enhanced
 
-sudo yum ctags cscope global
+sudo yum install vim ctags cscope global
 ```
 
 ![vim](./vim.png)
