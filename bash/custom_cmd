@@ -69,3 +69,30 @@ function x() {
     fi
 }
 
+# 命令行配置：系统设置 -> 网络 -> 网络代理
+# gsettings get org.gnome.system.proxy mode  #获取当前模式
+# set, 'none' \ 'manual' \ 'auto'
+proxy_on() {
+	gsettings set org.gnome.system.proxy.http host '127.0.0.1'
+	gsettings set org.gnome.system.proxy.http port 7890
+	gsettings set org.gnome.system.proxy.https host '127.0.0.1'
+	gsettings set org.gnome.system.proxy.https port 7890
+	gsettings set org.gnome.system.proxy.ftp host ''
+	gsettings set org.gnome.system.proxy.ftp port 0
+	gsettings set org.gnome.system.proxy.socks host '127.0.0.1'
+	gsettings set org.gnome.system.proxy.socks port 7890
+
+	gsettings set org.gnome.system.proxy mode 'manual';
+}
+proxy_off() {
+	gsettings set org.gnome.system.proxy.http host ''
+	gsettings set org.gnome.system.proxy.http port 0
+	gsettings set org.gnome.system.proxy.https host ''
+	gsettings set org.gnome.system.proxy.https port 0
+	gsettings set org.gnome.system.proxy.ftp host ''
+	gsettings set org.gnome.system.proxy.ftp port 0
+	gsettings set org.gnome.system.proxy.socks host ''
+	gsettings set org.gnome.system.proxy.socks port 0
+
+	gsettings set org.gnome.system.proxy mode 'auto';
+}
