@@ -234,6 +234,7 @@ set fileencoding=utf-8
 call plug#begin()
 
 Plug 'morhetz/gruvbox'
+"Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 "Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -268,13 +269,21 @@ call plug#end()
 "" => 主题颜色
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">> gruvbox
-let g:gruvbox_italic = 1
+if 1
+	">> gruvbox
+	let g:gruvbox_italic = 1
 
-set termguicolors
-set background=dark
-"set background=light
-colorscheme gruvbox
+	set termguicolors
+	set background=dark
+	"set background=light
+	colorscheme gruvbox
+else
+	">> onedark
+	let g:onedark_terminal_italics = 1
+
+	set termguicolors
+	colorscheme onedark
+endif
 
 
 " 插件设置
