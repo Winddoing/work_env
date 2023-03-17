@@ -300,8 +300,8 @@ let g:airline_powerline_fonts = 1
 "打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
 "let g:airline#extensions#tabline#enabled = 1
 
-"状态栏显示当前行所在函数名
-let g:airline#extensions#tagbar#enabled = 1
+"状态栏显示当前行所在函数名,使能后打开大文件时耗时严重，影响体验，建议关闭
+let g:airline#extensions#tagbar#enabled = 0
 
 " 关闭状态显示空白符号计数
 let g:airline#extensions#whitespace#enabled = 0
