@@ -115,11 +115,11 @@ function install_git()
 function install_tmux()
 {
 	local config_file="$home/.tmux.conf"
-	local version=`tmux -V | awk '{print int($2)}'`
 
 	info "Install and Config tmux."
 
 	which_command tmux
+	local version=`tmux -V | awk '{print int($2)}'`
 	echo "Tmux version `tmux -V` [$version]"
 
 	if [ ! -L $config_file ]; then

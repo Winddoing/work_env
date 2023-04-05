@@ -114,11 +114,15 @@ EOF
 	# 重新加载配置文件
 	sudo systemctl daemon-reload
 
-	sudo systemctl start clash
+	$CLASH_UPDATE_SUBSCRIBE_SH
+
+	sudo systemctl restart clash
 	sudo systemctl status clash
 
 	# 设置开机自启
 	sudo systemctl enable clash
+
+	echo "Manage URL: http://clash.razord.top"
 }
 
 dump_crontab_cfg()
