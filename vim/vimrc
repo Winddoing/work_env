@@ -268,12 +268,18 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 主题颜色
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("termguicolors")
+    " enable true color
+    set termguicolors
+else
+	" for vim7
+	set t_Co=256
+endif
 
 if 1
 	">> gruvbox
 	let g:gruvbox_italic = 1
 
-	set termguicolors
 	set background=dark
 	"set background=light
 	colorscheme gruvbox
@@ -281,7 +287,6 @@ else
 	">> onedark
 	let g:onedark_terminal_italics = 1
 
-	set termguicolors
 	colorscheme onedark
 endif
 
