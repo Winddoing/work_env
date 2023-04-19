@@ -12,7 +12,7 @@ home=$HOME
 
 set -x
 
-NFS_DIR="$home/nfs"
+NFS_DIR="$home/share/nfs"
 
 # ubuntu 18.04
 sudo apt-get install nfs-kernel-server
@@ -24,7 +24,7 @@ cat exports > exports-tmp
 echo "$NFS_DIR *(rw,sync,no_root_squash)" >> exports-tmp
 
 if [ ! -d $NFS_DIR ]; then
-    sudo mkdir $NFS_DIR
+    sudo mkdir -p $NFS_DIR
 fi
 
 sudo cp exports-tmp /etc/exports

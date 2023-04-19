@@ -12,14 +12,30 @@ PWD=`pwd`
 user=$USER
 home=$HOME
 
+TFTP_DIR="$home/share/tftprootfs"
 
 sudo apt-get install tftpd tftp xinetd
 
+if [ ! -d $TFTP_DIR ]; then
+    sudo mkdir -p $TFTP_DIR
+fi
+sudo chmod 777 $TFTP_DIR -R
 
-mkdir $home/tftprootfs
-sudo chmod 777 $home/tftprootfs -R
-
-sudo cp tftp  /etc/xinetd.d
+sudo bash -c "cat > /etc/xinetd.d/tftp" <<EOF
+service tftp
+{
+    protocol        = udp
+    socket_type     = dgram
+    wait            = yes
+    user            = root
+    server          = /usr/sbin/in.tftpd
+    server_args     = -s $TFTP_DIR
+    disable         = no
+    per_source      = 11
+    cps             = 100 2
+    flags           = IPv4
+}
+EOF
 
 sudo systemctl restart xinetd.service
 
