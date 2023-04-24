@@ -69,6 +69,72 @@ function x() {
     fi
 }
 
+7z-comp()
+{
+	local comp_package_name=$1
+	local comp_dir=$2
+	local suff="bin"
+
+	type 7z > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		echo -e "\nsudo apt install p7zip-full\n"
+		return -1
+	fi
+	if [ "${comp_package_name##*.}"x != "${suff}"x ] ;then
+		echo "the compressed package suffix is incorrect. suffix [${suff}]"
+		return -1
+	fi
+	if [ ! -d $comp_dir ]; then
+		echo "the compressed directory does not exist."
+		return -1
+	fi
+
+	local G7ZP=$(echo -n "g7zp123" | sha512sum | awk '{print $1}')
+	cmd="7z a -t7z -m0=lzma2 -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p'${G7ZP}' $comp_package_name $comp_dir"
+	echo "$cmd"
+	$cmd
+
+	# fix head: 7F 45 4C 46 01 01 (elf)
+	fix_header=(0x7f 0x45 0x4c 0x46 0x01 0x01)
+	for i in "${!fix_header[@]}"
+	do
+		echo "$i:${fix_header[$i]}" | xxd -r - $comp_package_name
+	done
+}
+
+7z-decomp()
+{
+	local decomp_package_name=$1
+	local decomp_org_package_name="${decomp_package_name}.org"
+	local suff="bin"
+
+	type 7z > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		echo -e "\nsudo apt install p7zip-full\n"
+		return -1
+	fi
+	if [ "${decomp_package_name##*.}"x != "${suff}"x ] ;then
+		echo "the decompressed package suffix is incorrect. suffix [${suff}]"
+		return -1
+	fi
+
+	cp $decomp_package_name $decomp_org_package_name -arp
+
+	# hexdump: 7a37 afbc 1c27 0400 (37 7A BC AF 27 1C)
+	fix_header=(0x37 0x7a 0xbc 0xaf 0x27 0x1c)
+	for i in "${!fix_header[@]}"
+	do
+		echo "$i:${fix_header[$i]}" | xxd -r - $decomp_org_package_name
+	done
+
+	local G7ZP=$(echo -n "g7zp123" | sha512sum | awk '{print $1}')
+	cmd="7z x -p'${G7ZP}' $decomp_org_package_name"
+	echo "$cmd"
+	$cmd
+}
+
+# 代理
+################################################################################
 # 命令行配置：系统设置 -> 网络 -> 网络代理
 # gsettings get org.gnome.system.proxy mode  #获取当前模式
 # set, 'none' \ 'manual' \ 'auto'
