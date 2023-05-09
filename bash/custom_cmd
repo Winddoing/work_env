@@ -9,21 +9,18 @@ export -f md5str
 
 # make
 ################################################################################
-function get_make_command()
-{
-	echo command make
-}
-
 function make()
 {
 	local start_time=$(date +"%s")
-	$(get_make_command) "$@"
+	$(echo command make) "$@"
 	local ret=$?
 	local end_time=$(date +"%s")
-	local tdiff=$(($end_time-$start_time))
+
+	local tdiff=$(($end_time - $start_time))
 	local hours=$(($tdiff / 3600 ))
 	local mins=$((($tdiff % 3600) / 60))
 	local secs=$(($tdiff % 60))
+
 	echo
 	if [ $ret -eq 0 ] ; then
 		echo -n -e "\033[1;32m #### make \""$@"\" completed successfully!"
