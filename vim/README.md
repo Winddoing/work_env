@@ -4,6 +4,7 @@
 * [安装 VIM8.x](#安装-vim8x)
 	* [ubuntu](#ubuntu)
 	* [Centos7](#centos7)
+	* [自动化安装配置](#自动化安装配置)
 * [插件管理](#插件管理)
 * [常用操作](#常用操作)
 	* [Fn功能键](#fn功能键)
@@ -23,6 +24,7 @@
 	* [session会话](#session会话)
 		* [自动加载恢复](#自动加载恢复)
 	* [拷贝系统剪切板](#拷贝系统剪切板)
+	* [vim中使用grep](#vim中使用grep)
 	* [其他](#其他)
 		* [多个标签切换](#多个标签切换)
 		* [十六进制显示](#十六进制显示)
@@ -53,19 +55,25 @@
 
 ## ubuntu
 
-```
+``` shell
 sudo apt install vim universal-ctags cscope global
 ```
 > Version: ubuntu20.04
 
 ## Centos7
 
-```
+``` shell
 sudo rpm -Uvh http://mirror.ghettoforge.org/distributions/gf/gf-release-latest.gf.el7.noarch.rpm
 sudo rpm --import http://mirror.ghettoforge.org/distributions/gf/RPM-GPG-KEY-gf.el7
 sudo yum --enablerepo=gf-plus install vim-enhanced
 
 sudo yum install vim ctags cscope global
+```
+
+## 自动化安装配置
+
+``` shell
+wget -q -O - https://gitee.com/winddoing/work_env/raw/master/vim/vim_deploy.sh |bash
 ```
 
 ![vim](./vim.png)
@@ -74,7 +82,7 @@ sudo yum install vim ctags cscope global
 
 使用`vim-plug`进行新的插件管理
 
-```
+``` shell
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
@@ -140,11 +148,12 @@ vim-plug的命令列表：
 |      `e`       | 移动到下一个word结尾，不在空行停留                         |
 |      `b`       | 移动到上一个word开头                                       |
 |      `gf`      | 头文件跳转                                                 |
-|      `gD`      | 跳转到局部变量的定义处                                     |
+|      `gd`      | 跳转到局部变量的定义处                                     |
 |   `Ctrl + ]`   | 跳转至函数或变量定义处                                     |
 |   `Ctrl + t`   | 返回上一次跳转                                             |
 |   `Ctrl + o`   | 返回上一次跳转(cscope)                                     |
 |   `Ctrl + i`   | 追踪上一次跳转                                             |
+|      `~`       | 当前字符切换大小写                                         |
 |      `%`       | 跳转到相配对的括号(括号匹配)                               |
 |      `"`       | 跳转到光标上次停靠的地方, 是连续两个`'`(键盘1旁边的间隔符) |
 |      `{`       | 跳到上一段的开头（不同函数开头）                           |
@@ -168,6 +177,8 @@ vim-plug的命令列表：
 | `(N)Ctrl + e`  | 窗口向下滚动N行，默认向下滚动一行。（光标没有移动）        |
 | `(N)Ctrl + b`  | 窗口向上滚动N页，默认滚动一页。（光标被迫移动）            |
 | `(N)Ctrl + f`  | 窗口向下滚动N页，默认滚动一页。（光标被迫移动）            |
+|     `gg=G`     | 全文自动缩进                                               |
+|      `==`      | 自动缩进当前行                                             |
 
 
 | 快捷键(自定义)  | 功能                                                         |
@@ -396,6 +407,26 @@ sudo apt install vim-gtk
 
 复制到系统剪切板，并提供Ctrl+v进行粘贴`"+y`(操作即先按住Shift后按引号 “、加号+，松开Shift后按y)
 
+
+## vim中使用grep
+
+vim中输入以下命令进行查找，使用系统grep
+
+```
+:grep xxx -r dir/sub_dir
+```
+
+然后打开quickfix可以查看和切换
+
+```
+:copen
+```
+
+不需要时可以将其关闭
+
+```
+:cclose
+```
 
 
 ## 其他
