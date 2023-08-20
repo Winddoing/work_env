@@ -75,7 +75,8 @@ sudo systemctl stop clash.service
 
 # 加载最新订阅配置
 echo "download latest config"
-sudo wget -O $CLASH_INSTALL_PATH/config.yaml.new "$PROXY_SUBSCRIBE_URL"
+#sudo wget -O $CLASH_INSTALL_PATH/config.yaml.new "$PROXY_SUBSCRIBE_URL"
+sudo curl -o $CLASH_INSTALL_PATH/config.yaml.new "$PROXY_SUBSCRIBE_URL"
 # 备份原订阅配置
 if [ ! -d "$CLASH_INSTALL_PATH/backup" ]; then
 	echo "create backup directory"
