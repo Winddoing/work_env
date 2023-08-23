@@ -648,12 +648,17 @@ if !isdirectory(s:vim_tags)
 endif
 
 " 配置ctags的参数，老的 Exuberant-ctags 不能有--extra=+q，注意
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+q']
+let g:gutentags_ctags_extra_args = ['--fields=+niazS']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
+" Get ctags version
+let g:ctags_version = system('ctags --version')[0:8]
+
 " 如果使用universal-ctags需要增加下面一行，老的Exuberant-ctags不能加下一行
-let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+if g:ctags_version == "Universal"
+	let g:gutentags_ctags_extra_args += ['--extras=+q', '--output-format=e-ctags']
+endif
 
 " 禁用 gutentags 自动加载 gtags 数据库的行为
 let g:gutentags_auto_add_gtags_cscope = 1

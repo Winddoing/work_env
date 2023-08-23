@@ -170,3 +170,9 @@ function proxy_off() {
 
 	gsettings set org.gnome.system.proxy mode 'auto';
 }
+
+
+# edge设置中文
+function microsoft-edge-zh() {
+	grep "LANGUAGE=ZH-CN.UTF-8" /opt/microsoft/msedge/microsoft-edge || sudo sed -i 'N;6a\export LANGUAGE=ZH-CN.UTF-8' /opt/microsoft/msedge/microsoft-edge
+}
