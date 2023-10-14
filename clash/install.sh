@@ -12,7 +12,7 @@ if [ $# -ne 1 ]; then
 	exit 0
 fi
 
-CLASH_FILE_NAME="clash-linux-amd64-v1.13.0"
+CLASH_FILE_NAME="clash-linux-amd64-v1.18.0"
 CLASH_PACKAGE_NAME="$CLASH_FILE_NAME.gz"
 CLASH_PACKAGE_URL="https://github.com/Dreamacro/clash/releases/download/v1.13.0/$CLASH_PACKAGE_NAME"
 
@@ -93,7 +93,7 @@ sudo mv $CLASH_INSTALL_PATH/config.yaml.new $CLASH_CONFIG_YAML
 echo "start clash service"
 sudo systemctl restart clash.service
 
-sudo systemctl status clash.service
+sudo systemctl status clash.service --no-pager
 EOF
 	chmod +x $CLASH_UPDATE_SUBSCRIBE_SH
 

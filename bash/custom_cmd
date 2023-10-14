@@ -23,9 +23,9 @@ function make()
 
 	echo
 	if [ $ret -eq 0 ] ; then
-		echo -n -e "\033[1;32m #### make \""$@"\" completed successfully!"
+		echo -n -e "\033[1;32m #### make $@ completed successfully!"
 	else
-		echo -n -e "\033[1;31m #### make target \""$@"\" failed !!!"
+		echo -n -e "\033[1;31m #### make target $@ failed !!!"
 	fi
 	if [ $hours -gt 0 ] ; then
 		printf "(%02g:%02g:%02g (hh:mm:ss))" $hours $mins $secs
@@ -38,7 +38,7 @@ function make()
 	echo
 	return $ret
 }
-export -f make
+#export -f make
 
 function make-target()
 {
@@ -145,6 +145,8 @@ export -f 7z-decomp
 # gsettings get org.gnome.system.proxy mode  #获取当前模式
 # set, 'none' \ 'manual' \ 'auto'
 function proxy_on() {
+	sudo /opt/clash/auto_update.sh
+
 	gsettings set org.gnome.system.proxy.http host '127.0.0.1'
 	gsettings set org.gnome.system.proxy.http port 7890
 	gsettings set org.gnome.system.proxy.https host '127.0.0.1'
@@ -156,7 +158,10 @@ function proxy_on() {
 
 	gsettings set org.gnome.system.proxy mode 'manual';
 
-	echo "Manage URL: http://clash.razord.top"
+	sudo systemctl status clash.service --no-pager
+	echo "*****************************************"
+	echo "*  Manage URL: http://clash.razord.top  *"
+	echo "*****************************************"
 }
 function proxy_off() {
 	gsettings set org.gnome.system.proxy.http host ''
@@ -169,6 +174,9 @@ function proxy_off() {
 	gsettings set org.gnome.system.proxy.socks port 0
 
 	gsettings set org.gnome.system.proxy mode 'auto';
+
+	sudo systemctl stop clash.service
+	sudo systemctl status clash.service --no-pager
 }
 
 

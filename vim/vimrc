@@ -138,6 +138,8 @@ function! EnterHandler()
     exe "source ".g:AutoSessionFile
 endfunction
 
+" 强制Vim从文件的开头重新开始语法高亮同步, 该设置会影响打开文件的时间, 当前配置针对C语言相关
+autocmd BufEnter *.[chsS] :syntax sync fromstart                "从文件开头到文件结尾
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 快捷方式
