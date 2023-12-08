@@ -145,7 +145,8 @@ export -f 7z-decomp
 # gsettings get org.gnome.system.proxy mode  #获取当前模式
 # set, 'none' \ 'manual' \ 'auto'
 function proxy_on() {
-	sudo /opt/clash/auto_update.sh
+	#sudo /opt/clash/auto_update.sh
+	sudo systemctl restart clash.service
 
 	gsettings set org.gnome.system.proxy.http host '127.0.0.1'
 	gsettings set org.gnome.system.proxy.http port 7890

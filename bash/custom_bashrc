@@ -49,7 +49,8 @@ function tmux_startup()
 		#每次连接都进入init_session会话
 		test -z "$TMUX" && (tmux attach -t init_session)
 	fi
-    screenfetch 2>/dev/null
+    #screenfetch 2>/dev/null
+	run-parts /etc/update-motd.d/
 }
 
 
