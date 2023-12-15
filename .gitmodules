@@ -1,0 +1,3 @@
+[submodule "fonts/win-fonts-box"]
+	path = fonts/win-fonts-box
+	url = https://gitee.com/winddoing/win-fonts-box.git
