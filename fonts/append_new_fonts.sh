@@ -12,9 +12,6 @@ BASE_FONTS_PATH="/usr/share/fonts"
 
 FONTS_BOX_REPO="$TOP/win-fonts-box"
 
-WPS_FONT_PATH="$BASE_FONTS_PATH/wps-office"
-YAHEI_FONT_PATH="$BASE_FONTS_PATH/YaHeiConsolas"
-
 [ ${UID} -ne 0 ] && echo "Please run with sudo" && exit -1
 
 function show_installed_fonts()
@@ -49,34 +46,24 @@ function create_font_index()
 	cd -
 }
 
-function append_wps_font()
+function append_font()
 {
 	echo "--> $FUNCNAME"
+	for font_dir in `ls $FONTS_BOX_REPO`
+	do
+		echo "font_dir=$font_dir"
+		font_path="$BASE_FONTS_PATH/$font_dir"
+		set -x
+		[ -d $font_path ] || sudo mkdir -p $font_path
+		sudo cp $FONTS_BOX_REPO/$font_dir/* $font_path
+		set +x
 
-	set -x
-	[ -d $YAHEI_FONT_PATH ] || sudo mkdir -p $WPS_FONT_PATH
-	sudo unzip -o $FONTS_BOX_REPO/wps_symbol_fonts.zip -d $WPS_FONT_PATH
-	set +x
-
-	create_font_index $WPS_FONT_PATH
-}
-
-function append_yahei_font()
-{
-	echo "--> $FUNCNAME"
-
-	set -x
-	[ -d $YAHEI_FONT_PATH ] || sudo mkdir -p $YAHEI_FONT_PATH
-	sudo cp $FONTS_BOX_REPO/YaHeiConsolas.ttf $YAHEI_FONT_PATH
-	set +x
-
-	create_font_index $YAHEI_FONT_PATH
+		create_font_index $font_path
+	done
 }
 
 # main
-append_wps_font
-append_yahei_font
-
+append_font
 
 update_fonts_cache
 show_installed_fonts
