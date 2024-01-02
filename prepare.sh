@@ -29,7 +29,7 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig
 	tree colordiff tftpd tftp sshfs minicom adb astyle splint hwloc
 	cloc sparse fakeroot icdiff indent tldr cpustat cpufrequtils
 	linux-tools-generic apitrace read-edid edid-decode speedtest-cli sysstat
-	screenfetch mediainfo)
+	screenfetch mediainfo terminator)
 	# subversion
 
 LINUX_GRAPH_SOFTWARE=(gitk meld eog firefox vlc kolourpaint flameshot

@@ -34,3 +34,7 @@ deborphan -sPz
 
 # 清除多余的库
 sudo apt-get remove --purge `deborphan`
+
+
+# 显示Home目录下隐藏文件大小
+du -sh .[!.]* | sort -hr

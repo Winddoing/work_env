@@ -1,0 +1,36 @@
+# directory setting
+--recursive
+#--exclude=../build
+
+# bracket style setting
+--style=linux
+
+# indent setting
+--indent=force-tab=4
+--indent-labels
+#--indent-switches
+#--indent-preprocessor
+--indent-preproc-block
+--min-conditional-indent=0
+--max-instatement-indent=80
+
+--indent-continuation=2
+--indent-after-parens
+
+# padding setting
+#--break-blocks
+--pad-oper
+#--pad-first-paren-out
+--pad-header
+--unpad-paren
+#--align-pointer=name
+
+# formatting setting
+--keep-one-line-blocks
+--keep-one-line-statements
+--convert-tabs
+
+# other setting
+#--quiet
+--suffix=none
+#--lineend=windows

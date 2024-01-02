@@ -46,11 +46,6 @@ if DEBUG:
     print(baidu_api_key)
 
 css = """<style type="text/css">
-.engine {
-  font-family: "MiSansVF";
-  font-size: 18px;
-  color: #578bc5;
-}
 .originalText {
     font-size: 120%;
     font-family: "MiSansVF";
@@ -71,7 +66,7 @@ definition {
     height: 120px;
     padding: 0.05em;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
 }
 </style>"""
 

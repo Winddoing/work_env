@@ -26,11 +26,9 @@ import urllib
 from lxml import etree
 from sys import argv
 
-if __name__ == "__main__":
+def youdao_dict(word):
     # r = requests.get(url,headers=header)
-
     url = "http://dict.youdao.com/w/eng/{}/#keyfrom=dict2.index"
-    word = argv[1]
     word = word.replace("/", "／")
     word = urllib.parse.quote(word)
     turl = url.format(word)
@@ -42,3 +40,10 @@ if __name__ == "__main__":
         content = selector.xpath("//div[@id='results-contents']")[0]
         content = etree.tostring(content, encoding="utf-8", method="html")
         print(content.decode("utf-8"))
+
+
+if __name__ == "__main__":
+    word = argv[1]
+    if len(word.split()) == 1:
+        youdao_dict(word)
+
