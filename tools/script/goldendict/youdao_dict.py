@@ -26,6 +26,7 @@ import urllib
 from lxml import etree
 from sys import argv
 
+
 def youdao_dict(word):
     # r = requests.get(url,headers=header)
     url = "http://dict.youdao.com/w/eng/{}/#keyfrom=dict2.index"
@@ -46,4 +47,3 @@ if __name__ == "__main__":
     word = argv[1]
     if len(word.split()) == 1:
         youdao_dict(word)
-

@@ -8,6 +8,7 @@
 
 import sys
 import requests
+import re
 
 DEBUG = False
 
@@ -71,10 +72,10 @@ def content_youdao_translate(content):
     }
     try:
         res = requests.post(
-                "https://aidemo.youdao.com/trans", headers=headers, data=data
-            )
+            "https://aidemo.youdao.com/trans", headers=headers, data=data
+        )
 
-        #print(res)
+        # print(res)
         if DEBUG:
             print(res.text)
             print("----------------")
@@ -99,7 +100,7 @@ def content_filter_word(content):
         print("------------------------------------------------------------------")
 
     # 过滤规则, 将所有回车换行符替换为空格
-    #if "\r\n" in bb:
+    # if "\r\n" in bb:
     #    bb = bb.replace("\r\n", " ")
 
     if DEBUG:
@@ -111,6 +112,11 @@ def content_filter_word(content):
     pass
 
 
+def is_chinese(word):
+    pattern = re.compile(r"[\u4e00-\u9fff]")
+    return bool(pattern.search(word))
+
+
 def content_filter_len(content):
     """
     只翻译短语或者长句，不翻译单词
@@ -118,9 +124,11 @@ def content_filter_len(content):
     if len(content.split()) >= 2:
         # print('content大于等于2')
         content_filter_word(content)
-    # else:
-    #    # print('content小于2，不翻译')
-    #    print("^_^")
+    else:
+        # print('content小于2，不翻译')
+        # print("^_^")
+        if is_chinese(content):
+            content_youdao_translate(content)
     pass
 
 
@@ -128,6 +136,9 @@ def baidu_translate_goldendict(content):
     """
     主方法
     """
+    if DEBUG:
+        print(content)
+
     content_filter_len(content)
     pass
 
