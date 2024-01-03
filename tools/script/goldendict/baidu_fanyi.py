@@ -31,7 +31,11 @@ sys_home = os.environ.get("HOME")
 goldendict = "/.goldendict"
 yaml_name = "/.api_key.yaml"
 config_file = sys_home + goldendict + yaml_name
-configs = yaml.safe_load(open(config_file))
+try:
+    configs = yaml.safe_load(open(config_file))
+except Exception as e:
+    print(e)
+    raise
 
 # print(sys_home)
 # print(configs)
@@ -167,7 +171,9 @@ def content_filter_word(content):
 
     if DEBUG:
         print("------------------------------------------------------------------")
+        print("<br>")
         print(repr(bb))
+        print("<br>")
         print("------------------------------------------------------------------")
 
     # 过滤规则, 将所有回车换行符替换为空格
@@ -176,7 +182,9 @@ def content_filter_word(content):
 
     if DEBUG:
         print("==================================================================")
+        print("<br>")
         print(repr(bb))
+        print("<br>")
         print("==================================================================")
 
     content_baidu_translate(bb)

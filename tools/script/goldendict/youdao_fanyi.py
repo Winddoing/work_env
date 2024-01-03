@@ -85,7 +85,12 @@ def content_youdao_translate(content):
         output(res.json()["query"], res.json()["translation"][0])
 
     except:
-        print("错误")
+        print("翻译错误，当前总字符数为%d" % (len(content)))
+        print("<br>")
+        print("\t当总字符数超过1000时，将导致翻译错误。")
+        print("<br>")
+        print("错误码：")
+        print(res.text)
 
 
 def content_filter_word(content):
@@ -96,7 +101,9 @@ def content_filter_word(content):
 
     if DEBUG:
         print("------------------------------------------------------------------")
+        print("<br>")
         print(repr(bb))
+        print("<br>")
         print("------------------------------------------------------------------")
 
     # 过滤规则, 将所有回车换行符替换为空格
@@ -105,7 +112,9 @@ def content_filter_word(content):
 
     if DEBUG:
         print("==================================================================")
+        print("<br>")
         print(repr(bb))
+        print("<br>")
         print("==================================================================")
 
     content_youdao_translate(bb)
