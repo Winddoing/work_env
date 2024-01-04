@@ -48,6 +48,7 @@ baidu_api_key = configs["baidu"]
 
 if DEBUG:
     print(baidu_api_key)
+    print("<br>")
 
 css = """<style type="text/css">
 .originalText {
@@ -148,6 +149,7 @@ def content_print_byformat(js):
 
     if DEBUG:
         print(orig_text_list)
+        print("<br>")
 
     trans_text_list = []
     for obj in js["trans_result"]:
@@ -157,6 +159,7 @@ def content_print_byformat(js):
 
     if DEBUG:
         print(trans_text_list)
+        print("<br>")
 
     output("".join(orig_text_list), "".join(trans_text_list))
 
@@ -170,22 +173,28 @@ def content_filter_word(content):
     bb = content
 
     if DEBUG:
-        print("------------------------------------------------------------------")
+        print("----------------------------原始数据------------------------------")
         print("<br>")
         print(repr(bb))
         print("<br>")
         print("------------------------------------------------------------------")
+        print("<br>")
 
-    # 过滤规则, 将所有回车换行符替换为空格
+    # 过滤规则1, 将所有回车换行符替换为空格
     if "\r\n" in bb:
         bb = bb.replace("\r\n", " ")
 
+    # 过滤规则2, 将所有换行符替换为空格
+    if "\n" in bb:
+        bb = bb.replace("\n", " ")
+
     if DEBUG:
-        print("==================================================================")
+        print("==========================过滤后数据==============================")
         print("<br>")
         print(repr(bb))
         print("<br>")
         print("==================================================================")
+        print("<br>")
 
     content_baidu_translate(bb)
     pass

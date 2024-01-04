@@ -77,10 +77,16 @@ def content_youdao_translate(content):
 
         # print(res)
         if DEBUG:
-            print(res.text)
-            print("----------------")
+            # print(res.text)
+            print("<br>")
+            print("-------返回结果--------")
+            print("<br>")
             print(res.json()["query"])
+            print("<br>")
             print(res.json()["translation"][0])
+            print("<br>")
+            print("-----------------------")
+            print("<br>")
 
         output(res.json()["query"], res.json()["translation"][0])
 
@@ -100,22 +106,28 @@ def content_filter_word(content):
     bb = content
 
     if DEBUG:
-        print("------------------------------------------------------------------")
+        print("----------------------------原始数据------------------------------")
         print("<br>")
         print(repr(bb))
         print("<br>")
         print("------------------------------------------------------------------")
+        print("<br>")
 
     # 过滤规则, 将所有回车换行符替换为空格
     if "\r\n" in bb:
         bb = bb.replace("\r\n", " ")
 
+    # 过滤规则, 将所有换行符替换为空格
+    if "\n" in bb:
+        bb = bb.replace("\n", " ")
+
     if DEBUG:
-        print("==================================================================")
+        print("===========================过滤后数据=============================")
         print("<br>")
         print(repr(bb))
         print("<br>")
         print("==================================================================")
+        print("<br>")
 
     content_youdao_translate(bb)
     pass
@@ -147,6 +159,7 @@ def baidu_translate_goldendict(content):
     """
     if DEBUG:
         print(content)
+        print("<br>")
 
     content_filter_len(content)
     pass
