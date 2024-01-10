@@ -36,7 +36,8 @@ config_vim()
 {
 	echo "Configure vim."
 
-	local github_url="let g:plug_url_format='https://ghproxy.com/https://github.com/%s.git'"
+	#local github_url="let g:plug_url_format='https://ghproxy.com/https://github.com/%s.git'"
+	local github_url="let g:plug_url_format='https://github.moeyy.xyz/https://github.com/%s.git'"
 
 	sed -i "/plug#begin/i$github_url" ~/.vimrc
 
