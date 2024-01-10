@@ -237,3 +237,6 @@ print_count
 
 # 各种语言的离线文档
 # sudo apt install zeal
+
+# windows字体
+# sudo apt install ttf-mscorefonts-installer

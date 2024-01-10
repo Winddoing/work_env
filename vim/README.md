@@ -74,7 +74,7 @@ sudo yum install vim ctags cscope global
 ## 自动化安装配置
 
 ``` shell
-wget -q -O - https://gitee.com/winddoing/work_env/raw/master/vim/vim_deploy.sh |bash
+wget -q -O - https://gitee.com/winddoing/work_env/raw/master/vim/deploy.sh | bash
 ```
 
 ![vim](./vim.png)

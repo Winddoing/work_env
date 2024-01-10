@@ -56,12 +56,12 @@ install_vim_sw()
 	then
 		echo "Centos Entry..."
 		set -x
-		sudo yum install vim ctags cscope global
+		sudo yum -y install vim ctags cscope global
 		set +x
 	else
 		echo "Ubuntu Entry..."
 		set -x
-		sudo apt install vim universal-ctags cscope global
+		sudo apt -y install vim universal-ctags cscope global
 		set +x
 	fi
 
