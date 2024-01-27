@@ -100,7 +100,16 @@ set nowb
 set noswapfile
 
 " 允许用指定语法高亮配色方案替换默认方案,文件$VIMRUNTIME/syntax
-syntax on
+"syntax on
+" 强制Vim从文件的开头重新开始语法高亮同步, 该设置会影响打开文件的时间, 当前配置针对C语言相关
+"autocmd BufEnter *.[sS] :syntax sync fromstart                "从文件开头到文件结尾
+" 下面三个配置可以减少文件卡顿
+set re=1
+set ttyfast
+set lazyredraw
+"map syntax sync fromstart
+nmap tu :syntax sync fromstart<cr>
+
 " 开启文件类型侦测
 filetype on
 " 根据侦测到的不同类型加载对应的插件
@@ -141,8 +150,6 @@ function! EnterHandler()
     exe "source ".g:AutoSessionFile
 endfunction
 
-" 强制Vim从文件的开头重新开始语法高亮同步, 该设置会影响打开文件的时间, 当前配置针对C语言相关
-autocmd BufEnter *.[chsS] :syntax sync fromstart                "从文件开头到文件结尾
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 快捷方式
@@ -242,10 +249,11 @@ call plug#begin()
 
 Plug 'morhetz/gruvbox'
 "Plug 'joshdick/onedark.vim'
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 "Plug 'Yggdroot/indentLine'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+"Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['c', 'cpp'] }
@@ -264,7 +272,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'lfv89/vim-interestingwords'
 Plug 'zivyangll/git-blame.vim'
-Plug 'dense-analysis/ale', { 'for': ['c', 'cpp'] }
+"Plug 'dense-analysis/ale', { 'for': ['c', 'cpp'] }
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'bfrg/vim-cpp-modern', { 'for': ['c', 'cpp'] }
 Plug 'ludovicchabant/vim-gutentags'
@@ -301,50 +309,77 @@ endif
 " 插件设置
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-">>>>>>>>vim-airline
+"">>>>>>>>vim-airline
+""显示在状态栏
+"set laststatus=2
+"
+""let g:airline_theme="molokai"
+"let g:airline_powerline_fonts = 1
+"
+"
+""打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
+""let g:airline#extensions#tabline#enabled = 1
+"
+""状态栏显示当前行所在函数名,使能后打开大文件时耗时严重，影响体验，建议关闭
+"let g:airline#extensions#tagbar#enabled = 0
+"
+"" 关闭状态显示空白符号计数
+"let g:airline#extensions#whitespace#enabled = 0
+"let g:airline#extensions#whitespace#symbol = '!'
+"
+"if !exists('g:airline_symbols')
+"	let g:airline_symbols = {}
+"endif
+"
+"" Unicode symbols
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+"let g:airline_symbols.linenr = ' '
+"let g:airline_symbols.maxlinenr = 'Ξ'
+"let g:airline_symbols.colnr = ' '
+"let g:airline_symbols.branch = '⎇'
+""let g:airline_symbols.paste = 'ρ'
+""let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+""let g:airline_symbols.whitespace = 'Ξ'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>lightline
 "显示在状态栏
 set laststatus=2
 
-"let g:airline_theme="molokai"
-let g:airline_powerline_fonts = 1
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'relativepath', 'readonly', 'modified' ],
+    \             [ 'gitbranch' ],
+    \           ],
+    \   'right': [
+    \             [ 'percent' ],
+    \             [ 'lineinfo' ],
+    \             [ 'fileformat', 'fileencoding', 'filetype' ],
+    \             [ 'gutentags'],
+    \            ],
+    \ },
+    \ 'component': {
+	\   'relativepath': '%f',
+    \ },
+    \ 'component_function': {
+    \   'gutentags': 'gutentags#statusline',
+    \ },
+    \ }
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-"打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
-"let g:airline#extensions#tabline#enabled = 1
-
-"状态栏显示当前行所在函数名,使能后打开大文件时耗时严重，影响体验，建议关闭
-let g:airline#extensions#tagbar#enabled = 0
-
-" 关闭状态显示空白符号计数
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#whitespace#symbol = '!'
-
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-
-" Unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = ' '
-let g:airline_symbols.maxlinenr = 'Ξ'
-let g:airline_symbols.colnr = ' '
-let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-"let g:airline_symbols.whitespace = 'Ξ'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>indentLine
-"空格缩进指示线
-let g:indentLine_enabled = 1
-let g:indentLine_fileType = ['c', 'h', 'cpp']
-"let g:indentLine_char_list = ['┊']
-let g:indentLine_char_list = ['¦']
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"">>>>>>>>indentLine
+""空格缩进指示线
+"let g:indentLine_enabled = 1
+"let g:indentLine_fileType = ['c', 'h', 'cpp']
+""let g:indentLine_char_list = ['┊']
+"let g:indentLine_char_list = ['¦']
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>NERDTree
 "树形目录
@@ -354,8 +389,8 @@ nmap <F4> :NERDTreeToggle<cr>
 nmap ld :NERDTreeToggle<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>vim-fugitive
-"显示：当前模式、Git分支、文件路径、文件是否保存以及当前所载行和 列的信息
+"">>>>>>>>vim-fugitive
+""显示：当前模式、Git分支、文件路径、文件是否保存以及当前所载行和 列的信息
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>> Tagbar
@@ -516,27 +551,27 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>>tmuxline.vim
+"">>>>>>>>>tmuxline.vim
+""
+"let g:tmuxline_preset = {
+"			\'a'    : '#S',
+"			\'b'    : '#W',
+"			\'c'	  : ['#(whoami)'],
+"			\'win'  : ['#I', '#W'],
+"			\'cwin' : ['#I', '#W'],
+"			\'x'	  : ['CPU:[#(cat /proc/cpuinfo | grep "processor" | wc -l)]'],
+"			\'y'    : ['#(date +" %Y-%m-%d %H:%M")','%a'],
+"			\'z'    : '#H',
+"			\'options' : {'status-justify' : 'left'}}
+"let g:tmuxline_separators = {
+"			\ 'left' : '',
+"			\ 'left_alt': '>',
+"			\ 'right' : '',
+"			\ 'right_alt' : '<',
+"			\ 'space' : ' '}
 "
-let g:tmuxline_preset = {
-			\'a'    : '#S',
-			\'b'    : '#W',
-			\'c'	  : ['#(whoami)'],
-			\'win'  : ['#I', '#W'],
-			\'cwin' : ['#I', '#W'],
-			\'x'	  : ['CPU:[#(cat /proc/cpuinfo | grep "processor" | wc -l)]'],
-			\'y'    : ['#(date +" %Y-%m-%d %H:%M")','%a'],
-			\'z'    : '#H',
-			\'options' : {'status-justify' : 'left'}}
-let g:tmuxline_separators = {
-			\ 'left' : '',
-			\ 'left_alt': '>',
-			\ 'right' : '',
-			\ 'right_alt' : '<',
-			\ 'space' : ' '}
-
-let g:tmuxline_powerline_separators = 0
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:tmuxline_powerline_separators = 0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>>>>>>OmniCppComplete
 "C++补全
@@ -572,26 +607,26 @@ let g:interestingWordsRandomiseColors = 1
 nmap gb :<C-u>call gitblame#echo()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>>>>>>ale
-"静态语法检测,依赖clang
-
-"只在保存文件时进行语法检测
-"文件内容发生变化时不进行检查
-let g:ale_lint_on_text_changed = 'never'
-"打开文件时不进行检查
-let g:ale_lint_on_enter = 0
-
-"始终开启标志列
-let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 0
-
-"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
-
-"<Leader>d查看错误或警告的详细信息
-nmap <Leader>l :ALEDetail<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"">>>>>>>>>>>>>ale
+""静态语法检测,依赖clang
+"
+""只在保存文件时进行语法检测
+""文件内容发生变化时不进行检查
+"let g:ale_lint_on_text_changed = 'never'
+""打开文件时不进行检查
+"let g:ale_lint_on_enter = 0
+"
+""始终开启标志列
+"let g:ale_sign_column_always = 1
+"let g:ale_set_highlights = 0
+"
+""普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+"nmap sp <Plug>(ale_previous_wrap)
+"nmap sn <Plug>(ale_next_wrap)
+"
+""<Leader>d查看错误或警告的详细信息
+"nmap <Leader>l :ALEDetail<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>>>>>>>>LeaderF
 " 模糊查找
