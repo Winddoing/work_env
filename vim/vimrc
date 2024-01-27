@@ -253,7 +253,7 @@ Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 "Plug 'Yggdroot/indentLine'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['c', 'cpp'] }
@@ -350,12 +350,13 @@ endif
 "显示在状态栏
 set laststatus=2
 
+"默认组件: h g:lightline.component, 如relativepath
 let g:lightline = {
-    \ 'colorscheme': 'wombat',
+    \ 'colorscheme': 'powerline',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'relativepath', 'readonly', 'modified' ],
     \             [ 'gitbranch' ],
+    \             [ 'relativepath', 'readonly', 'modified' ],
     \           ],
     \   'right': [
     \             [ 'percent' ],
@@ -364,11 +365,9 @@ let g:lightline = {
     \             [ 'gutentags'],
     \            ],
     \ },
-    \ 'component': {
-	\   'relativepath': '%f',
-    \ },
     \ 'component_function': {
     \   'gutentags': 'gutentags#statusline',
+    \   'gitbranch': 'FugitiveHead',
     \ },
     \ }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
