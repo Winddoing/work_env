@@ -29,8 +29,10 @@
 --keep-one-line-blocks
 --keep-one-line-statements
 --convert-tabs
+--attach-closing-while
 
 # other setting
 #--quiet
 --suffix=none
-#--lineend=windows
+
+--align-pointer=name

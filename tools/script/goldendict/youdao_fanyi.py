@@ -93,8 +93,6 @@ def content_youdao_translate(content):
     except:
         print("翻译错误，当前总字符数为%d" % (len(content)))
         print("<br>")
-        print("\t当总字符数超过1000时，将导致翻译错误。")
-        print("<br>")
         print("错误码：")
         print(res.text)
 

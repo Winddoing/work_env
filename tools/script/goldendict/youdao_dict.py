@@ -45,5 +45,5 @@ def youdao_dict(word):
 
 if __name__ == "__main__":
     word = argv[1]
-    if len(word.split()) == 1:
+    if len(word) <= 500:
         youdao_dict(word)

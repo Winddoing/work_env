@@ -222,4 +222,6 @@ def baidu_translate_goldendict(content):
 
 
 if __name__ == "__main__":
-    baidu_translate_goldendict(sys.argv[1])
+    word = sys.argv[1]
+    if len(word) > 500:
+        baidu_translate_goldendict(word)

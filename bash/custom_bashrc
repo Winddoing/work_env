@@ -70,7 +70,8 @@ alias man='viman'
 # --indent-after-parens: 函数多行与--indent-continuation配合使用
 # --indent-preproc-block: 嵌套宏定义进行缩进
 # --delete-empty-lines: 删除多余空行
-alias astyle-c='astyle --style=linux --indent=force-tab=4 --convert-tabs --pad-oper --unpad-paren --pad-header --indent-continuation=2 --indent-after-parens --indent-preproc-block --delete-empty-lines'
+# --align-pointer=name: 指针*号靠近名字侧
+alias astyle-c='astyle --style=linux --indent=force-tab=4 --convert-tabs --pad-oper --unpad-paren --pad-header --indent-continuation=2 --indent-after-parens --indent-preproc-block --align-pointer=name'
 alias astyle-batch='astyle --quiet --options=~/.work_env/tools/configs/astylerc *.c *.h'
 
 if [ hash colordiff 2> /dev/null ]; then
