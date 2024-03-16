@@ -91,7 +91,7 @@ function install_git()
 	# 编辑器
 	git config --global core.editor vim
 	# 4空格缩进
-	git config --global core.pager 'less -x1,5'
+	#git config --global core.pager 'less -x1,5'
 	# 去掉git提交时出现很多^M提示符
 	git config --global core.whitespace  cr-at-eol
 	# 关闭中文文件名或者路径被转义

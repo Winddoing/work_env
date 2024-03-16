@@ -52,17 +52,17 @@ set hlsearch
 " 开启实时搜索功能
 set incsearch
 
-" 设置格式化时制表符占用空格数
-set shiftwidth=4
-" 让 vim 把连续数量的空格视为一个制表符
-set softtabstop=4
-" 设置编辑时制表符占用空格数
-set tabstop=4
-"set smarttab
-
-" 输入tab时自动将其转化为空格
-set expandtab
-"set noexpandtab
+"" 设置格式化时制表符占用空格数
+"set shiftwidth=4
+"" 让 vim 把连续数量的空格视为一个制表符
+"set softtabstop=4
+"" 设置编辑时制表符占用空格数
+"set tabstop=4
+""set smarttab
+"
+"" 输入tab时自动将其转化为空格
+"set expandtab
+""set noexpandtab
 
 " Linux kernel code style
 "set expandtab
@@ -117,6 +117,9 @@ filetype on
 filetype plugin on
 " 自适应不同语言的智能缩进
 filetype indent on
+
+" 开启模式行
+set modeline
 
 " 外部更改文件时自动读取
 set autoread
@@ -183,9 +186,6 @@ nmap xml :call XML()<cr>
 
 map json :%!python -m json.tool<cr>
 
-" 二进制转十六进制
-nmap 216 :%!xxd<cr>
-
 " 快捷打印
 map dk  oprintk("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
 map df  oprintf("===> func: %s, line: %d\n", __func__, __LINE__);<Esc>
@@ -199,15 +199,6 @@ imap <C-S> <C-O>:update<cr>
 " 显示tab缩进指示线
 " note: there is a space after the last \ above
 map lt :set list listchars=tab:\┊\ <cr>
-
-" 多编辑窗口切换
-nmap ww <C-w><C-w>
-" 上下窗口调整
-nmap -- 5<C-w>-
-nmap ++ 5<C-w>+
-" 左右窗口调整
-nmap >> 5<C-w>>
-nmap << 5<C-w><
 
 " 在最下方水平打开一个终端
 nmap <c-l> :botright term<cr>
