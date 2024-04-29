@@ -266,7 +266,7 @@ Plug 'zivyangll/git-blame.vim'
 "Plug 'dense-analysis/ale', { 'for': ['c', 'cpp'] }
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'bfrg/vim-cpp-modern', { 'for': ['c', 'cpp'] }
-Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp'] }
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

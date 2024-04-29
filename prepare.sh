@@ -240,3 +240,6 @@ print_count
 
 # windows字体
 # sudo apt install ttf-mscorefonts-installer
+
+# 日志分析工具 (https://github.com/variar/klogg)
+# sudo apt install klogg
