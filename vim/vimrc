@@ -15,10 +15,6 @@ vmap <F7> :s=^\(//\)*=//=g<cr>:noh<cr>
 nmap <F7> :s=^\(//\)*=//=g<cr>:noh<cr>
 imap <F7> <ESC>:s=^\(//\)*=//=g<cr>:noh<cr>
 
-"vmap <F7># :s=^\(#\)*=#=g<cr>:noh<cr>
-"nmap <F7># :s=^\(#\)*=#=g<cr>:noh<cr>
-"imap <F7># <ESC>:s=^\(#\)*=#=g<cr>:noh<cr>
-
 "F12 for uncomment
 vmap <F12> :s=^\(//\)*=/*=g<cr>:s=\(//\)*$= */=g<cr>:noh<cr>
 nmap <F12> :s=^\(//\)*=/*=g<cr>:s=\(//\)*$= */=g<cr>:noh<cr>
@@ -100,15 +96,9 @@ set nowb
 set noswapfile
 
 " 允许用指定语法高亮配色方案替换默认方案,文件$VIMRUNTIME/syntax
-"syntax on
+syntax on
 " 强制Vim从文件的开头重新开始语法高亮同步, 该设置会影响打开文件的时间, 当前配置针对C语言相关
-"autocmd BufEnter *.[sS] :syntax sync fromstart                "从文件开头到文件结尾
-" 下面三个配置可以减少文件卡顿
-set re=1
-set ttyfast
-set lazyredraw
-"map syntax sync fromstart
-nmap tu :syntax sync fromstart<cr>
+autocmd BufEnter *.[sS] :syntax sync fromstart                "从文件开头到文件结尾
 
 " 开启文件类型侦测
 filetype on
@@ -119,7 +109,7 @@ filetype plugin on
 filetype indent on
 
 " 开启模式行
-set modeline
+"set modeline
 
 " 外部更改文件时自动读取
 set autoread
@@ -211,11 +201,11 @@ nmap <c-l> :botright term<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 文本编码
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
-set termencoding=utf-8
-set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp936
-set fileencoding=utf-8
+"set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+"set termencoding=utf-8
+"set encoding=utf-8
+"set fileencodings=ucs-bom,utf-8,cp936
+"set fileencoding=utf-8
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
