@@ -24,7 +24,7 @@ cat exports > exports-tmp
 echo "$NFS_DIR *(rw,sync,no_root_squash)" >> exports-tmp
 
 if [ ! -d $NFS_DIR ]; then
-    sudo mkdir -p $NFS_DIR
+    mkdir -p $NFS_DIR
 fi
 
 sudo cp exports-tmp /etc/exports
