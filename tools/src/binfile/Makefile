@@ -12,7 +12,8 @@ all: bin_to_8bit_hex bin_to_32bit_hex bin_to_32bit_bin	gen_rom_crc hex2bin bin_t
 	gcc -o bin_to_array bin_to_array.c
 	gcc -o hex_8bit_to_bin hex_8bit_to_bin.c
 
-	cp bin_to_8bit_hex bin_to_32bit_hex bin_to_32bit_bin  gen_rom_crc hex2bin bin_to_array hex_8bit_to_bin ../../x86 -v
+	cp bin_to_8bit_hex bin_to_32bit_hex bin_to_32bit_bin  gen_rom_crc hex2bin bin_to_array hex_8bit_to_bin ../../x86/bin -v
 
+	rm -f bin_to_8bit_hex bin_to_32bit_hex bin_to_32bit_bin	gen_rom_crc hex2bin bin_to_array hex_8bit_to_bin
 clean:
 	rm -f bin_to_8bit_hex bin_to_32bit_hex bin_to_32bit_bin	gen_rom_crc hex2bin bin_to_array hex_8bit_to_bin

@@ -63,10 +63,10 @@ insatll_hpa_tftpd()
 	sudo bash -c "cat > $tftpd_conf" <<EOF
 # /etc/default/tftpd-hpa
 
-TFTP_USERNAME="tftp"
+TFTP_USERNAME="$user"
 TFTP_DIRECTORY="$TFTP_DIR"
 TFTP_ADDRESS=":69"
-TFTP_OPTIONS="--secure"
+TFTP_OPTIONS="--secure -c"
 EOF
 	# OPTIONS="-l -c -s"
 	# -l: --listen 以独立（侦听）模式运行服务器，而不是从inetd运行。在侦听模式中，--timeout选项被忽略，--address选项可用于指定要侦听的特定本地地址或端口 (默认参数)

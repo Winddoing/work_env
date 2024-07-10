@@ -1,7 +1,7 @@
 
 # ************ Add by Winddoing **************
 
-export PATH=$PATH:$HOME/.tools/x86
+export PATH=$PATH:$HOME/.tools/x86:$HOME/.tools/x86/bin
 source $HOME/.custom_bashrc
 source $HOME/.custom_cmd
 

@@ -4,6 +4,9 @@
 !/tools/src/binfile/*.sh
 !/tools/src/binfile/*.c
 
+tools/x86/bin
+tools/arm64/bin/
+
 tools/src/tmp
 
 *.AppImage
