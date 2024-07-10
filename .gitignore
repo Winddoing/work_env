@@ -13,3 +13,7 @@ tools/src/tmp
 
 # vim
 vim/.netrwhist
+
+
+# src
+input.h-labels.h

@@ -48,8 +48,9 @@ build_devmem2()
 {
 	echo "Start: $FUNCNAME"
 
+	local src_dir="$SRC_PATH/devmem"
 	set -x
-	$CC $OPT $SRC_PATH/devmem2.c -o $DST_PATH/devmem2
+	$CC $OPT $src_dir/devmem2.c -o $DST_PATH/devmem2
 	$STRIP $DST_PATH/devmem2
 	set +x
 }
@@ -78,6 +79,25 @@ build_lspci()
 	set +x
 }
 
+build_getevent()
+{
+	echo "Start: $FUNCNAME"
+
+	local src_dir="$SRC_PATH/getevent"
+	local input_event_codes_h="/usr/include/linux/input-event-codes.h"
+
+	if [ x$ARCH == x"arm64" ]; then
+		input_event_codes_h="/usr/aarch64-linux-gnu/include/linux/input-event-codes.h"
+	fi
+
+	set -x
+	python $src_dir/generate-input.h-labels.py $input_event_codes_h > $src_dir/input.h-labels.h
+	$CC $OPT $src_dir/getevent.c -o $DST_PATH/getevent
+	$STRIP $DST_PATH/getevent
+	set +x
+
+}
+
 main()
 {
 	setup_env
@@ -85,6 +105,7 @@ main()
 	build_devmem2
 	[ x$ARCH == x"x86" ] && build_binfile
 	#[ x$ARCH == x"arm64" ] && build_lspci
+	build_getevent
 }
 
 echo $ARCH | grep "x86" > /dev/null || echo $ARCH | grep "arm64" > /dev/null || usage
