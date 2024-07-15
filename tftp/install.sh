@@ -11,7 +11,7 @@ PWD=`pwd`
 user=$USER
 home=$HOME
 
-TFTP_DIR="$home/share/tftprootfs"
+TFTP_DIR="$home/share/tftp"
 
 install_old_tftpd()
 {

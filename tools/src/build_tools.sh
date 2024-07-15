@@ -69,12 +69,31 @@ build_binfile()
 build_lspci()
 {
 	echo "Start: $FUNCNAME"
+	local pciutils_ver=3.13.0
+	local pciutils_package="pciutils-${pciutils_ver}.tar.gz"
 
 	set -x
-	wget https://mj.ucw.cz/download/linux/pci/pciutils-3.13.0.tar.gz
-	tar xvf pciutils-3.13.0.tar.gz
+	[ -f $pciutils_package ] && wget -P pciutils https://mj.ucw.cz/download/linux/pci/${pciutils_package}
+	cd pciutils
+
+	[ -f $pciutils_package ] && tar xvf $pciutils_package
 	cd pciutils-3.13.0
-	make CROSS_COMPILE="aarch64-linux-gnu-" HOST="aarch64-linux" OPT="-static" PREFIX=${PWD}/_install  SHARED=no
+	make clean
+	if [ x$ARCH == x"arm64" ]; then
+		make CROSS_COMPILE=${CROSS_COMPILE} HOST="linux" OPT="-static" PREFIX=${PWD}/_install  SHARED=no HWDB=no ZLIB=no
+	else
+		make HOST="linux" OPT="-static" PREFIX=${PWD}/_install  SHARED=no HWDB=no ZLIB=no
+	fi
+	cd -
+
+	echo "Build pciheader"
+	cd pciheader
+	make clean
+	${CC} -c pciheader.c -o pciheader.o -I../pciutils-3.13.0 -Wall -O3
+	${CC} -o $DST_PATH/pciheader pciheader.o -L../pciutils-3.13.0/lib -static -lpci
+	${STRIP} $DST_PATH/pciheader
+	cd -
+
 	cd -
 	set +x
 }
@@ -104,7 +123,7 @@ main()
 
 	build_devmem2
 	[ x$ARCH == x"x86" ] && build_binfile
-	#[ x$ARCH == x"arm64" ] && build_lspci
+	build_lspci
 	build_getevent
 }
 

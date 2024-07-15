@@ -8,6 +8,7 @@ tools/x86/bin
 tools/arm64/bin/
 
 tools/src/tmp
+tools/src/pciutils/pciutils-*
 
 *.AppImage
 
@@ -17,3 +18,7 @@ vim/.netrwhist
 
 # src
 input.h-labels.h
+
+
+*.o
+
