@@ -32,6 +32,8 @@ LINUX_BASEL_SOFTWARE=(git git-extras tig
 	screenfetch mediainfo terminator)
 	# subversion
 
+LINUX_SYSTEM_SOFTWARE=(gnome-icon-theme)
+
 LINUX_GRAPH_SOFTWARE=(gitk meld eog firefox vlc kolourpaint flameshot
 	thunderbird ksysguard gnome-tweaks remmina remmina-plugin-spice gparted okular
 	fcitx fcitx-config-gtk fcitx-googlepinyin goldendict translate-shell)

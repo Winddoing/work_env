@@ -84,6 +84,9 @@ build_lspci()
 	else
 		make HOST="linux" OPT="-static" PREFIX=${PWD}/_install  SHARED=no HWDB=no ZLIB=no
 	fi
+	#make install DESTDIR=${PWD}/_instal
+	${STRIP} lspci setpci
+	cp lspci setpci $DST_PATH -arpv
 	cd -
 
 	echo "Build pciheader"

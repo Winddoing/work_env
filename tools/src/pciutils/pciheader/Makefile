@@ -20,4 +20,4 @@ $(BIN):$(COBJS)
 	$(CC) -o $(BIN) $(COBJS) $(LIBS) $(CFLAGS)
 
 clean:
-	rm $(BIN) $(COBJS)
+	rm $(COBJS)
