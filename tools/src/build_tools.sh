@@ -47,37 +47,44 @@ usage()
 build_devmem2()
 {
 	echo "Start: $FUNCNAME"
+	echo "Current Dir: $PWD"
 
 	local src_dir="$SRC_PATH/devmem"
 	set -x
 	$CC $OPT $src_dir/devmem2.c -o $DST_PATH/devmem2
-	$STRIP $DST_PATH/devmem2
+	$STRIP -s $DST_PATH/devmem2
+
+	$CC $OPT $src_dir/dump_4k_mem.c -o $DST_PATH/dump_4k_mem
+	$STRIP -s $DST_PATH/dump_4k_mem
 	set +x
 }
 
 build_binfile()
 {
 	echo "Start: $FUNCNAME"
+	echo "Current Dir: $PWD"
 
 	set -x
-	cd $SRC_PATH/binfile
+	pushd $SRC_PATH/binfile
 	make
-	cd -
+	popd
 	set +x
 }
 
 build_lspci()
 {
 	echo "Start: $FUNCNAME"
+	echo "Current Dir: $PWD"
+
 	local pciutils_ver=3.13.0
 	local pciutils_package="pciutils-${pciutils_ver}.tar.gz"
 
 	set -x
 	[ -f $pciutils_package ] && wget -P pciutils https://mj.ucw.cz/download/linux/pci/${pciutils_package}
-	cd pciutils
+	pushd pciutils
 
 	[ -f $pciutils_package ] && tar xvf $pciutils_package
-	cd pciutils-3.13.0
+	pushd pciutils-3.13.0
 	make clean
 	if [ x$ARCH == x"arm64" ]; then
 		make CROSS_COMPILE=${CROSS_COMPILE} HOST="linux" OPT="-static" PREFIX=${PWD}/_install  SHARED=no HWDB=no ZLIB=no
@@ -85,25 +92,27 @@ build_lspci()
 		make HOST="linux" OPT="-static" PREFIX=${PWD}/_install  SHARED=no HWDB=no ZLIB=no
 	fi
 	#make install DESTDIR=${PWD}/_instal
-	${STRIP} lspci setpci
+	${STRIP} -s lspci setpci
 	cp lspci setpci $DST_PATH -arpv
-	cd -
+	popd
 
 	echo "Build pciheader"
-	cd pciheader
+	echo "Current Dir: $PWD"
+	pushd pciheader
 	make clean
 	${CC} -c pciheader.c -o pciheader.o -I../pciutils-3.13.0 -Wall -O3
 	${CC} -o $DST_PATH/pciheader pciheader.o -L../pciutils-3.13.0/lib -static -lpci
-	${STRIP} $DST_PATH/pciheader
-	cd -
+	${STRIP} -s $DST_PATH/pciheader
+	popd
 
-	cd -
+	popd
 	set +x
 }
 
 build_getevent()
 {
 	echo "Start: $FUNCNAME"
+	echo "Current Dir: $PWD"
 
 	local src_dir="$SRC_PATH/getevent"
 	local input_event_codes_h="/usr/include/linux/input-event-codes.h"
@@ -115,7 +124,7 @@ build_getevent()
 	set -x
 	python $src_dir/generate-input.h-labels.py $input_event_codes_h > $src_dir/input.h-labels.h
 	$CC $OPT $src_dir/getevent.c -o $DST_PATH/getevent
-	$STRIP $DST_PATH/getevent
+	$STRIP -s $DST_PATH/getevent
 	set +x
 
 }

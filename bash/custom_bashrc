@@ -53,6 +53,10 @@ function tmux_startup()
 	run-parts /etc/update-motd.d/
 }
 
+# history格式
+USER_IP=`who -u -m | awk '{print $NF}' | sed 's/[()]//g'`
+USER=`whoami`
+export HISTTIMEFORMAT="[%F-%T] [$USER:$USER_IP] "
 
 #习惯的使用别名
 alias vi='vim --noplugin'

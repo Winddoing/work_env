@@ -444,6 +444,18 @@ vim中输入以下命令进行查找，使用系统grep
 :%s/要转换的字符串/\U&/g
 ```
 
+
+
+## 匹配数字，进行运算，使用运算结果替换
+
+```
+:%s/ \(\d\d\)/\=(submatch(1)+32)/gc
+```
+
+\(\d\d\)表示匹配2个连续数字, submatch(1) 表示调用第一个括号匹配的字符，使用数字计算结果时，使用\=表示计算结果、
+
+
+
 ## 其他
 
 ### 多个标签切换
@@ -642,3 +654,4 @@ set noswapfile
 1. [像 IDE 一样使用 vim](https://github.com/yangyangwithgnu/use_vim_as_ide)
 2. [130+ Essential Vim Commands](https://catswhocode.com/vim-commands/)
 3. [after/ftplugin/sh.vim](https://jnrowe-vim.readthedocs.io/after/ftplugin/sh.html)
+3. [vim进阶:200个终身受益的命令](https://mp.weixin.qq.com/s?__biz=MzkxNDUxNjI5MQ==&mid=2247486057&idx=1&sn=42078fd934aa5a232f12724c2581ec8c&chksm=c16c7a45f61bf353a3b4dbf3ad59dd7b272f1777887a04a45e918bb8ced377d00adf909b43b8&cur_album_id=3369454863339978752&scene=189#wechat_redirect)
