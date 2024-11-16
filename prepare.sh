@@ -17,31 +17,35 @@ fi
 
 trap 'echo "Ctrl+c interrupted!"; exit' INT
 
+install_all_num=0
 install_success_i=0
 install_failed_i=0
 
 INSTALL_CMD=apt
 LINUX_INSTALL_CMD=(apt-get apt yum)
 
-LINUX_BASEL_SOFTWARE=(git git-extras tig
-	vim vim-gtk universal-ctags cscope global python3 python-is-python3 doxygen graphviz
-	openssh-server samba smbclient htop gcc g++ make cmake net-tools tmux
-	tree colordiff tftpd tftp sshfs minicom adb astyle splint hwloc
+LINUX_BASEL_CORE_SOFTWARE=(git git-extras tig
+	vim universal-ctags cscope global python3 python-is-python3 doxygen graphviz
+	htop sysstat
+	gcc g++ make cmake
+	openssh-server net-tools tmux tree colordiff astyle)
+
+LINUX_GRAPH_CORE_SOFTWARE=(gitk meld eog vlc kolourpaint flameshot thunderbird
+	goldendict virtualbox virtualbox-ext-pack gnome-calculator)
+
+LINUX_BASEL_EXT_SOFTWARE=(samba smbclient tftpd tftp sshfs minicom adb splint hwloc
 	cloc sparse fakeroot icdiff indent tldr cpustat cpufrequtils
-	linux-tools-generic apitrace read-edid edid-decode speedtest-cli sysstat
-	screenfetch mediainfo terminator)
-	# subversion
+	linux-tools-generic read-edid edid-decode speedtest-cli
+	screenfetch mediainfo)
 
-LINUX_SYSTEM_SOFTWARE=(gnome-icon-theme)
+LINUX_GRAPH_EXT_SOFTWARE=(remmina remmina-plugin-spice gparted okular firefox
+	fcitx fcitx-config-gtk fcitx-googlepinyin)
 
-LINUX_GRAPH_SOFTWARE=(gitk meld eog firefox vlc kolourpaint flameshot
-	thunderbird ksysguard gnome-tweaks remmina remmina-plugin-spice gparted okular
-	fcitx fcitx-config-gtk fcitx-googlepinyin goldendict translate-shell)
+LINUX_OTHER_SOFTWARE=(sqlitebrowser audacity wireshark apitrace)
 
-LINUX_OTHER_SOFTWARE=(virtualbox sqlitebrowser audacity wireshark)
+LINUX_SYSTEM_GNOME_SOFTWARE=(gnome-icon-theme gnome-tweaks)
 
-LINUX_3RD_PARTY_SOFTWARE=(browser-plugin-freshplayer-pepperflash atom typora
-	vooya)
+LINUX_3RD_PARTY_SOFTWARE=(typora vooya freedownloadmanager obsidian draw.io)
 
 function install_software()
 {
@@ -63,6 +67,7 @@ function install_software()
 			install_success_i=$(($install_success_i+1))
 		fi
 		cnt=$(($cnt+1))
+		install_all_num=$(($install_all_num + 1))
 
 		trap "print_count" INT
 	done
@@ -70,24 +75,24 @@ function install_software()
 
 function software_install()
 {
-	install_software LINUX_BASEL_SOFTWARE
-	install_software LINUX_GRAPH_SOFTWARE
-	install_software LINUX_OTHER_SOFTWARE
-	install_software LINUX_3RD_PARTY_SOFTWARE
+	install_software LINUX_BASEL_CORE_SOFTWARE
+	install_software LINUX_GRAPH_CORE_SOFTWARE
+
+	#install_software LINUX_BASEL_EXT_SOFTWARE
+	#install_software LINUX_GRAPH_EXT_SOFTWARE
+	#install_software LINUX_OTHER_SOFTWARE
+	#install_software LINUX_SYSTEM_GNOME_SOFTWARE
+	#install_software LINUX_3RD_PARTY_SOFTWARE
 }
 
 function print_count()
 {
-	local all_num
-	all_num=$((${#LINUX_BASEL_SOFTWARE[@]} + ${#LINUX_GRAPH_SOFTWARE[@]} \
-		+ ${#LINUX_OTHER_SOFTWARE[@]} + ${#LINUX_3RD_PARTY_SOFTWARE[@]}))
-
 	echo ""
 	echo "Install success software: $install_success_i"
 	echo "Install fail software: $install_failed_i"
 	echo ""
-	echo "Total number of software: $all_num"
-	echo "Not Installed software: $(($all_num - $install_failed_i - $install_success_i))"
+	echo "Total number of software: $install_all_num"
+	echo "Not Installed software: $(($install_all_num - $install_failed_i - $install_success_i))"
 	exit 1;
 }
 
@@ -132,18 +137,6 @@ sys_update
 software_install
 print_count
 
-# 邮箱
-# sudo apt-get install thunderbird
-
-# mail: Evolution
-
-# BT下载工具
-# sudo apt install ktorrent
-
-# ed2k下载工具——MSDN
-# sudo apt install amule
-# https://dn3.freedownloadmanager.org/6/latest/freedownloadmanager.deb
-
 # 图形界面的FTP客户端
 # sudo apt install filezilla
 
@@ -160,9 +153,6 @@ print_count
 
 # chm文件阅读器
 # sudo apt-get install kchmviewer
-
-# Java eclipse
-# 软件商店搜索安装
 
 # epub电子书阅读器
 # sudo apt install calibre
@@ -202,9 +192,6 @@ print_count
 
 # 录屏软件
 # sudo apt install simplescreenrecorder
-
-# 画板
-# sudo apt install mypaint
 
 # 跨平台局域网传输文件
 # sudo apt install nitroshare
