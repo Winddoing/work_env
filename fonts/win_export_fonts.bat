@@ -7,7 +7,11 @@ if not exist %my_fonts_dir% ( md %my_fonts_dir%)
 call:export_font msyi.ttf, msyh.ttc, msyhbd.ttc, msyhl.ttc
 
 :: 楷书常规 隶书常规 宋体常规 仿宋常规 黑体常规等
-call:export_font SIMLI.TTF simsun.ttc simsunb.ttf simfang.ttf simhei.ttf simkai.ttf SIMYOU.TTF
+call:export_font SIMLI.TTF simsun.ttc simsunb.ttf simfang.ttf simhei.ttf simkai.ttf SIMYOU.TTF STKAITI.TTF
+
+call:export_font cambriab.ttf cambria.ttc cambriai.ttf cambriaz.ttf
+
+call:export_font calibrib.ttf calibrili.ttf calibri.ttf calibrii.ttf calibril.ttf calibriz.ttf
 
 pause
 

@@ -28,7 +28,7 @@ import yaml
 DEBUG = False
 
 sys_home = os.environ.get("HOME")
-goldendict = "/.goldendict"
+goldendict = "/.config/goldendict/"
 yaml_name = "/.api_key.yaml"
 config_file = sys_home + goldendict + yaml_name
 try:
