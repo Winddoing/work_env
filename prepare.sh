@@ -33,15 +33,15 @@ LINUX_BASEL_CORE_SOFTWARE=(git git-extras tig
 LINUX_GRAPH_CORE_SOFTWARE=(gitk meld eog vlc kolourpaint flameshot thunderbird
 	goldendict virtualbox virtualbox-ext-pack gnome-calculator)
 
-LINUX_BASEL_EXT_SOFTWARE=(samba smbclient tftpd tftp sshfs minicom adb splint hwloc
+LINUX_BASEL_EXT_SOFTWARE=(samba smbclient tftpd tftp sshfs minicom adb splint
 	cloc sparse fakeroot icdiff indent tldr cpustat cpufrequtils
 	linux-tools-generic read-edid edid-decode speedtest-cli
 	screenfetch mediainfo)
 
-LINUX_GRAPH_EXT_SOFTWARE=(remmina remmina-plugin-spice gparted okular firefox
-	fcitx fcitx-config-gtk fcitx-googlepinyin)
+LINUX_GRAPH_EXT_SOFTWARE=(remmina remmina-plugin-spice gparted okular firefox zeal)
 
-LINUX_OTHER_SOFTWARE=(sqlitebrowser audacity wireshark apitrace)
+#LINUX_OTHER_SOFTWARE=(sqlitebrowser audacity wireshark apitrace)
+LINUX_OTHER_SOFTWARE=(audacity wireshark)
 
 LINUX_SYSTEM_GNOME_SOFTWARE=(gnome-icon-theme gnome-tweaks)
 
@@ -189,6 +189,7 @@ print_count
 
 # markdown编辑器
 # sudo apt install typora
+# https://github.com/iuxt/src/releases/download/2.0/Typora_Linux_0.11.18_amd64.deb
 
 # 录屏软件
 # sudo apt install simplescreenrecorder
@@ -232,3 +233,6 @@ print_count
 
 # 日志分析工具 (https://github.com/variar/klogg)
 # sudo apt install klogg
+
+# wiki笔记工具, 中文界面Exec=env LANGUAGE=zh_CN zim %f
+# sudo apt install zim

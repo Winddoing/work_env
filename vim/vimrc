@@ -1,3 +1,7 @@
+"当前可用版本：
+"  VIM - Vi IMproved 9.1 (2024 Jan 02, compiled Jan 16 2025 20:13:18)
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => Fn 快捷键
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -118,7 +122,7 @@ set autoread
 autocmd BufReadPost * normal! g`"
 
 " 关闭VIM内置补全的preview窗口
-set completeopt-=preview
+"set completeopt-=preview
 
 " 命令行Tab补全提示
 set wildmenu
@@ -238,24 +242,27 @@ Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['c', 'cpp'] }
-Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
-Plug 'wannesm/wmgraphviz.vim', { 'for': 'dot' }
-Plug 'iamcco/markdown-preview.vim', { 'do': ':MarkdownPreview' }
-Plug 'mzlogin/vim-markdown-toc', { 'for': 'md' }
-Plug 'jszakmeister/markdown2ctags', { 'for': 'md' }
+"Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
+"Plug 'wannesm/wmgraphviz.vim', { 'for': 'dot' }
+"Plug 'iamcco/markdown-preview.vim', { 'do': ':MarkdownPreview' }
+"Plug 'mzlogin/vim-markdown-toc', { 'for': 'md' }
+"Plug 'jszakmeister/markdown2ctags', { 'for': 'md' }
 Plug 'Raimondi/delimitMate'
-Plug 'rkulla/pydiction', { 'for': 'py' }
-Plug 'Shougo/neocomplcache.vim'
-Plug 'msanders/snipmate.vim'
+"Plug 'rkulla/pydiction', { 'for': 'py' }
+"Plug 'Shougo/neocomplcache.vim'
+"Plug 'msanders/snipmate.vim'
 Plug 'vim-utils/vim-man'
 Plug 'junegunn/vim-easy-align'
 "Plug 'edkolev/tmuxline.vim'
-Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
+"Plug 'vim-scripts/OmniCppComplete', { 'for': ['c', 'cpp'] }
 Plug 'lfv89/vim-interestingwords'
 Plug 'zivyangll/git-blame.vim'
 "Plug 'dense-analysis/ale', { 'for': ['c', 'cpp'] }
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'bfrg/vim-cpp-modern', { 'for': ['c', 'cpp'] }
+Plug 'jayli/vim-easycomplete'
+Plug 'SirVer/ultisnips'
+"Plug 'lifepillar/vim-mucomplete'
 Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
@@ -421,99 +428,99 @@ nmap <F2> :DoxAuthor<cr>/
 nmap <F3> :Dox<cr>/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>plantuml-syntax
-"vim + plantuml
-let g:plantuml_executable_script = 'java -jar ~/.vim/until/plantuml.jar'
-nnoremap <silent> <F5> :w<CR> :make<CR>:copen<CR>
-inoremap <silent> <F5> <Esc>:w<CR>:make<CR>:copen<CR>
-vnoremap <silent> <F5> :<C-U>:w<CR>:make<CR>:copen<CR>
-" Auto open
-autocmd BufWritePost  *.uml :silent !eog %:p:r.png &
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>wmgraphviz.vim
-" vim + dot
-" Compiling: :GraphvizCompile, <LocalLeader>ll
-" Viewing: :GraphvizShow, <LocalLeader>lv
-" Interactive viewing + editing: :GraphvizInteractive, <LocalLeader>li
-" 导出PDF: :GraphvizCompilePDF
-autocmd BufWritePost *.dot :silent !dot -Tpng -o %<.png %
-autocmd BufWritePost *.dot :silent !eog %:p:r.png &
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>markdown-preview.vim
-" vim + makedown + firefox
-let g:mkdp_path_to_chrome = "firefox"
-" 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
-let g:mkdp_auto_start = 0
-" 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在打开markdown 文件的时候打开一次
-let g:mkdp_auto_open = 0
-" 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经打开，否则自动打开预览窗口
-let g:mkdp_auto_close = 1
-" 在切换 buffer 的时候自动关闭预览窗口，设置为 0 则在切换 buffer 的时候不自动关闭预览窗口
-let g:mkdp_refresh_slow = 0
-" 设置为 1 则只有在保存文件，或退出插入模式的时候更新预览，默认为 0，实时更新预览
-
-"nmap <silent> <F8> <Plug>MarkdownPreview
-"imap <silent> <F8> <Plug>MarkdownPreview
-nmap M :MarkdownPreview <cr>
-nmap <silent> <F10> <Plug>StopMarkdownPreview
-imap <silent> <F10> <Plug>StopMarkdownPreview
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>vim-markdown-toc
-"生成文章目录
-let g:vmt_auto_update_on_save = 1
-"用于控制保存文件时是否自动更新已有文章目录，关闭为0
-"let g:vmt_dont_insert_fence = 1
-"关闭生成文章目录的时候会在前后插入 <!-- vim-markdown-toc -->
-"使用命令：
-":GenTocGFM  生成 GFM 链接风格的文章目录。
-":GenTocRedcarpet  生成 Redcarpet 链接风格的文章目录。
-":UpdateToc 更新已有目录
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-">>>>>>>>markdown2ctags
-"目录大纲
-" Add support for markdown files in tagbar.
-let g:tagbar_type_markdown = {
-    \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : '~/.vim/plugged/markdown2ctags/markdown2ctags.py',
-    \ 'ctagsargs' : '-f - --sort=yes --sro=»',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '»',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
-
-" 打开md文件时自动列出大纲列表
-autocmd BufWinEnter *.md :TagbarToggle<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"">>>>>>>>plantuml-syntax
+""vim + plantuml
+"let g:plantuml_executable_script = 'java -jar ~/.vim/until/plantuml.jar'
+"nnoremap <silent> <F5> :w<CR> :make<CR>:copen<CR>
+"inoremap <silent> <F5> <Esc>:w<CR>:make<CR>:copen<CR>
+"vnoremap <silent> <F5> :<C-U>:w<CR>:make<CR>:copen<CR>
+"" Auto open
+"autocmd BufWritePost  *.uml :silent !eog %:p:r.png &
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"">>>>>>>>wmgraphviz.vim
+"" vim + dot
+"" Compiling: :GraphvizCompile, <LocalLeader>ll
+"" Viewing: :GraphvizShow, <LocalLeader>lv
+"" Interactive viewing + editing: :GraphvizInteractive, <LocalLeader>li
+"" 导出PDF: :GraphvizCompilePDF
+"autocmd BufWritePost *.dot :silent !dot -Tpng -o %<.png %
+"autocmd BufWritePost *.dot :silent !eog %:p:r.png &
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"">>>>>>>>markdown-preview.vim
+"" vim + makedown + firefox
+"let g:mkdp_path_to_chrome = "firefox"
+"" 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
+"let g:mkdp_auto_start = 0
+"" 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在打开markdown 文件的时候打开一次
+"let g:mkdp_auto_open = 0
+"" 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经打开，否则自动打开预览窗口
+"let g:mkdp_auto_close = 1
+"" 在切换 buffer 的时候自动关闭预览窗口，设置为 0 则在切换 buffer 的时候不自动关闭预览窗口
+"let g:mkdp_refresh_slow = 0
+"" 设置为 1 则只有在保存文件，或退出插入模式的时候更新预览，默认为 0，实时更新预览
+"
+""nmap <silent> <F8> <Plug>MarkdownPreview
+""imap <silent> <F8> <Plug>MarkdownPreview
+"nmap M :MarkdownPreview <cr>
+"nmap <silent> <F10> <Plug>StopMarkdownPreview
+"imap <silent> <F10> <Plug>StopMarkdownPreview
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"">>>>>>>vim-markdown-toc
+""生成文章目录
+"let g:vmt_auto_update_on_save = 1
+""用于控制保存文件时是否自动更新已有文章目录，关闭为0
+""let g:vmt_dont_insert_fence = 1
+""关闭生成文章目录的时候会在前后插入 <!-- vim-markdown-toc -->
+""使用命令：
+"":GenTocGFM  生成 GFM 链接风格的文章目录。
+"":GenTocRedcarpet  生成 Redcarpet 链接风格的文章目录。
+"":UpdateToc 更新已有目录
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"">>>>>>>>markdown2ctags
+""目录大纲
+"" Add support for markdown files in tagbar.
+"let g:tagbar_type_markdown = {
+"    \ 'ctagstype': 'markdown',
+"    \ 'ctagsbin' : '~/.vim/plugged/markdown2ctags/markdown2ctags.py',
+"    \ 'ctagsargs' : '-f - --sort=yes --sro=»',
+"    \ 'kinds' : [
+"        \ 's:sections',
+"        \ 'i:images'
+"    \ ],
+"    \ 'sro' : '»',
+"    \ 'kind2scope' : {
+"        \ 's' : 'section',
+"    \ },
+"    \ 'sort': 0,
+"\ }
+"
+"" 打开md文件时自动列出大纲列表
+"autocmd BufWinEnter *.md :TagbarToggle<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>delimitMate
 "自动补全引号(单引号/双引号/反引号), 括号(()[]{})]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>pydiction
-"Python自动补全
-let g:pydiction_location = '~/.vim/plugged/pydiction/complete-dict'
-let g:pydiction_menu_height = 5
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"">>>>>>>pydiction
+""Python自动补全
+"let g:pydiction_location = '~/.vim/plugged/pydiction/complete-dict'
+"let g:pydiction_menu_height = 5
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>>>neocomplcache.vim
-" 提示补全
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_force_overwrite_completefunc = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"">>>>>>>>>>neocomplcache.vim
+"" 提示补全
+"let g:neocomplcache_enable_at_startup = 1
+"let g:neocomplcache_force_overwrite_completefunc = 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>>>snipmate.vim
-" 自动补全代码块，如main+<Tab>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"">>>>>>>>>>snipmate.vim
+"" 自动补全代码块，如main+<Tab>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>>vim-utils/vim-man
 "vim中使用man 操作：Shift + k
@@ -553,20 +560,20 @@ nmap ga <Plug>(EasyAlign)
 "let g:tmuxline_powerline_separators = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>>>>>>OmniCppComplete
-"C++补全
-"ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q
-nmap c++ :!ctags -R --c++-kinds=+pl --fields=+iaS --extras=+q --language-force=C++<cr>
-let OmniCpp_MayCompleteDot = 1 " autocomplete with .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete with ::
-let OmniCpp_SelectFirstItem = 2
-let OmniCpp_NamespaceSearch = 2
-let OmniCpp_ShowPrototypeInAbbr = 1
-let OmniCpp_GlobalScopeSearch=1
-let OmniCpp_DisplayMode=1
-let OmniCpp_DefaultNamespaces=["std"]
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"">>>>>>>>>>>>>OmniCppComplete
+""C++补全
+""ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q
+"nmap c++ :!ctags -R --c++-kinds=+pl --fields=+iaS --extras=+q --language-force=C++<cr>
+"let OmniCpp_MayCompleteDot = 1 " autocomplete with .
+"let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
+"let OmniCpp_MayCompleteScope = 1 " autocomplete with ::
+"let OmniCpp_SelectFirstItem = 2
+"let OmniCpp_NamespaceSearch = 2
+"let OmniCpp_ShowPrototypeInAbbr = 1
+"let OmniCpp_GlobalScopeSearch=1
+"let OmniCpp_DisplayMode=1
+"let OmniCpp_DefaultNamespaces=["std"]
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>>>>>>vim-interestingwords
 "用不同颜色高亮感兴趣的单词
@@ -640,6 +647,50 @@ let g:cpp_member_highlight = 1
 " Put all standard C and C++ keywords under Vim's highlight group 'Statement'
 " (affects both C and C++ files)
 let g:cpp_simple_highlight = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>>>>>vim-easycomplete
+set updatetime=300
+"let g:easycomplete_snips_enable = 0
+" Highlight the symbol when holding the cursor
+let g:easycomplete_cursor_word_hl = 0
+" Using nerdfont is highly recommended
+"let g:easycomplete_nerd_font = 1
+"取消tab触发补全选项
+let g:easycomplete_tab_trigger=""
+" 禁止语法诊断
+let g:easycomplete_diagnostics_enable = 0
+let g:easycomplete_diagnostics_hover = 0
+" 禁用Tabnine
+let g:easycomplete_tabnine_enable = 0
+" 打开文件时禁止检查是否安装了lsp
+let g:easycomplete_lsp_checking = 0
+let g:easycomplete_signature_enable = 0
+" 不进行默认快捷键绑定
+let g:easycomplete_typing_binding_done = 1
+
+" GoTo code navigation
+"noremap gr :EasyCompleteReference<CR>
+"noremap gd :EasyCompleteGotoDefinition<CR>
+"noremap rn :EasyCompleteRename<CR>
+"noremap gb :BackToOriginalBuffer<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"">>>>>>>>>>>>>vim-mucomplete
+""set shortmess+=c   " Shut off completion messages
+""set belloff+=ctrlg " Add only if Vim beeps during completion
+"set completeopt-=preview
+"set completeopt+=longest,menuone,noselect
+"let g:mucomplete#enable_auto_at_startup = 1
+"let g:mucomplete#completion_delay = 1
+"let g:mucomplete#buffer_relative_paths = 1
+"
+"let g:mucomplete#user_mappings = { 'sqla' : "\<c-c>a" }
+"let g:mucomplete#chains = { 'sql' : ['file', 'sqla', 'keyn'] }
+"" The following line assumes `brew install llvm` in macOS
+"let g:clang_library_path = '/usr/lib/llvm-18/lib/libclang.so.1'
+"let g:clang_user_options = '-std=c++14'
+"let g:clang_complete_auto = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>>>>>>vim-gutentags

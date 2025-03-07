@@ -110,6 +110,8 @@ function install_git()
 	git config --global http.postBuffer 100M
 	# commit模板
 	git config --global commit.template $PWD/git/gitmessage
+	# 配置默认分支名
+	git config --global init.defaultBranch master
 }
 
 function install_tmux()

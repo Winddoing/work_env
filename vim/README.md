@@ -2,51 +2,54 @@
 <!-- vim-markdown-toc GFM -->
 
 * [安装 VIM8.x](#安装-vim8x)
-	* [ubuntu](#ubuntu)
-	* [Centos7](#centos7)
-	* [自动化安装配置](#自动化安装配置)
+    * [ubuntu](#ubuntu)
+    * [Centos7](#centos7)
+    * [自动化安装配置](#自动化安装配置)
 * [插件管理](#插件管理)
 * [常用操作](#常用操作)
-	* [Fn功能键](#fn功能键)
-	* [快捷键](#快捷键)
-	* [ctags](#ctags)
-	* [cscope](#cscope)
-	* [字符串替换](#字符串替换)
-	* [标记-Mark](#标记-mark)
-		* [添加标记](#添加标记)
-		* [跳转标记](#跳转标记)
-		* [查看标记](#查看标记)
-		* [删除标记](#删除标记)
-	* [文件对比](#文件对比)
-	* [符号对齐](#符号对齐)
-		* [等号对齐](#等号对齐)
-		* [空格对齐](#空格对齐)
-	* [session会话](#session会话)
-		* [自动加载恢复](#自动加载恢复)
-	* [拷贝系统剪切板](#拷贝系统剪切板)
-	* [vim中使用grep](#vim中使用grep)
-	* [将文档中同一字符串转为大写](#将文档中同一字符串转为大写)
-	* [其他](#其他)
-		* [多个标签切换](#多个标签切换)
-		* [十六进制显示](#十六进制显示)
+    * [Fn功能键](#fn功能键)
+    * [快捷键](#快捷键)
+    * [ctags](#ctags)
+    * [cscope](#cscope)
+    * [字符串替换](#字符串替换)
+    * [标记-Mark](#标记-mark)
+        * [添加标记](#添加标记)
+        * [跳转标记](#跳转标记)
+        * [查看标记](#查看标记)
+        * [删除标记](#删除标记)
+    * [文件对比](#文件对比)
+    * [符号对齐](#符号对齐)
+        * [等号对齐](#等号对齐)
+        * [空格对齐](#空格对齐)
+    * [session会话](#session会话)
+        * [自动加载恢复](#自动加载恢复)
+    * [拷贝系统剪切板](#拷贝系统剪切板)
+    * [vim中使用grep](#vim中使用grep)
+    * [将文档中同一字符串转为大写](#将文档中同一字符串转为大写)
+    * [匹配数字，进行运算，使用运算结果替换](#匹配数字进行运算使用运算结果替换)
+    * [其他](#其他)
+        * [多个标签切换](#多个标签切换)
+        * [十六进制显示](#十六进制显示)
 * [修改配置](#修改配置)
-	* [代码注释颜色](#代码注释颜色)
+    * [代码注释颜色](#代码注释颜色)
 * [插件使用](#插件使用)
-	* [vim-markdown-toc](#vim-markdown-toc)
-	* [ale](#ale)
-		* [linux内核](#linux内核)
-		* [cmake工程](#cmake工程)
-	* [leaderf](#leaderf)
-	* [vim-gutentags](#vim-gutentags)
+    * [vim-markdown-toc](#vim-markdown-toc)
+    * [ale](#ale)
+        * [linux内核](#linux内核)
+        * [cmake工程](#cmake工程)
+    * [leaderf](#leaderf)
+    * [vim-gutentags](#vim-gutentags)
+    * [代码补全](#代码补全)
 * [vim实用技巧](#vim实用技巧)
-	* [屏蔽插件](#屏蔽插件)
-	* [查看启动时间](#查看启动时间)
-	* [linux内核tag](#linux内核tag)
-	* [tag跳转 — `:tag tag`](#tag跳转--tag-tag)
-		* [:ts](#ts)
-		* [:tj](#tj)
-	* [多文件关闭一个](#多文件关闭一个)
-	* [两行合并一行](#两行合并一行)
+    * [屏蔽插件](#屏蔽插件)
+    * [查看启动时间](#查看启动时间)
+    * [linux内核tag](#linux内核tag)
+    * [tag跳转 — `:tag tag`](#tag跳转--tag-tag)
+        * [:ts](#ts)
+        * [:tj](#tj)
+    * [多文件关闭一个](#多文件关闭一个)
+    * [两行合并一行](#两行合并一行)
+* [模式行（Modeline）](#模式行modeline)
 * [vim/gvim](#vimgvim)
 * [参考：](#参考)
 
@@ -544,6 +547,31 @@ sudo apt install global python3
 
 - `g:gutentags_project_root`: 确定当前文件所属的项目目录，会从当前文件所在目录开始向父目录递归，直到找到这些标志文件。如果没有，则gutentags认为该文件是个野文件，不会帮它生成ctags/gtags数据
  - 如果你的项目不在 svn/git/hg 仓库中的话，可以在项目根目录 touch 一个空的名为`.root`的文件即可
+
+
+
+## 代码补全
+
+
+
+```
+# vim9中启动存在异常
+Plug 'girishji/vimcomplete'
+
+# 轻量级，不要过多配置
+Plug 'jayli/vim-easycomplete'
+Plug 'SirVer/ultisnips'
+
+# 这个比较麻烦
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+```
+
+| 插件             | 功能              | 说明                                 |
+| ---------------- | ----------------- | ------------------------------------ |
+| coc.vim          | 极高，LSP         | 占用资源多                           |
+| vim-easycomplete | 高，LSP           | 使用简单，异步补全                   |
+| vimcomplete      |                   | 配置后无法自动弹出补全框             |
+| vim-mucomplete   | 低（原生），无LSP | 占用资源少,不是异步补全不好用,太慢了 |
 
 
 
