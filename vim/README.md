@@ -55,14 +55,14 @@
 
 <!-- vim-markdown-toc -->
 
-# 安装 VIM8.x
+# 安装 VIM9.x
 
 ## ubuntu
 
 ``` shell
 sudo apt install vim universal-ctags cscope global
 ```
-> Version: ubuntu20.04
+> Version: ubuntu24.04
 
 ## Centos7
 
@@ -572,6 +572,70 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 | vim-easycomplete | 高，LSP           | 使用简单，异步补全                   |
 | vimcomplete      |                   | 配置后无法自动弹出补全框             |
 | vim-mucomplete   | 低（原生），无LSP | 占用资源少,不是异步补全不好用,太慢了 |
+
+
+
+### YCM
+
+依赖软件：
+
+```shell
+sudo apt install python3-dev python3-pip build-essential git cmake python3-dev clang clangd
+```
+
+> ubuntu24.04
+
+通过`:PlugInstall`安装完后无法补全可能是安装过程中编译失败导致的，可以手动重新编译。
+
+编译：
+
+```shell
+cd plugged/YouCompleteMe/
+./install.py --clang-completer
+proxychains ./install.py --clang-completer
+```
+
+正常编译完成后，还是无法自动补全？
+
+```
+NoExtraConfDetected: No .ycm_extra_conf.py file detected, so no compile flags are available. Thus no semantic support for C/C++/ObjC/ObjC++. Go READ THE DOCS *NOW*, DON'T file a bug report.
+```
+
+添加配置：
+
+```
+let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+```
+
+
+
+#### **`compile_commands.json`**
+
+Clangd/YCM 会自动读取项目根目录下的 `compile_commands.json`，无需手动配置头文件路径。
+
+```shell
+# CMake 项目
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .
+
+# Make 项目（需安装 compiledb）
+pip3 install compiledb
+compiledb make
+
+# Linux内核
+./scripts/clang-tools/gen_compile_commands.py
+```
+
+
+
+#### 获取系统头文件路径
+
+```shell
+echo | clang -v -E -x c++ -
+
+echo | clang -v -E -x c -
+```
+
+
 
 
 

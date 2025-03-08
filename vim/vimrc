@@ -122,7 +122,7 @@ set autoread
 autocmd BufReadPost * normal! g`"
 
 " 关闭VIM内置补全的preview窗口
-"set completeopt-=preview
+set completeopt-=preview
 
 " 命令行Tab补全提示
 set wildmenu
@@ -250,7 +250,7 @@ Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['c', 'cpp'] }
 Plug 'Raimondi/delimitMate'
 "Plug 'rkulla/pydiction', { 'for': 'py' }
 "Plug 'Shougo/neocomplcache.vim'
-"Plug 'msanders/snipmate.vim'
+Plug 'msanders/snipmate.vim'
 Plug 'vim-utils/vim-man'
 Plug 'junegunn/vim-easy-align'
 "Plug 'edkolev/tmuxline.vim'
@@ -260,9 +260,10 @@ Plug 'zivyangll/git-blame.vim'
 "Plug 'dense-analysis/ale', { 'for': ['c', 'cpp'] }
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'bfrg/vim-cpp-modern', { 'for': ['c', 'cpp'] }
-Plug 'jayli/vim-easycomplete'
-Plug 'SirVer/ultisnips'
+"Plug 'jayli/vim-easycomplete'
+"Plug 'SirVer/ultisnips'
 "Plug 'lifepillar/vim-mucomplete'
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
@@ -649,32 +650,32 @@ let g:cpp_member_highlight = 1
 let g:cpp_simple_highlight = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-">>>>>>>>>>>>>vim-easycomplete
-set updatetime=300
-"let g:easycomplete_snips_enable = 0
-" Highlight the symbol when holding the cursor
-let g:easycomplete_cursor_word_hl = 0
-" Using nerdfont is highly recommended
-"let g:easycomplete_nerd_font = 1
-"取消tab触发补全选项
-let g:easycomplete_tab_trigger=""
-" 禁止语法诊断
-let g:easycomplete_diagnostics_enable = 0
-let g:easycomplete_diagnostics_hover = 0
-" 禁用Tabnine
-let g:easycomplete_tabnine_enable = 0
-" 打开文件时禁止检查是否安装了lsp
-let g:easycomplete_lsp_checking = 0
-let g:easycomplete_signature_enable = 0
-" 不进行默认快捷键绑定
-let g:easycomplete_typing_binding_done = 1
-
-" GoTo code navigation
-"noremap gr :EasyCompleteReference<CR>
-"noremap gd :EasyCompleteGotoDefinition<CR>
-"noremap rn :EasyCompleteRename<CR>
-"noremap gb :BackToOriginalBuffer<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"">>>>>>>>>>>>>vim-easycomplete
+"set updatetime=300
+""let g:easycomplete_snips_enable = 0
+"" Highlight the symbol when holding the cursor
+"let g:easycomplete_cursor_word_hl = 0
+"" Using nerdfont is highly recommended
+""let g:easycomplete_nerd_font = 1
+""取消tab触发补全选项
+"let g:easycomplete_tab_trigger=""
+"" 禁止语法诊断
+"let g:easycomplete_diagnostics_enable = 0
+"let g:easycomplete_diagnostics_hover = 0
+"" 禁用Tabnine
+"let g:easycomplete_tabnine_enable = 0
+"" 打开文件时禁止检查是否安装了lsp
+"let g:easycomplete_lsp_checking = 0
+"let g:easycomplete_signature_enable = 0
+"" 不进行默认快捷键绑定
+"let g:easycomplete_typing_binding_done = 1
+"
+"" GoTo code navigation
+""noremap gr :EasyCompleteReference<CR>
+""noremap gd :EasyCompleteGotoDefinition<CR>
+""noremap rn :EasyCompleteRename<CR>
+""noremap gb :BackToOriginalBuffer<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "">>>>>>>>>>>>>vim-mucomplete
 ""set shortmess+=c   " Shut off completion messages
@@ -691,6 +692,41 @@ let g:easycomplete_typing_binding_done = 1
 "let g:clang_library_path = '/usr/lib/llvm-18/lib/libclang.so.1'
 "let g:clang_user_options = '-std=c++14'
 "let g:clang_complete_auto = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>>>>>YouCompleteMe
+" 指定配置文件路径
+"let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+" 允许自动加载配置文件（避免手动确认）
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_auto_trigger = 1                      " 输入时自动触发补全
+let g:ycm_auto_trigger_delay = 300		" 自动触发补全时延300ms
+let g:ycm_min_num_of_chars_for_completion = 3   " 输入3个字符即触发补全
+let g:ycm_max_num_candidates = 50               " 限制补全项数量
+" 保留语法高亮，但关闭 YCM 错误提示
+let g:ycm_show_diagnostics_ui = 0              " 关闭 YCM 自带的错误提示（可选）
+
+" 强制启用 clangd（YCM 默认启用）
+let g:ycm_use_clangd = 1
+let g:ycm_clangd_binary_path = '/usr/bin/clangd'  " 指定 clangd 路径（需先安装 clangd）
+
+" 解除 YCM 的强制 Tab 映射
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']  " 改用其他按键导航补全项
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
+"let g:ycm_cache_omnifunc=0 " 禁止缓存匹配项,每次都重新生成匹配项
+
+" 开启语法补全
+let g:ycm_seed_identifiers_with_syntax=1 " 语法关键字补全
+
+let g:ycm_complete_in_comments = 1 "在注释输入中也能补全
+let g:ycm_complete_in_strings = 1 "在字符串输入中也能补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 0 "注释和字符串中的文字也会被收入补全
+
+" 文件路径补全增强
+let g:ycm_filepath_completion_use_working_directory = 1  " 基于工作目录补全路径
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>>>>>>vim-gutentags

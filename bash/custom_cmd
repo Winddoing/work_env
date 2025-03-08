@@ -185,3 +185,17 @@ function proxy_off() {
 function microsoft-edge-zh() {
 	grep "LANGUAGE=ZH-CN.UTF-8" /opt/microsoft/msedge/microsoft-edge || sudo sed -i 'N;6a\export LANGUAGE=ZH-CN.UTF-8' /opt/microsoft/msedge/microsoft-edge
 }
+
+function gen_compile_commands() {
+	if [ -f "CMakeLists.txt" ]; then
+		echo -n "cmake generate compile_commands.json."
+		cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .
+		echo "Done."
+	elif [ -f "scripts/clang-tools/gen_compile_commands.py" ]; then
+		echo -n "Linux kernel generate compile_commands.json."
+		./scripts/clang-tools/gen_compile_commands.py
+		echo "Done."
+	else
+		echo "Not support."
+	fi
+}
