@@ -609,6 +609,34 @@ let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/e
 
 
 
+#### **`compile_commands.json`**
+
+Clangd/YCM 会自动读取项目根目录下的 `compile_commands.json`，无需手动配置头文件路径。
+
+```shell
+# CMake 项目
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .
+
+# Make 项目（需安装 compiledb）
+pip3 install compiledb
+compiledb make
+
+# Linux内核
+./scripts/clang-tools/gen_compile_commands.py
+```
+
+
+
+#### 获取系统头文件路径
+
+```shell
+echo | clang -v -E -x c++ -
+
+echo | clang -v -E -x c -
+```
+
+
+
 
 
 # vim实用技巧
