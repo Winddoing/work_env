@@ -96,8 +96,14 @@ export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/'
 # for android build, 为了去除所有本地化的设置，让命令能正确执行
 #export LC_ALL=C
 
-# for tmux and vim
-export TERM="xterm-256color"
+# for tmux and vim, true color真彩显示
+if [ -n "$TMUX" ]; then
+	# tmux终端内部配置
+	export TERM=tmux-256color
+else
+	# 普通终端配置
+	export TERM=xterm-256color
+fi
 
 # "CTRL-S：挂起终端（XON） "CTRL-Q：恢复终端（XOFF） "要禁止这些键盘映射
 stty -ixon

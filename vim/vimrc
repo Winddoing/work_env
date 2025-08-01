@@ -273,8 +273,8 @@ call plug#end()
 "" => 主题颜色
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("termguicolors")
-    " enable true color
-    set termguicolors
+    	" enable true color
+    	set termguicolors
 else
 	" for vim7
 	set t_Co=256
@@ -727,6 +727,14 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 0 "注释和字符串�
 
 " 文件路径补全增强
 let g:ycm_filepath_completion_use_working_directory = 1  " 基于工作目录补全路径
+
+" 函数跳转
+"" 跳转到声明
+"nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+"" 跳转到实现
+"nnoremap <leader>gi :YcmCompleter GoToImplementation<CR>
+"" 查找所有引用
+"nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>>>>>>vim-gutentags
@@ -770,6 +778,17 @@ let g:ctags_version = system('ctags --version')[0:8]
 if g:ctags_version == "Universal"
 	let g:gutentags_ctags_extra_args += ['--extras=+q', '--output-format=e-ctags']
 endif
+
+" 智能文件列表命令配置
+" sudo apt install fd-find
+let g:gutentags_file_list_command = {
+    \ 'markers': {
+        \ '.git': 'git ls-files --cached --others --exclude-standard',
+        \ '.hg': 'hg files',
+        \ 'default': 'fd --type f --hidden --exclude .git'
+    \ },
+    \ 'append_path_separator': 0
+\ }
 
 " 禁用 gutentags 自动加载 gtags 数据库的行为
 let g:gutentags_auto_add_gtags_cscope = 1

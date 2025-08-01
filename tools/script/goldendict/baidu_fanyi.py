@@ -24,7 +24,7 @@ import sys
 import os
 import yaml
 
-# DEBUG = True
+#DEBUG = True
 DEBUG = False
 
 sys_home = os.environ.get("HOME")
@@ -188,6 +188,9 @@ def content_filter_word(content):
     if "\n" in bb:
         bb = bb.replace("\n", " ")
 
+    # 在字符串末尾添加英文句号
+    bb += '.'
+
     if DEBUG:
         print("==========================过滤后数据==============================")
         print("<br>")
@@ -223,5 +226,9 @@ def baidu_translate_goldendict(content):
 
 if __name__ == "__main__":
     word = sys.argv[1]
+    #print('word num =', len(word))
     if len(word) > 500:
         baidu_translate_goldendict(word)
+    #else:
+    #    print('字数不足，当前字符数', len(word))
+

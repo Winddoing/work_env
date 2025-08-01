@@ -1,7 +1,8 @@
-SET sys_fonts_dir=c:\Windows\Fonts
-SET my_fonts_dir=fonts
+@echo on
+SET "sys_fonts_dir=c:\Windows\Fonts"
+SET "my_fonts_dir=fonts"
 
-if not exist %my_fonts_dir% ( md %my_fonts_dir%)
+if not exist "%my_fonts_dir%\" ( mkdir "%my_fonts_dir%" )
 
 :: 微软雅黑字体
 call:export_font msyi.ttf, msyh.ttc, msyhbd.ttc, msyhl.ttc
@@ -11,7 +12,11 @@ call:export_font SIMLI.TTF simsun.ttc simsunb.ttf simfang.ttf simhei.ttf simkai.
 
 call:export_font cambriab.ttf cambria.ttc cambriai.ttf cambriaz.ttf
 
+:: 无衬线字体
 call:export_font calibrib.ttf calibrili.ttf calibri.ttf calibrii.ttf calibril.ttf calibriz.ttf
+
+:: 等线字体
+call:export_font Deng.ttf Dengb.ttf Dengl.ttf
 
 pause
 
