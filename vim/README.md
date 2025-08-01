@@ -623,7 +623,12 @@ compiledb make
 
 # Linux内核
 ./scripts/clang-tools/gen_compile_commands.py
+
+# bear配合make生成
+bear -- make -j`nproc`
 ```
+
+> [Linux kernel生成compile_commands.json](#Linux kernel生成compile_commands.json)
 
 
 
@@ -636,6 +641,30 @@ echo | clang -v -E -x c -
 ```
 
 
+
+### ubuntu下apt安装
+
+> 未测试，下次可以试试
+
+如果你使用一个较新的 Linux 发布版，有可能系统本身已经自带了 YCM。虽然这个版本多半会有点老，但对于有些人来说，可能也够用了。毕竟，Linux 下的包安装确实方便。我们就先以 Ubuntu 为例，来介绍 Linux 包管理器下的安装过程。
+
+首先，我们需要使用 apt 命令来安装 YCM，命令是：
+
+```undefined
+sudo apt install vim-youcompleteme
+```
+
+这步成功之后，YCM 就已经被安装到了你的系统上。不过，在你个人的 Vim 配置里，仍然还没有启用 YCM。要启用的话，可以输入下面的命令：
+
+```undefined
+vim-addon-manager install youcompleteme
+```
+
+这个命令之后，你会在你的 ~/.vim/plugin 目录下看到 youcompleteme.vim 的符号链接。这样，安装就算完成了。
+
+
+
+- [13 YouCompleteMe：Vim 里的自动完成](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/Vim%20%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/13%20YouCompleteMe%EF%BC%9AVim%20%E9%87%8C%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AE%8C%E6%88%90.md)
 
 
 
@@ -729,8 +758,6 @@ tab占4个空格
 
 
 
-
-
 # vim/gvim
 
 ```
@@ -740,6 +767,45 @@ set noundofile
 set nobackup
 set noswapfile
 ```
+
+
+
+
+
+# Linux kernel生成compile_commands.json
+
+
+
+在使用YCM插件时，为了在linux内核中代码补全数据结构更准确，需要生成compile_commands.json文件，生成方式有两种：
+
+- 通过bear命令在编译时生成（bear -- make -j8）
+- 通过./scripts/clang-tools/gen_compile_commands.py脚本生成
+
+
+
+通过以上两种方式生成的compile_commands.json文件在使用过程中可以补全，但是不是结构体成员中的字段也会提示，很不好用，`:YcmDebugInfo`查看日志有以下错误：
+
+
+
+## Failed to prepare a compiler instance: unknown target ABI 'lp64'
+
+解决方法：
+
+在linux内核源码的根目录创建一个`.clangd`的文件，然后在文件里写入如下内容：
+
+```json
+CompileFlags:
+    Remove: -mabi=lp64
+```
+
+```shell
+# 也可以之间将保存的配置文件拷贝到内核的根目录下
+cp ~/.vim/other/linux_kernel_clangd.cfg .clangd
+```
+
+
+
+
 
 # 参考：
 

@@ -189,11 +189,22 @@ function microsoft-edge-zh() {
 function gen_compile_commands() {
 	if [ -f "CMakeLists.txt" ]; then
 		echo -n "cmake generate compile_commands.json."
-		cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .
+		local build_dir=`mktemp -d`
+		cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . -B $build_dir
+		cp $build_dir/compile_commands.json .
 		echo "Done."
-	elif [ -f "scripts/clang-tools/gen_compile_commands.py" ]; then
+	elif [ -f "scripts/clang-tools/gen_compile_commands.py" ] || [ -f "scripts/gen_compile_commands.py" ]; then
 		echo -n "Linux kernel generate compile_commands.json."
-		./scripts/clang-tools/gen_compile_commands.py
+		if [ -f "./scripts/gen_compile_commands.py" ]; then
+			# kernel 5.4
+			./scripts/gen_compile_commands.py
+		else
+			./scripts/clang-tools/gen_compile_commands.py
+		fi
+		if [ -f ".clangd" ] && [ ! -f ".clangd.bak" ]; then
+			cp .clangd .clangd.bak
+		fi
+		cp ~/.vim/other/linux_kernel_clangd.cfg .clangd
 		echo "Done."
 	else
 		echo "Not support."

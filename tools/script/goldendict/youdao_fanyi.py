@@ -119,6 +119,9 @@ def content_filter_word(content):
     if "\n" in bb:
         bb = bb.replace("\n", " ")
 
+    # 在字符串末尾添加英文句号
+    bb += '.'
+
     if DEBUG:
         print("===========================过滤后数据=============================")
         print("<br>")
