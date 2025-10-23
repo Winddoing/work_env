@@ -47,6 +47,10 @@ if [ x"$1" != x"c" ]; then
 	echo "Update $HOSTS"
 	sudo cp $NEW_HOSTS $HOSTS -arpv
 fi
-sudo systemd-resolve --flush-caches
 
+#sudo systemd-resolve --flush-caches
+resolvectl flush-caches
+
+resolvectl status
+echo "------------------ $HOSTS ------------------------"
 cat $HOSTS

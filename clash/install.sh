@@ -125,7 +125,7 @@ EOF
 	sudo systemctl status clash
 
 	# 设置开机自启
-	sudo systemctl enable clash
+	#sudo systemctl enable clash
 
 	echo "Manage URL: http://clash.razord.top"
 }

@@ -14,6 +14,8 @@
 
 ``` shell
 sudo apt install ttf-mscorefonts-installer
+sudo apt install fonts-wqy-zenhei ttf-wqy-microhei
+sudo apt install fonts-noto-cjk
 sudo fc-cache -f -v
 ```
 

@@ -18,8 +18,10 @@ pcie_cfg_file=$1
 
 if [ $# -ne 1 ]; then
 	echo "Usage:"
-	echo "	$0 <pcie cfg space bin>"
-	exit
+	echo "	$0 <pcie_cfg_space_bin>"
+	echo " pcie_cfg_space_bin:"
+	echo "  cat /sys/bus/pci/devices/0000\:00\:02.0/config > cfg_space.bin"
+	exit 1
 fi
 
 if [ ! -f $pcie_cfg_file ]; then

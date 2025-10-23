@@ -205,10 +205,13 @@ nmap <c-l> :botright term<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => 文本编码
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+"" 设备vim解码列表
+set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+"" 设备vim屏幕显示编码
 "set termencoding=utf-8
+"" 设备vim内部编码方式
 "set encoding=utf-8
-"set fileencodings=ucs-bom,utf-8,cp936
+"" 设置文件的编码方式
 "set fileencoding=utf-8
 
 
@@ -723,7 +726,7 @@ let g:ycm_seed_identifiers_with_syntax=1 " 语法关键字补全
 
 let g:ycm_complete_in_comments = 1 "在注释输入中也能补全
 let g:ycm_complete_in_strings = 1 "在字符串输入中也能补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0 "注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1 "注释和字符串中的文字也会被收入补全
 
 " 文件路径补全增强
 let g:ycm_filepath_completion_use_working_directory = 1  " 基于工作目录补全路径
@@ -820,7 +823,7 @@ endif
 " 查找本 C 符号
 nmap <Leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 " 查找本定义
-nmap <Leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap gd :cs find g <C-R>=expand("<cword>")<CR><CR>
 " 查找本函数调用的函数
 nmap <Leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " 查找调用本函数的函数

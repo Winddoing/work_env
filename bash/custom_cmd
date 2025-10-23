@@ -178,6 +178,8 @@ function proxy_off() {
 
 	sudo systemctl stop clash.service
 	sudo systemctl status clash.service --no-pager
+	# 删除proxy相关环境变量
+	unset https_proxy http_proxy all_proxy no_proxy
 }
 
 
@@ -208,5 +210,15 @@ function gen_compile_commands() {
 		echo "Done."
 	else
 		echo "Not support."
+		echo "  bear -- make -j8"
 	fi
+}
+
+function hexdump-32bit() {
+	local file=$1
+	local len=$2
+	if [ $# -lt 1 ]; then echo "Usage: $o <file> <len>"; return; fi
+
+	len=${len:-256}
+	hexdump -e '"%.2_ax: " 1/4 "%08x ""\n"' -n $len -v $file
 }
