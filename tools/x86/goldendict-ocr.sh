@@ -30,7 +30,8 @@ fi
 
 echo "$SCREENSHOT_PATH, $OCRDATA_PATH, $OCRDATA_TXT"
 
-flameshot gui -s -p ${SCREENSHOT_PATH}
+#flameshot gui -s -p ${SCREENSHOT_PATH}
+scrot -s -F ${SCREENSHOT_PATH}
 tesseract ${SCREENSHOT_PATH} ${OCRDATA_PATH} -l eng
 
 TXT=$(cat ${OCRDATA_TXT} | tr "\n" " ")

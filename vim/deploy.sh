@@ -36,6 +36,8 @@ config_vim()
 {
 	echo "Configure vim."
 
+	vim-addon-manager install youcompleteme
+
 	#local github_url="let g:plug_url_format='https://ghproxy.com/https://github.com/%s.git'"
 	local github_url="let g:plug_url_format='https://github.moeyy.xyz/https://github.com/%s.git'"
 
@@ -57,12 +59,12 @@ install_vim_sw()
 	then
 		echo "Centos Entry..."
 		set -x
-		sudo yum -y install vim ctags cscope global
+		sudo yum -y install vim ctags cscope global clangd
 		set +x
 	else
 		echo "Ubuntu Entry..."
 		set -x
-		sudo apt -y install vim universal-ctags cscope global
+		sudo apt -y install vim universal-ctags cscope global vim-addon-manager vim-youcompleteme clangd
 		set +x
 	fi
 

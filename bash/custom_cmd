@@ -139,48 +139,48 @@ function 7z-decomp()
 }
 export -f 7z-decomp
 
-# 代理
-################################################################################
-# 命令行配置：系统设置 -> 网络 -> 网络代理
-# gsettings get org.gnome.system.proxy mode  #获取当前模式
-# set, 'none' \ 'manual' \ 'auto'
-function proxy_on() {
-	#sudo /opt/clash/auto_update.sh
-	sudo systemctl restart clash.service
-
-	gsettings set org.gnome.system.proxy.http host '127.0.0.1'
-	gsettings set org.gnome.system.proxy.http port 7890
-	gsettings set org.gnome.system.proxy.https host '127.0.0.1'
-	gsettings set org.gnome.system.proxy.https port 7890
-	gsettings set org.gnome.system.proxy.ftp host ''
-	gsettings set org.gnome.system.proxy.ftp port 0
-	gsettings set org.gnome.system.proxy.socks host '127.0.0.1'
-	gsettings set org.gnome.system.proxy.socks port 7890
-
-	gsettings set org.gnome.system.proxy mode 'manual';
-
-	sudo systemctl status clash.service --no-pager
-	echo "*****************************************"
-	echo "*  Manage URL: http://clash.razord.top  *"
-	echo "*****************************************"
-}
-function proxy_off() {
-	gsettings set org.gnome.system.proxy.http host ''
-	gsettings set org.gnome.system.proxy.http port 0
-	gsettings set org.gnome.system.proxy.https host ''
-	gsettings set org.gnome.system.proxy.https port 0
-	gsettings set org.gnome.system.proxy.ftp host ''
-	gsettings set org.gnome.system.proxy.ftp port 0
-	gsettings set org.gnome.system.proxy.socks host ''
-	gsettings set org.gnome.system.proxy.socks port 0
-
-	gsettings set org.gnome.system.proxy mode 'auto';
-
-	sudo systemctl stop clash.service
-	sudo systemctl status clash.service --no-pager
-	# 删除proxy相关环境变量
-	unset https_proxy http_proxy all_proxy no_proxy
-}
+## 代理
+#################################################################################
+## 命令行配置：系统设置 -> 网络 -> 网络代理
+## gsettings get org.gnome.system.proxy mode  #获取当前模式
+## set, 'none' \ 'manual' \ 'auto'
+#function proxy_on() {
+#	#sudo /opt/clash/auto_update.sh
+#	sudo systemctl restart clash.service
+#
+#	gsettings set org.gnome.system.proxy.http host '127.0.0.1'
+#	gsettings set org.gnome.system.proxy.http port 7890
+#	gsettings set org.gnome.system.proxy.https host '127.0.0.1'
+#	gsettings set org.gnome.system.proxy.https port 7890
+#	gsettings set org.gnome.system.proxy.ftp host ''
+#	gsettings set org.gnome.system.proxy.ftp port 0
+#	gsettings set org.gnome.system.proxy.socks host '127.0.0.1'
+#	gsettings set org.gnome.system.proxy.socks port 7890
+#
+#	gsettings set org.gnome.system.proxy mode 'manual';
+#
+#	sudo systemctl status clash.service --no-pager
+#	echo "*****************************************"
+#	echo "*  Manage URL: http://clash.razord.top  *"
+#	echo "*****************************************"
+#}
+#function proxy_off() {
+#	gsettings set org.gnome.system.proxy.http host ''
+#	gsettings set org.gnome.system.proxy.http port 0
+#	gsettings set org.gnome.system.proxy.https host ''
+#	gsettings set org.gnome.system.proxy.https port 0
+#	gsettings set org.gnome.system.proxy.ftp host ''
+#	gsettings set org.gnome.system.proxy.ftp port 0
+#	gsettings set org.gnome.system.proxy.socks host ''
+#	gsettings set org.gnome.system.proxy.socks port 0
+#
+#	gsettings set org.gnome.system.proxy mode 'auto';
+#
+#	sudo systemctl stop clash.service
+#	sudo systemctl status clash.service --no-pager
+#	# 删除proxy相关环境变量
+#	unset https_proxy http_proxy all_proxy no_proxy
+#}
 
 
 # edge设置中文
@@ -196,12 +196,28 @@ function gen_compile_commands() {
 		cp $build_dir/compile_commands.json .
 		echo "Done."
 	elif [ -f "scripts/clang-tools/gen_compile_commands.py" ] || [ -f "scripts/gen_compile_commands.py" ]; then
-		echo -n "Linux kernel generate compile_commands.json."
+		echo "Linux kernel generate compile_commands.json."
+		local arg1=$1
+		local build_dir=${arg1:-.}
+		#echo "arg1=$arg1, build dir=$build_dir"
+		if [ x"$build_dir" == x"." ] && [ ! -f ".config" ] && [ ! -f "vmlinux" ]; then
+			echo "[E] kernel is not compiled or the build directory is specified."
+			echo "$FUNCNAME [build dir]"
+			return 1
+		fi
+
+		if [ ! -f "$build_dir/.config" ] || [ ! -f "$build_dir/vmlinux" ]; then
+			echo "[E] build directory error."
+			return 2
+		fi
+
 		if [ -f "./scripts/gen_compile_commands.py" ]; then
 			# kernel 5.4
-			./scripts/gen_compile_commands.py
+			local cmd="./scripts/gen_compile_commands.py -d $build_dir"
+			echo $cmd; $cmd
 		else
-			./scripts/clang-tools/gen_compile_commands.py
+			local cmd="./scripts/clang-tools/gen_compile_commands.py -d $build_dir"
+			echo $cmd; $cmd
 		fi
 		if [ -f ".clangd" ] && [ ! -f ".clangd.bak" ]; then
 			cp .clangd .clangd.bak
@@ -217,8 +233,17 @@ function gen_compile_commands() {
 function hexdump-32bit() {
 	local file=$1
 	local len=$2
-	if [ $# -lt 1 ]; then echo "Usage: $o <file> <len>"; return; fi
+	if [ $# -lt 1 ]; then echo "Usage: $FUNCNAME <file> <len>"; return; fi
 
 	len=${len:-256}
 	hexdump -e '"%.2_ax: " 1/4 "%08x ""\n"' -n $len -v $file
+}
+
+function ffprobe-bs2len() {
+	local bs_file=$1
+	if [ $# -ne 1 ]; then echo "Usage: $FUNCNAME <file>"; return; fi
+	local len_file="${bs_file%.*}.len"
+
+	echo "bs_file: $bs_file, len_file: $len_file"
+	ffprobe -hide_banner -show_packets -loglevel quiet $bs_file | grep size | awk -F "=" '{print $2}' > $len_file
 }

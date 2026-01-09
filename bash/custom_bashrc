@@ -5,7 +5,7 @@ user=$USER
 home=$HOME
 hostname=`hostname`
 
-HOST1NAME1="vanxum02"
+HOST1NAME1="ubuntu2004"
 HOST1NAME2="ubuntu"
 
 function git_branch {
@@ -89,6 +89,7 @@ alias m-build='sudo sshfs  wq@172.16.200.101:/home/xx /home/wq/build-dir -o gid=
 # https://motrix.app && chmod +x Motrix-1.1.3-x86_64.AppImage
 #alias motrix='$HOME/software/Motrix-1.1.3-x86_64.AppImage'
 alias enca-utf-8='enca -L zh_CN -x UTF-8'
+alias pc='picocom -b 115200 /dev/ttyUSB0'
 
 # Git Repo 镜像, https://mirrors.tuna.tsinghua.edu.cn/help/git-repo/
 export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/'
@@ -116,8 +117,8 @@ fi
 
 # 终端输入提示
 if [ x$hostname = x$HOST1NAME1 ]; then
-    PS1='\A [\u@\h]\w\n↪ $(ssh_info)=>$(git_branch)\$'
-    export LESSCHARSET=utf-8 #git log中文乱码
+    PS1='\A [\u@\h]\w\n↪$(ssh_info)---=>$(git_branch)\$'
+    #export LESSCHARSET=utf-8 #git log中文乱码
     tmux_startup
 elif [ x$hostname = x$HOST1NAME2 ]; then
     PS1='\[\e[36m\]\A \[\e[32m\][\u\[\e[31m\]@\[\e[33m\]\h\[\e[32m\]]\w\n↪ $(ssh_info)=>\[\033[01;36m\]$(git_branch)\[\e[0m\]\[\e[31m\]\$\[\e[0m\]'

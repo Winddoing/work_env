@@ -459,6 +459,42 @@ vim中输入以下命令进行查找，使用系统grep
 
 
 
+## ex 模式
+
+```
+
+使用 ex 模式最简单：
+
+:%s/$/,
+
+: - enter command mode
+% - for every line
+s/ - substitute
+$ - the end of the line
+/ - and change it to
+, - a comma
+```
+
+
+
+## 选择多行尾部增加字符
+
+替换命令可以应用于视觉选择(VISUAL BLOCK 模式Ctrl- v)。在要更改的行上创建一个视觉块，然后键入:，注意命令行会被初始化为`:'<,'>`。这意味着替换命令将在视觉选择上操作，如下所示：
+
+```
+:'<,'>s/$/,/
+```
+
+
+
+## 数字自增
+
+- 先将需要自增数字的列全部赋值为0。
+- 使用 VISUAL BLOCK 模式 (<C-v>)，向下移动 8 次 (<C-v>8j) 以直观地选择全部 0。
+- 键入 g <C-a>
+
+
+
 ## 其他
 
 ### 多个标签切换
@@ -651,7 +687,7 @@ echo | clang -v -E -x c -
 首先，我们需要使用 apt 命令来安装 YCM，命令是：
 
 ```undefined
-sudo apt install vim-youcompleteme
+sudo apt install vim-youcompleteme vim-addon-manager
 ```
 
 这步成功之后，YCM 就已经被安装到了你的系统上。不过，在你个人的 Vim 配置里，仍然还没有启用 YCM。要启用的话，可以输入下面的命令：

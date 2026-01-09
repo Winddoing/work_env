@@ -83,7 +83,7 @@ set nu
 
 " 分割线显示
 " color set: ColorColumn
-set colorcolumn=80
+set colorcolumn=100
 " Make it obvious where 80 characters is
 "set textwidth=110
 "set colorcolumn=+1
@@ -245,7 +245,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['c', 'cpp'] }
-"Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
+Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
 "Plug 'wannesm/wmgraphviz.vim', { 'for': 'dot' }
 "Plug 'iamcco/markdown-preview.vim', { 'do': ':MarkdownPreview' }
 "Plug 'mzlogin/vim-markdown-toc', { 'for': 'md' }
@@ -268,6 +268,7 @@ Plug 'bfrg/vim-cpp-modern', { 'for': ['c', 'cpp'] }
 "Plug 'lifepillar/vim-mucomplete'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -432,14 +433,16 @@ nmap <F2> :DoxAuthor<cr>/
 nmap <F3> :Dox<cr>/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"">>>>>>>>plantuml-syntax
-""vim + plantuml
-"let g:plantuml_executable_script = 'java -jar ~/.vim/until/plantuml.jar'
-"nnoremap <silent> <F5> :w<CR> :make<CR>:copen<CR>
-"inoremap <silent> <F5> <Esc>:w<CR>:make<CR>:copen<CR>
-"vnoremap <silent> <F5> :<C-U>:w<CR>:make<CR>:copen<CR>
-"" Auto open
-"autocmd BufWritePost  *.uml :silent !eog %:p:r.png &
+">>>>>>>>plantuml-syntax
+"vim + plantuml
+" install: sudo apt install plantuml
+" update: cp /usr/share/plantuml/plantuml.jar ~/.vim/until/
+let g:plantuml_executable_script = 'java -jar ~/.vim/until/plantuml.jar'
+nnoremap <silent> <F5> :w<CR> :make<CR>:copen<CR>
+inoremap <silent> <F5> <Esc>:w<CR>:make<CR>:copen<CR>
+vnoremap <silent> <F5> :<C-U>:w<CR>:make<CR>:copen<CR>
+" Auto open
+autocmd BufWritePost  *.uml :silent !eog %:p:r.png &
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "">>>>>>>>wmgraphviz.vim
@@ -732,12 +735,12 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1 "注释和字符串�
 let g:ycm_filepath_completion_use_working_directory = 1  " 基于工作目录补全路径
 
 " 函数跳转
-"" 跳转到声明
-"nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-"" 跳转到实现
-"nnoremap <leader>gi :YcmCompleter GoToImplementation<CR>
-"" 查找所有引用
-"nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+" 跳转到声明
+nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+" 跳转到实现
+nnoremap <leader>gi :YcmCompleter GoToImplementation<CR>
+" 查找所有引用
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ">>>>>>>>>>>>>vim-gutentags
@@ -795,6 +798,13 @@ let g:gutentags_file_list_command = {
 
 " 禁用 gutentags 自动加载 gtags 数据库的行为
 let g:gutentags_auto_add_gtags_cscope = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+">>>>>>>>>>>>>editorconfig-vim
+"它实现了EditorConfig规范，帮助开发者在不同编辑器和IDE之间保持一致的编码风格。
+"通过读取项目中的.editorconfig文件，该插件可以自动应用诸如缩进大小、字符编码、行尾样式等设置
+autocmd FileType gitcommit let b:EditorConfig_disable = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 

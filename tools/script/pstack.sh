@@ -1,0 +1,51 @@
+#!/bin/bash
+##########################################################
+# Copyright (C) 2026 wqshao All rights reserved.
+#  File Name    : pstack.sh
+#  Author       : wqshao
+#  Created Time : 2026-01-05 17:51:09
+#  Description  :
+##########################################################
+if test $# -ne 1; then
+    echo "Usage: `basename $0 .sh` <process-id>" 1>&2
+    exit 1
+fi
+
+if test ! -r /proc/$1; then
+    echo "Process $1 not found." 1>&2
+    exit 1
+fi
+
+# GDB doesn't allow "thread apply all bt" when the process isn't
+# threaded; need to peek at the process to determine if that or the
+# simpler "bt" should be used.
+
+backtrace="bt"
+if test -d /proc/$1/task ; then
+    # Newer kernel; has a task/ directory.
+    if test `/bin/ls /proc/$1/task | /usr/bin/wc -l` -gt 1 2>/dev/null ; then
+    backtrace="thread apply all bt"
+    fi
+elif test -f /proc/$1/maps ; then
+    # Older kernel; go by it loading libpthread.
+    if /bin/grep -e libpthread /proc/$1/maps > /dev/null 2>&1 ; then
+    backtrace="thread apply all bt"
+    fi
+fi
+
+GDB=${GDB:-/usr/bin/gdb}
+
+echo "GDB: $GDB, backtrace: $backtrace"
+
+# Run GDB, strip out unwanted noise.
+# --readnever is no longer used since .gdb_index is now in use.
+$GDB --quiet -nx $GDBARGS /proc/$1/exe $1 <<EOF 2>&1 |
+set width 0
+set height 0
+set pagination no
+$backtrace
+EOF
+/bin/sed -n \
+    -e 's/^\((gdb) \)*//' \
+    -e '/^#/p' \
+    -e '/^Thread/p'
